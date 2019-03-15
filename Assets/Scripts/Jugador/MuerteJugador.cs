@@ -5,7 +5,6 @@ using UnityEngine;
 public class MuerteJugador : MonoBehaviour {
 
     public Transform puntoSpawn;
-    private Rigidbody2D rb;
 
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
