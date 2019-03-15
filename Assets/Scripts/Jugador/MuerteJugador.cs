@@ -7,7 +7,7 @@ public class MuerteJugador : MonoBehaviour {
     public Transform puntoSpawn;
 
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
+
 	}
 	
 	void Update () {
