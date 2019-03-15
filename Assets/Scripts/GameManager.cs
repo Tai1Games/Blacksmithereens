@@ -1,0 +1,64 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+/// <summary>
+/// Componente que se ocupa de organizar el código y las llamadas entre componentes
+/// Todos los scripts tienen acceso a él
+/// </summary>
+public class GameManager : MonoBehaviour {
+
+    public static GameManager instance = null;
+
+    private MovimientoCamara camara;
+
+    /// <summary>
+    /// Método que se asegura de que solo haya un GameManager al mismo tiempo
+    /// y de que no se destruya al cambiar de escena
+    /// </summary>
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else Destroy(this.gameObject);
+    }
+    void Start () {
+		
+	}
+	   
+	void Update () {
+		
+	}
+
+    /// <summary>
+    /// Activa el método "asignarseguimiento" de la cámara, permitiendo que la misma fije a un objetivo distinto más una distancia de separación.
+    /// </summary>
+    /// <param name="objeto"></param>
+    public void AsignarSeguimiento(Transform objeto, Vector3 distancia)
+    {
+        //Buscamos la cámara y su componente.
+        camara = GameObject.Find("Main Camera").GetComponent<MovimientoCamara>();
+        camara.AsignarSeguimiento(objeto, distancia);
+    }
+
+    /// <summary>
+    /// Este método cambia la escena actual a aquella especificada en el string escena.
+    /// </summary>
+    /// <param name="escena"></param>
+    public void CargaEscena(string escena)
+    {
+        SceneManager.LoadScene(escena);
+    }
+
+    /// <summary>
+    /// Sale del juego.
+    /// </summary>
+    public void Salir()
+    {
+        Application.Quit();
+    }
+}

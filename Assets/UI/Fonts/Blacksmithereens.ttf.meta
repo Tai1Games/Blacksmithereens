@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c9acd4c419eb18040a5225782f7b97a1
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Linkin Park
+  fontNames:
+  - Linkin Park
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f75a012cc2705f44896bc4245b278d01, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
