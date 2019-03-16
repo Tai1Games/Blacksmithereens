@@ -64,7 +64,7 @@ public class LanzaAtaque : MonoBehaviour
             offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
             Lanzada.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
             Lanzada.GetComponent<HacerDanoLanzaLanzada>().SetDurabilidad(durActualLanza); //le pasa a la lanza la durabilidad actual
-
+            durActualLanza = durMaxLanza;  //resetea la durabiliad complete de la lanza
             Invoke("Destruir", 1f); 
 
             this.gameObject.SetActive(false); 
