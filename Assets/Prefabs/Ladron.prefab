@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114825634310574926}
   - component: {fileID: 114599381873331942}
   - component: {fileID: 114253238130490988}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ladron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
