@@ -41,6 +41,19 @@ public class AtaqueJugador : MonoBehaviour
 
             }
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            switch (armaActual) //dependiendo del valor de armaActual, llama al arma correspondiente
+            {
+                case 1: //lanza
+                    scriptLanzaAtaque.LanzarLanza();    //Avisa a lanza para que sea lanzada.
+                    break;
+                default:
+                    Debug.Log("ningun arma seleccionada");
+                    break;
+
+            }
+        }
     }
 
     /// <summary>
