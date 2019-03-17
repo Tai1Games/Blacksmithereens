@@ -2601,11 +2601,6 @@ Transform:
   m_Father: {fileID: 1106849780}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1039099403 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1594534678569304, guid: 86728740f4068af4189d498e2bf82cc7,
-    type: 2}
-  m_PrefabInternal: {fileID: 2109272992}
 --- !u!1 &1106849779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,11 +2922,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1310788066}
   m_CullTransparentMesh: 0
---- !u!1 &1382606673 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1803825315929390, guid: 86728740f4068af4189d498e2bf82cc7,
-    type: 2}
-  m_PrefabInternal: {fileID: 2109272992}
 --- !u!1 &1441456345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3411,24 +3401,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7,
     type: 2}
   m_PrefabInternal: {fileID: 2109272992}
---- !u!95 &1731188832
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1731188821}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 625fa3b259466314fb2bd9b8099547f0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1786761547
 GameObject:
   m_ObjectHideFlags: 0
@@ -104338,11 +104310,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: arrayArmas.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 9.97
@@ -104375,54 +104342,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: martillo
-      value: 
-      objectReference: {fileID: 1039099403}
-    - target: {fileID: 4539860655893492, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4328742617101418, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: lanza
-      value: 
-      objectReference: {fileID: 1382606673}
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: arrayArmas.Array.data[0]
-      value: 
-      objectReference: {fileID: 1039099403}
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: arrayArmas.Array.data[1]
-      value: 
-      objectReference: {fileID: 1382606673}
-    - target: {fileID: 1803825315929390, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594534678569304, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212887565889041574, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 19ea52d6a8d55f34b8c83f02598cf0f9,
-        type: 3}
-    - target: {fileID: 114406747486264206, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: tiempoInvulnerabilidad
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 95545234864577878, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
   m_IsPrefabAsset: 0
