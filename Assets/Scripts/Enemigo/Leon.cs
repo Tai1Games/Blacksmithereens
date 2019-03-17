@@ -19,6 +19,7 @@ public class Leon : MonoBehaviour {
     Vector2 diferencia;
     float angulo;
     Vector2 movimiento;
+    bool encima = false;
 
 
     void Start ()
@@ -44,11 +45,24 @@ public class Leon : MonoBehaviour {
     {
         if (saltando)
         {
-            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad); //El leon se mueve hacia el jugador
             t += Time.fixedDeltaTime; //El contador de tiempo se va incrementando
-            if (t>= tiempoSalto) //Cuando es igual al tiempo definido de salto, el salto acaba
+
+            if (encima == false)
+            {
+                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad); //El leon se mueve hacia el jugador
+
+                if (rb.position.x > jugador.transform.position.x - 0.5f && rb.position.y > jugador.transform.position.y - 0.5f &&
+                    rb.position.x < jugador.transform.position.x + 0.5f && rb.position.y < jugador.transform.position.y + 0.5f)
+                    encima = true; //Si el león está encima del jugador, se para
+            }
+            else
+                rb.velocity = Vector2.zero;
+
+            if (t >= tiempoSalto)
+            //Cuando t es igual al tiempo definido de salto o el león está muy cerca del jugador, el salto acaba
             {
                 saltando = false;
+                encima = false;
                 t = 0; //Se reinicia el tiempo
                 rb.velocity = Vector2.zero;
                 Physics2D.IgnoreLayerCollision(9, 8, false); //Las colisiones entre el león y el jugador/enemigos vuelven a funcionar
