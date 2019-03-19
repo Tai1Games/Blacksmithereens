@@ -14,6 +14,7 @@ public class Ladron : MonoBehaviour
 
     bool volver = false;
     bool robado = false;
+    bool knockback = false;
     Vector2 offset = new Vector2 (0.5f, 0.5f);
     Rigidbody2D rb;
     Vector2 movimiento;
@@ -40,14 +41,14 @@ public class Ladron : MonoBehaviour
 
      void FixedUpdate()
     {
-        if (jugador != null && volver == false) //cacheo de referencia
+        if (jugador != null && volver == false && !knockback) //cacheo de referencia
         {
             //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
             movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
             //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
             rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
         }
-        else if (jugador != null) //Si volver = true, el ladron huye del jugador hacia su punto de salida
+        else if (jugador != null && !knockback) //Si volver = true, el ladron huye del jugador hacia su punto de salida
         {
             //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
             movimiento = new Vector2(salida.x - rb.position.x, salida.y - rb.position.y).normalized;
@@ -63,6 +64,18 @@ public class Ladron : MonoBehaviour
         }
     }
 
+    
+    /// <summary>
+    /// Cuando un arma colisiona con el enemigo, le aplica una fuerza de knockback
+    /// </summary>
+    public void SetKnockBack(Vector2 direccion)
+    {
+        knockback = true;  //esta en proceso de knockback
+        rb.velocity = direccion; 
+        StartCoroutine(DesactivarKnockback());  //tiene un tiempo de espera antes de volver a atacar
+    }
+
+    
     /// <summary>
     /// Si el ladrón ha robado materiales, los devolverá al morir y se mostrará el texto pop-up (este método es invocado por MuerteEnemigo)
     /// </summary>
@@ -105,5 +118,12 @@ public class Ladron : MonoBehaviour
                 volver = true;
             }
         }
+     }
+
+
+    private IEnumerator DesactivarKnockback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        knockback = false;
     }
 }
