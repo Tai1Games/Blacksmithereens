@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 /// <summary>
 /// Componente que controla los enemigos de la arena
@@ -32,7 +33,9 @@ public class ArenaManager : MonoBehaviour
     Ronda[] arena; //Array de rondas por arena
 
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
+    private int tiempo = 0;
     private bool finRonda = false; //Indica si han tocado el centro tras terminar la ronda
+    Stopwatch reloj = new Stopwatch();
 
     void Start()
     {
@@ -74,6 +77,7 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
+        reloj.Start();
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }
@@ -105,6 +109,9 @@ public class ArenaManager : MonoBehaviour
     IEnumerator FinOleada(Spawn[] oleada, Oleada[] ronda, int i)
     {
         yield return new WaitUntil(() => eneMuertos >= oleada.Length);
+        reloj.Stop();
+        tiempo = reloj.Elapsed.Seconds;
+        UnityEngine.Debug.Log(tiempo);
         if (i + 1 < ronda.Length) SpawnRonda(ronda, i + 1);
         else centroArena.SetActive(true);
     }
