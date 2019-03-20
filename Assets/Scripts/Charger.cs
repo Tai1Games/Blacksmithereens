@@ -11,8 +11,8 @@ public class Charger : MonoBehaviour {
     public float TiempoRepeticion;
     public int fuerza;
     public float TiempoDescanso;
-    public float velocidad;
 
+    private float velocidad;
     private Rigidbody2D rb;
     private Vector2 movimiento;
     private GameObject jugador;
@@ -20,9 +20,14 @@ public class Charger : MonoBehaviour {
     private float angulo;
     private bool moverse = true;
     private bool moveratras = false;
+    private bool MoviminetoGeneral = true;  //si es true, usa el script MoviminetoEnemigo para moverse
+    private MovimientoEnemigo movEnemigo;
+
 
 	void Start ()
     {
+        movEnemigo = GetComponent<MovimientoEnemigo>();
+        velocidad = movEnemigo.Velocidad;
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         InvokeRepeating("ComienzaCarga", 0, TiempoRepeticion);
@@ -30,25 +35,12 @@ public class Charger : MonoBehaviour {
 	
 	void Update ()
     {
-        if (moverse || moveratras)
-        {
-            //diferencia de posicion entre el jugador y el enemigo
-            diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
-            angulo = Mathf.Atan2(diferencia.x, diferencia.y) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
-            transform.rotation = Quaternion.Euler(0, 0, -angulo); //cambia la rotacion del enemigo
-        }
+
     }
 
     private void FixedUpdate()
     {
-        if (jugador != null && moverse) //cacheo de referencia
-        {
-            //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
-            movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
-            //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
-            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
-        }
-        else if (moveratras) //El enemigo se mueve hacia atrás
+        if (moveratras) //El enemigo se mueve hacia atrás
         {
             movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
             rb.velocity = Vector2.ClampMagnitude(-movimiento * velocidad, velocidad);
@@ -71,6 +63,7 @@ public class Charger : MonoBehaviour {
     private IEnumerator Carga()
     {
         moveratras = false; //Si es true, el enemigo se mueve hacia atrás
+        MoviminetoGeneral = true;
         moverse = true; //Si es true, el enemigo se mueve hacia delante mediante rb.velocity
         velocidad /= 2; //Se reduce la velocidad para prepararse antes de la carga
         yield return new WaitForSeconds(TiempoPreparacion); //Se espera durante un tiempo de preparación elegido desde el editor
@@ -81,6 +74,16 @@ public class Charger : MonoBehaviour {
         yield return new WaitForSeconds(TiempoDescanso); //Se espera durante un tiempo de descanso
         velocidad *= 2; //La velocidad vuelve a a normalidad
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        MoviminetoGeneral = false;
         moveratras = true; //El enemigo comienza a alejarse del jugador, tras lo cual comenzará el proceso de carga de nuevo
+    }
+
+
+    /// <summary>
+    /// Con Devolver Estado se refiere a que si se esta moviendo por si mismo o usa el Movimineto Enemigo general
+    /// </summary>
+    public bool DevolverEStado()
+    {
+        return MoviminetoGeneral;
     }
 }
