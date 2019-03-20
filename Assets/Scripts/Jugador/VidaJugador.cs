@@ -48,8 +48,10 @@ public class VidaJugador : MonoBehaviour {
             {
                 muerte.JugadorMuere();
             }
+            else
+                StartCoroutine(Invulnerabilidad()); //Se comienza la corrutina de invulnerabilidad
             LevelManager.instance.ActualizaVida(vidaActual, vidaMax);
-            StartCoroutine(Invulnerabilidad()); //Se comienza la corrutina de invulnerabilidad
+            
         }
     }
 
