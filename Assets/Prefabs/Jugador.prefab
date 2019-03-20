@@ -65,10 +65,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4539860655893492}
   - component: {fileID: 212887565889041574}
-  - component: {fileID: 114942220535323846}
   - component: {fileID: 61171063692725808}
   - component: {fileID: 95808254606185326}
   - component: {fileID: 114671527327583200}
+  - component: {fileID: 114942220535323846}
   m_Layer: 0
   m_Name: lanza
   m_TagString: Untagged
