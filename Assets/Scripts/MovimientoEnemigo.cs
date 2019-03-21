@@ -10,25 +10,19 @@ public class MovimientoEnemigo : MonoBehaviour {
     public int Velocidad;
     public int Daño;
 
-    bool LadronEstado;
+    bool EstadoEnemigo = true;
     bool knockback = false;
     private Rigidbody2D rb;
     private GameObject jugador;
     private Vector2 movimiento;
     private Vector2 diferencia;
     private float angulo;
-    private Ladron ladron;
-    private Charger charger;
     
 
     void Start ()
     {
-        ladron = GetComponent<Ladron>();
-        charger = GetComponent<Charger>();
         rb = GetComponent<Rigidbody2D>();
-        jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
-        if(ladron) LadronEstado = ladron.DevolverEstado(); //si LadronEstado es true, utiliza este codigo para moverse
-        //hay que poner que cada vez que se cambia el estado del enemigo cambie aqui tmb
+        jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugado
     }
 	
 	void Update ()
@@ -37,12 +31,12 @@ public class MovimientoEnemigo : MonoBehaviour {
         diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
         angulo = Mathf.Atan2(diferencia.x, diferencia.y) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
         transform.rotation = Quaternion.Euler(0, 0, -angulo); //cambia la rotacion del enemigo
-        if(!knockback && (LadronEstado))movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized *Velocidad;
+        if(!knockback && (EstadoEnemigo))movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized *Velocidad;
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = movimiento;
+        if(EstadoEnemigo)rb.velocity = movimiento;
     }
 
     /// <summary>
@@ -64,10 +58,27 @@ public class MovimientoEnemigo : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);  //tiempo de cool down antes de que el enemigo te pueda atacar otra vez
         knockback = false;
     }
-    
+
+    /// <summary>
+    /// Le dice al metodo hacer daño de cada enemigo el daño que tiene que hacer
+    /// </summary>
     public int DevuelveDaño()
     {
         return Daño;
+    }
+
+    /// <summary>
+    /// Cambia el estado del enemigo, si es false NO usa este script para su movimineto
+    /// </summary>
+    public void CambiarEstadoEnemigo(bool NuevoEstado)
+    {
+        EstadoEnemigo = NuevoEstado;
+    }
+
+
+    public Vector2 DevolverMovimiento()
+    {
+        return movimiento;
     }
 
 }

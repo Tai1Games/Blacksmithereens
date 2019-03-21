@@ -16,11 +16,7 @@ public class Charger : MonoBehaviour {
     private Rigidbody2D rb;
     private Vector2 movimiento;
     private GameObject jugador;
-    private Vector2 diferencia;
-    private float angulo;
-    private bool moverse = true;
     private bool moveratras = false;
-    private bool MoviminetoGeneral = true;  //si es true, usa el script MoviminetoEnemigo para moverse
     private MovimientoEnemigo movEnemigo;
 
 
@@ -35,16 +31,17 @@ public class Charger : MonoBehaviour {
 	
 	void Update ()
     {
-
     }
 
     private void FixedUpdate()
     {
         if (moveratras) //El enemigo se mueve hacia atrás
         {
+            print("FFF");
             movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
             rb.velocity = Vector2.ClampMagnitude(-movimiento * velocidad, velocidad);
         }
+
     }
 
 
@@ -63,27 +60,18 @@ public class Charger : MonoBehaviour {
     private IEnumerator Carga()
     {
         moveratras = false; //Si es true, el enemigo se mueve hacia atrás
-        MoviminetoGeneral = true;
-        moverse = true; //Si es true, el enemigo se mueve hacia delante mediante rb.velocity
+        movEnemigo.CambiarEstadoEnemigo(true); //como va a seguir al jugador, usa el MoviminetoEnemigo
         velocidad /= 2; //Se reduce la velocidad para prepararse antes de la carga
         yield return new WaitForSeconds(TiempoPreparacion); //Se espera durante un tiempo de preparación elegido desde el editor
-        moverse = false; //Se cancela el movimiento mediante rb.velocity para añadir una fuerza de carga
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.5f);
-        rb.AddForce(movimiento * fuerza); //Se añade la fuerza de carga
+        movEnemigo.CambiarEstadoEnemigo(false);
+        Vector2 DireccionCarga = movEnemigo.DevolverMovimiento().normalized;
+        rb.AddForce(DireccionCarga * fuerza); //Se añade la fuerza de carga
         yield return new WaitForSeconds(TiempoDescanso); //Se espera durante un tiempo de descanso
         velocidad *= 2; //La velocidad vuelve a a normalidad
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-        MoviminetoGeneral = false;
+        movEnemigo.CambiarEstadoEnemigo(false); //deja de usar el MovimientoEnemigo para moverse
         moveratras = true; //El enemigo comienza a alejarse del jugador, tras lo cual comenzará el proceso de carga de nuevo
-    }
-
-
-    /// <summary>
-    /// Con Devolver Estado se refiere a que si se esta moviendo por si mismo o usa el Movimineto Enemigo general
-    /// </summary>
-    public bool DevolverEStado()
-    {
-        return MoviminetoGeneral;
     }
 }

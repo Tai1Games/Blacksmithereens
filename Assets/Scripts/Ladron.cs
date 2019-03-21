@@ -7,9 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Ladron : MonoBehaviour
 {
-
-    /*  public float velocidad;
-      public int daño;*/
     public int matRobados;
 
     bool volver = false;
@@ -18,8 +15,6 @@ public class Ladron : MonoBehaviour
     Rigidbody2D rb;
     Vector2 movimiento;
     GameObject jugador;
-    Vector2 diferencia;
-    float angulo;
     private Vector2 salida;
     MovimientoEnemigo movenemigo;
 
@@ -77,6 +72,7 @@ public class Ladron : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Materiales>() && robado == false)
         {
+            movenemigo.CambiarEstadoEnemigo(false);
             Materiales mat = collision.gameObject.GetComponent<Materiales>();
             int numMateriales = mat.DecirMateriales();
             //Si el jugador no tiene suficientes materiales, el ladrón ataca
@@ -99,15 +95,5 @@ public class Ladron : MonoBehaviour
                 volver = true;
             }
         }
-    }
-
-
-    /// <summary>
-    /// Con Devolver Estado se refiere a que si se esta moviendo por si mismo o usa el Movimineto Enemigo general
-    /// </summary>
-    public bool DevolverEstado()
-    {
-        bool estado = !volver;  //si volver es false, el ladron se mueve con el MovimientoEnemigo
-        return estado;
     }
 }
