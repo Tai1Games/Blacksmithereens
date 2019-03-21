@@ -35,7 +35,7 @@ public class CrafteoArmas : MonoBehaviour {
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
 
-            scriptArmas.CambioArma(1);
+            scriptArmas.CambioArma(Armas.Lanza);
 
             Debug.Log("Crafteando Lanza");
         }
@@ -47,6 +47,9 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteEspada);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+
+            scriptArmas.CambioArma(Armas.Espada);
+
             Debug.Log("Crafteando Espada");
         }
     }
@@ -58,7 +61,7 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteTomahawk);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
-            scriptArmas.CambioArma(3);
+            scriptArmas.CambioArma(Armas.Tomahawk);
             Debug.Log("CrafteandoTomahawk");
         }
     }

@@ -94,7 +94,7 @@ public class LanzaAtaque : MonoBehaviour
         print("Durabilidad Lanza: " + durActualLanza);
         if (durActualLanza <= 0)
         {
-            scriptarmas.CambioArma(0);
+            scriptarmas.CambioArma(Armas.Martillo);
             durActualLanza = durMaxLanza;
         }
     }

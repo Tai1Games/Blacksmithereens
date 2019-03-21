@@ -4,20 +4,29 @@ using UnityEngine;
 
 //Este script lee el input del raton (ambos clicks) y avisa al arma que lleva equipada el jugador;
 
+public enum Armas
+{
+    Martillo,
+    Lanza,
+    Espada,
+    Tomahawk
+}
+
 public class AtaqueJugador : MonoBehaviour
 {
 
     public GameObject[] arrayArmas;
 
-    int armaActual = 0;     //Codifica el arma que porta el jugador; 0 = martillo, 1 = lanza, 2 = espada, 3 = tomahawk
+    Armas armaActual = Armas.Martillo;     //Guarda el arma que porta el jugador
     LanzaAtaque scriptLanzaAtaque;
     MartilloAtaque scriptMartilloAtaque;
-
+    EspadaAtaque scriptEspadaAtaque;
 
     void Start()
     {
         scriptMartilloAtaque = gameObject.GetComponentInChildren<MartilloAtaque>();
         scriptLanzaAtaque = gameObject.GetComponentInChildren<LanzaAtaque>();
+        scriptEspadaAtaque = gameObject.GetComponentInChildren<EspadaAtaque>();
 
         arrayArmas[1].SetActive(false);
     }
@@ -29,11 +38,14 @@ public class AtaqueJugador : MonoBehaviour
         {
             switch (armaActual) //dependiendo del valor de armaActual, llama al arma correspondiente
             {
-                case 0: //martillo
+                case Armas.Martillo: //martillo
                     scriptMartilloAtaque.AtaqueMartillo();  //Avisa a martillo para que ataque.
                     break;
-                case 1: //lanza
+                case Armas.Lanza: //lanza
                     scriptLanzaAtaque.AtaqueLanza();    //Avisa a lanza para que ataque.
+                    break;
+                case Armas.Espada: //espada
+                    scriptEspadaAtaque.AtaqueEspadas();  //Avisa a la espada para que ataque.
                     break;
                 default:
                     Debug.Log("ningun arma seleccionada");
@@ -45,7 +57,7 @@ public class AtaqueJugador : MonoBehaviour
         {
             switch (armaActual) //dependiendo del valor de armaActual, llama al arma correspondiente
             {
-                case 1: //lanza
+                case Armas.Lanza: //lanza
                     scriptLanzaAtaque.LanzarLanza();    //Avisa a lanza para que sea lanzada.
                     break;
                 default:
@@ -59,11 +71,11 @@ public class AtaqueJugador : MonoBehaviour
     /// <summary>
     /// Cambia al arma especificada
     /// </summary>
-    /// <param name="arma">0:martillo 1:lanza 2:espada 3:tomahawk</param>
-    public void CambioArma(int arma)
+    /// <param name="arma">Nombre del arma al que se quiere cambiar</param>
+    public void CambioArma(Armas arma)
     {
-        arrayArmas[armaActual].SetActive(false);
+        arrayArmas[(int)armaActual].SetActive(false);
         armaActual = arma;
-        arrayArmas[armaActual].SetActive(true);
+        arrayArmas[(int)armaActual].SetActive(true);
     }
 }
