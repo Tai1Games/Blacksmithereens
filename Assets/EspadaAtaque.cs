@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EspadaAtaque : MonoBehaviour {
-
-    /*
+/*
     * Este meétodo se encarga de:
     *  llevar la cuenta de la durabilidad de la espada
     *  que al al recibir la orden de ataque(ataqueJugador.cs), la espada se mueva hacia delante y luego vuelva a su posicion normal.
    */
 
+public class EspadaAtaque : MonoBehaviour {
+
+    
+
+    public int durMaxEspada = 20;       //Durabilidad máxima
+
     Animator animador;
     AtaqueJugador scriptarmas;
-
-
-    int durMaxEspada = 20;       //Durabilidad máxima
     int durActualEspada;                 //Durabilidad actual, la que va disminuyendo
 
     void Start()
@@ -37,6 +38,7 @@ public class EspadaAtaque : MonoBehaviour {
         if (animador.GetCurrentAnimatorStateInfo(0).IsName("EspadaNormal"))      //animacion actual, para evitar ataques dobles
         {
             animador.SetTrigger("Ataque");
+            RestaDurEspada(1);
         }
     }
 
@@ -53,6 +55,8 @@ public class EspadaAtaque : MonoBehaviour {
         {
             scriptarmas.CambioArma(Armas.Martillo);
             durActualEspada = durMaxEspada;
-        }
+        }   
+
     }
+
 }
