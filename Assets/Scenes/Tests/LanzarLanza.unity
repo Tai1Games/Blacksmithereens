@@ -104374,11 +104374,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.58
       objectReference: {fileID: 0}
     - target: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -104446,6 +104446,17 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 19ea52d6a8d55f34b8c83f02598cf0f9,
         type: 3}
+    - target: {fileID: 114942220535323846, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: Lanza
+      value: 
+      objectReference: {fileID: 1904581897116602, guid: d0aba06c0e6876445ac17ab5f755f299,
+        type: 2}
+    - target: {fileID: 114942220535323846, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: velocidad
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
   m_IsPrefabAsset: 0
