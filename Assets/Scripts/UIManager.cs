@@ -11,9 +11,13 @@ public class UIManager : MonoBehaviour {
 
     float barraMaxTamano;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
         barraMaxTamano = barraVida.rectTransform.rect.width;
+    }
+    // Use this for initialization
+    void Start () {
+
     }
 	
 	// Update is called once per frame

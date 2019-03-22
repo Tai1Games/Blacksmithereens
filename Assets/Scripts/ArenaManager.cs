@@ -106,6 +106,7 @@ public class ArenaManager : MonoBehaviour
     {
         yield return new WaitUntil(() => eneMuertos >= oleada.Length);
         if (i + 1 < ronda.Length) SpawnRonda(ronda, i + 1);
+        //Si no se comprueba, es que ha acabado la ronda
         else centroArena.SetActive(true);
     }
 
@@ -115,6 +116,9 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
     {
+        //Al tocar el centro el jugador se sana
+        LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
+        //Empieza la siguiente ronda
         yield return new WaitUntil(() => finRonda);
         if (i + 1 < arena.Length) SpawnArena(arena, i + 1);
         else LevelManager.instance.VuelveaMenu();
