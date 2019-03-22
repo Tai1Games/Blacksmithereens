@@ -19,7 +19,7 @@ public class Leon : MonoBehaviour {
     Vector2 diferencia;
     float angulo;
     Vector2 movimiento;
-    bool encima = false;
+    Vector2 posicionJugador;
 
 
     void Start ()
@@ -46,23 +46,13 @@ public class Leon : MonoBehaviour {
         if (saltando)
         {
             t += Time.fixedDeltaTime; //El contador de tiempo se va incrementando
+            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
 
-            if (encima == false)
-            {
-                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad); //El leon se mueve hacia el jugador
-
-                if (rb.position.x > jugador.transform.position.x - 0.5f && rb.position.y > jugador.transform.position.y - 0.5f &&
-                    rb.position.x < jugador.transform.position.x + 0.5f && rb.position.y < jugador.transform.position.y + 0.5f)
-                    encima = true; //Si el león está encima del jugador, se para
-            }
-            else
-                rb.velocity = Vector2.zero;
-
-            if (t >= tiempoSalto)
-            //Cuando t es igual al tiempo definido de salto o el león está muy cerca del jugador, el salto acaba
+            if (t >= tiempoSalto || rb.position.x > posicionJugador.x - 0.5f && rb.position.y > posicionJugador.y - 0.5f &&
+                    rb.position.x < posicionJugador.x + 0.5f && rb.position.y < posicionJugador.y + 0.5f)
+                //Cuando t es igual al tiempo definido de salto o el león está en la posición del jugador al inicio del salto, el salto acaba
             {
                 saltando = false;
-                encima = false;
                 t = 0; //Se reinicia el tiempo
                 rb.velocity = Vector2.zero;
                 Physics2D.IgnoreLayerCollision(9, 8, false); //Las colisiones entre el león y el jugador/enemigos vuelven a funcionar
@@ -89,7 +79,8 @@ public class Leon : MonoBehaviour {
         while (this.enabled) //Mientras el león esté activo...
         {
             //Se moverá hacia el jugador
-            movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized; 
+            posicionJugador = jugador.transform.position;
+            movimiento = new Vector2(posicionJugador.x - rb.position.x, posicionJugador.y - rb.position.y).normalized; 
             Physics2D.IgnoreLayerCollision(9, 8, true); //Mientras salta, no colisiona con el jugador...
             Physics2D.IgnoreLayerCollision(9, 10, true); //... ni con otros enemigos
             saltando = true; //Indica a fixedUpdate que comience el movimiento
