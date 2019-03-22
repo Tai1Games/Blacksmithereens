@@ -9,6 +9,8 @@ using System.Diagnostics;
 public class ArenaManager : MonoBehaviour
 {
     public GameObject centroArena; //referencia al objeto que cambia de ronda
+    public LevelManager levelManager; //referencia al levelManager
+    public float matBase; //materiales por enemigo
 
     [System.Serializable]
     struct Spawn //Instancia de enemigo
@@ -33,7 +35,8 @@ public class ArenaManager : MonoBehaviour
     Ronda[] arena; //Array de rondas por arena
 
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
-    private int tiempo = 0;
+    private float tiempo = 0;
+    private float esperaTotal = 0;
     private bool finRonda = false; //Indica si han tocado el centro tras terminar la ronda
     Stopwatch reloj = new Stopwatch();
 
@@ -93,12 +96,20 @@ public class ArenaManager : MonoBehaviour
         StartCoroutine(FinRonda(arena[i].ronda, arena, i));
     }
 
+    void FormulaMateriales(float tiempo, Spawn[] oleada)
+    {
+        int mat = (int)(matBase * oleada.Length / (tiempo - esperaTotal));
+        UnityEngine.Debug.Log(mat);
+        levelManager.SumarMateriales(mat);
+    }
+
     /// <summary>
     /// Espera el tiempo de espera que tiene cada enemigo y lo spawnea
     /// </summary>
     IEnumerator Espera(Spawn[] oleada, int i)
     {
         yield return new WaitForSeconds(oleada[i].espera);
+        esperaTotal += oleada[i].espera;
         Instantiate(oleada[i].tipo, oleada[i].puerta);
         if (i + 1 < oleada.Length) SpawnOleada(oleada, i + 1);
     }
@@ -110,8 +121,12 @@ public class ArenaManager : MonoBehaviour
     {
         yield return new WaitUntil(() => eneMuertos >= oleada.Length);
         reloj.Stop();
-        tiempo = reloj.Elapsed.Seconds;
+        tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds;
+        tiempo /= 1000;
         UnityEngine.Debug.Log(tiempo);
+        FormulaMateriales(tiempo, oleada);
+        reloj.Reset();
+        esperaTotal = 0;
         if (i + 1 < ronda.Length) SpawnRonda(ronda, i + 1);
         else centroArena.SetActive(true);
     }

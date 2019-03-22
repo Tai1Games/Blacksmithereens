@@ -2465,6 +2465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centroArena: {fileID: 1316093997}
+  levelManager: {fileID: 1184957555}
+  matBase: 3.5
   arena:
   - ronda:
     - oleada:
