@@ -9,9 +9,7 @@ public class MartilloAtaque : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         animacion = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -25,7 +23,7 @@ public class MartilloAtaque : MonoBehaviour
     /// </summary>
     public void AtaqueMartillo()
     {
-        if ((transform.localPosition.y < 0.095))  //Posicion relativa al jugador, para evitar ataques dobles
+        if ((transform.localPosition.y < 0.09768)) //Posicion relativa al jugador, para evitar ataques dobles
         {
             animacion.SetTrigger("Ataque");  //Trigger para activar la animación
         }

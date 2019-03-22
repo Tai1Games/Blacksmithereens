@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 8
-  "da\xF1o": 0
+  "da\xF1o": 10
   matRobados: 50
 --- !u!114 &114707864174570818
 MonoBehaviour:
