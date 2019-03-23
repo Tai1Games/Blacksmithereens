@@ -27,11 +27,14 @@ public class MovimientoEnemigo : MonoBehaviour {
 	
 	void Update ()
     {
-        //diferencia de posicion entre el jugador y el enemigo
-        diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
-        angulo = Mathf.Atan2(diferencia.x, diferencia.y) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
-        transform.rotation = Quaternion.Euler(0, 0, -angulo); //cambia la rotacion del enemigo
-        if(!knockback && (EstadoEnemigo))movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized *Velocidad;
+
+        if(!knockback && (EstadoEnemigo))
+        {        //diferencia de posicion entre el jugador y el enemigo
+            diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
+            angulo = Mathf.Atan2(diferencia.x, diferencia.y) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
+            transform.rotation = Quaternion.Euler(0, 0, -angulo); //cambia la rotacion del enemigo
+            movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized * Velocidad;
+        }
     }
 
     private void FixedUpdate()
