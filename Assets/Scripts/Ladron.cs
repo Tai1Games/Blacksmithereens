@@ -17,7 +17,7 @@ public class Ladron : MonoBehaviour
     GameObject jugador;
     private Vector2 salida;
     MovimientoEnemigo movenemigo;
-
+    int velocidad;
 
     void Start()
     {
@@ -25,6 +25,7 @@ public class Ladron : MonoBehaviour
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         salida = transform.position;
         movenemigo = GetComponent<MovimientoEnemigo>();
+        velocidad = movenemigo.DevuelveVelocidad();
     }
 
     void Update()
@@ -39,7 +40,6 @@ public class Ladron : MonoBehaviour
             //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
             movimiento = new Vector2(salida.x - rb.position.x, salida.y - rb.position.y).normalized;
             //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
-            int velocidad = movenemigo.Velocidad;
             rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
             //Si el ladron está huyendo y llega al punto de salida, desaparece
             if (transform.position.x > salida.x - offset.x && transform.position.y > salida.y - offset.y &&

@@ -76,9 +76,18 @@ public class MovimientoEnemigo : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Devulve la direccion hacia la que el enemigo se tiene que mover, usado para la carga del charger
+    /// </summary>
     public Vector2 DevolverMovimiento()
     {
         return movimiento;
+    }
+
+
+    public int DevuelveVelocidad()
+    {
+        return Velocidad;
     }
 
 }

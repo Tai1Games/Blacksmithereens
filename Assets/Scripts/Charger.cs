@@ -23,7 +23,7 @@ public class Charger : MonoBehaviour {
 	void Start ()
     {
         movEnemigo = GetComponent<MovimientoEnemigo>();
-        velocidad = movEnemigo.Velocidad;
+        velocidad = movEnemigo.DevuelveVelocidad();
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         InvokeRepeating("ComienzaCarga", 0, TiempoRepeticion);
@@ -64,8 +64,9 @@ public class Charger : MonoBehaviour {
         velocidad /= 2; //Se reduce la velocidad para prepararse antes de la carga
         yield return new WaitForSeconds(TiempoPreparacion); //Se espera durante un tiempo de preparación elegido desde el editor
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        yield return new WaitForSeconds(0.5f);
         movEnemigo.CambiarEstadoEnemigo(false);
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.5f);
         Vector2 DireccionCarga = movEnemigo.DevolverMovimiento().normalized;
         rb.AddForce(DireccionCarga * fuerza); //Se añade la fuerza de carga
         yield return new WaitForSeconds(TiempoDescanso); //Se espera durante un tiempo de descanso
