@@ -2465,6 +2465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centroArena: {fileID: 1316093997}
+  interfaz: {fileID: 1530245018}
   arena:
   - ronda:
     - oleada:

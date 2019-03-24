@@ -8,6 +8,10 @@ using UnityEngine;
 public class ArenaManager : MonoBehaviour
 {
     public GameObject centroArena; //referencia al objeto que cambia de ronda
+    public GameObject interfaz;
+
+    private UIManager uim;
+
 
     [System.Serializable]
     struct Spawn //Instancia de enemigo
@@ -37,6 +41,7 @@ public class ArenaManager : MonoBehaviour
     void Start()
     {
         SpawnArena(arena, 0);
+        uim = interfaz.GetComponent<UIManager>();
     }
 
     void Update()
@@ -74,8 +79,11 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
+        
+        //uim.ActualizaTextoRonda(i + 1);
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
+
     }
 
     /// <summary>
@@ -115,6 +123,7 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
     {
+        print(i + 1);
         yield return new WaitUntil(() => finRonda);
         if (i + 1 < arena.Length) SpawnArena(arena, i + 1);
         else LevelManager.instance.VuelveaMenu();

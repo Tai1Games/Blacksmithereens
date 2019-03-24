@@ -55,4 +55,9 @@ public class UIManager : MonoBehaviour {
         newPopUpMatCanvas.CambiaParametrosTexto(mat); //Cambia el texto a el número de materiales nuevos.
 
     }
+
+    public void ActualizaTextoRonda(int i)
+    {
+
+    }
 }
