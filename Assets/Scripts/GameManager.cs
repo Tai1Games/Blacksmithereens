@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
 
-    private MovimientoCamara camara;
-
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
     /// y de que no se destruya al cambiar de escena
@@ -33,17 +31,6 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    /// <summary>
-    /// Activa el método "asignarseguimiento" de la cámara, permitiendo que la misma fije a un objetivo distinto más una distancia de separación.
-    /// </summary>
-    /// <param name="objeto"></param>
-    public void AsignarSeguimiento(Transform objeto, Vector3 distancia)
-    {
-        //Buscamos la cámara y su componente.
-        camara = GameObject.Find("Main Camera").GetComponent<MovimientoCamara>();
-        camara.AsignarSeguimiento(objeto, distancia);
-    }
 
     /// <summary>
     /// Este método cambia la escena actual a aquella especificada en el string escena.

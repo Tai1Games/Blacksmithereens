@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class ArenaManager : MonoBehaviour
 {
+    public GameObject centroArena; //referencia al objeto que cambia de ronda
+
     [System.Serializable]
     struct Spawn //Instancia de enemigo
     {
@@ -30,9 +32,11 @@ public class ArenaManager : MonoBehaviour
     Ronda[] arena; //Array de rondas por arena
 
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
+    private bool finRonda = false; //Indica si han tocado el centro tras terminar la ronda
+
     void Start()
     {
-        SpawnRonda(arena[0].ronda, 0);
+        SpawnArena(arena, 0);
     }
 
     void Update()
@@ -49,15 +53,20 @@ public class ArenaManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawnea cierta oleada enemigo a enemigo
+    /// Indica el cambio de ronda cuando se toca el centro
     /// </summary>
-    void SpawnOleada(Spawn[] oleada)
+    public void TocarCentro()
     {
-        eneMuertos = 0;
-        for (int i = 0; i < oleada.Length; i++)
-        {
-            StartCoroutine(Espera(oleada,i));            
-        }
+        finRonda = true;
+    }
+
+    /// <summary>
+    /// Spawnea el enemigo que le inidica el parametro "i"
+    /// </summary>
+    void SpawnOleada(Spawn[] oleada, int i)
+    {
+        if (i == 0) eneMuertos = 0;
+        StartCoroutine(Espera(oleada, i));
     }
 
     /// <summary>
@@ -65,14 +74,20 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
-        SpawnOleada(ronda[i].oleada);
+        SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }
 
-    /*void SpawnArena(Ronda[] arena, int i, int j)
+    /// <summary>
+    /// Spawnea la ronda que le indica el parametro "i"
+    /// </summary>
+    void SpawnArena(Ronda[] arena, int i)
     {
-        SpawnRonda(arena[i].ronda, j)
-    }*/
+        centroArena.SetActive(false);
+        finRonda = false;
+        SpawnRonda(arena[i].ronda, 0);
+        StartCoroutine(FinRonda(arena[i].ronda, arena, i));
+    }
 
     /// <summary>
     /// Espera el tiempo de espera que tiene cada enemigo y lo spawnea
@@ -81,6 +96,7 @@ public class ArenaManager : MonoBehaviour
     {
         yield return new WaitForSeconds(oleada[i].espera);
         Instantiate(oleada[i].tipo, oleada[i].puerta);
+        if (i + 1 < oleada.Length) SpawnOleada(oleada, i + 1);
     }
 
     /// <summary>
@@ -90,6 +106,17 @@ public class ArenaManager : MonoBehaviour
     {
         yield return new WaitUntil(() => eneMuertos >= oleada.Length);
         if (i + 1 < ronda.Length) SpawnRonda(ronda, i + 1);
+        else centroArena.SetActive(true);
+    }
+
+    /// <summary>
+    /// Espera a que se toque el centro de la arena y llama a la siguiente ronda
+    /// Si no existe, vuelve al menú
+    /// </summary>
+    IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
+    {
+        yield return new WaitUntil(() => finRonda);
+        if (i + 1 < arena.Length) SpawnArena(arena, i + 1);
         else LevelManager.instance.VuelveaMenu();
     }
 }

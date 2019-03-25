@@ -85,13 +85,11 @@ public class Ladron : MonoBehaviour
             else //Si los tiene, le roba y emprende su huida
             {
                 robado = true;
-                if (numMateriales >= matRobados)
-                    mat.RestarMateriales(matRobados);
-                else
-                {
-                    matRobados = numMateriales;
-                    mat.RestarMateriales(numMateriales);
-                }
+                if (numMateriales < matRobados) matRobados = numMateriales;
+                mat.RestarMateriales(matRobados);
+
+                LevelManager.instance.MuestraPopUpMat("- " + matRobados, new Vector2(transform.position.x, transform.position.y));
+               
                 volver = true;
             }
         }

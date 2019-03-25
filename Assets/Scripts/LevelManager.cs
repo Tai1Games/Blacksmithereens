@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour {
     public UIManager uiManager;
     public ArenaManager arenaManager;
 
-    private MovimientoCamara camara;
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
     /// </summary>
@@ -32,16 +31,6 @@ public class LevelManager : MonoBehaviour {
 	void Update ()
     {
 	}
-    /// <summary>
-    /// Activa el método "asignarseguimiento" de la cámara, permitiendo que la misma fije a un objetivo distinto más una distancia de separación.
-    /// </summary>
-    /// <param name="objeto"></param>
-    public void AsignarSeguimiento(Transform objeto, Vector3 distancia)
-    {
-        //Buscamos la cámara y su componente.
-        camara = GameObject.Find("Main Camera").GetComponent<MovimientoCamara>();
-        camara.AsignarSeguimiento(objeto, distancia);
-    }
 
     /// <summary>
     /// Suma materiales al jugador
