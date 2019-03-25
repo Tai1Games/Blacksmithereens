@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Jugador
+  - Charger
+  - Ladron
   layers:
   - Default
   - TransparentFX
