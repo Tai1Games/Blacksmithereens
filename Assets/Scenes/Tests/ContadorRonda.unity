@@ -3300,6 +3300,8 @@ MonoBehaviour:
   barraVida: {fileID: 1798976667}
   popUpMatCanvas: {fileID: 114308442505919724, guid: 77a1c55971e7e0943b6b3f428140185c,
     type: 2}
+  textoRondaEsquina: {fileID: 0}
+  textoRondaAnuncio: {fileID: 0}
 --- !u!114 &1530245020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104504,7 +104506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 817.55, y: 470.16}
+  m_AnchoredPosition: {x: 808.95, y: 424.19}
   m_SizeDelta: {x: 246.4, y: 105.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1878459870
@@ -104556,7 +104558,7 @@ Animator:
   m_GameObject: {fileID: 1878459868}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 298c85683fa9bd54a8f2641b1ac26c01, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdab770d30a5c7d4cb1a0b617bbd8ae8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -8,12 +8,19 @@ public class UIManager : MonoBehaviour {
     public Text textoMateriales;
     public Image barraVida;
     public CanvasPopUpMat popUpMatCanvas;
+    public Text textoRondaEsquina;
+    public Text textoRondaAnuncio;
+
+    Animator rondaEsquina;
+    Animator rondaAnuncio;
 
     float barraMaxTamano;
 
 	// Use this for initialization
 	void Start () {
         barraMaxTamano = barraVida.rectTransform.rect.width;
+        rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
+        rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -58,6 +65,9 @@ public class UIManager : MonoBehaviour {
 
     public void ActualizaTextoRonda(int i)
     {
-
+        rondaAnuncio.Play("AnuncioRonda", -1, 0);
+        rondaEsquina.Play("AnuncioRonda", -1, 0);
+        textoRondaAnuncio.text = "Ronda " + i;
+        textoRondaEsquina.text = "Ronda " + i;
     }
 }

@@ -42,6 +42,7 @@ public class ArenaManager : MonoBehaviour
     {
         SpawnArena(arena, 0);
         uim = interfaz.GetComponent<UIManager>();
+        uim.ActualizaTextoRonda(0);
     }
 
     void Update()
@@ -79,8 +80,7 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
-        
-        //uim.ActualizaTextoRonda(i + 1);
+        uim.ActualizaTextoRonda(i);
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
 
