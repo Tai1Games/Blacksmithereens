@@ -21,7 +21,6 @@ public class Leon : MonoBehaviour {
     Vector2 movimiento;
     Vector2 posicionJugador;
 
-
     void Start ()
     {
         rb = this.GetComponent<Rigidbody2D>();
