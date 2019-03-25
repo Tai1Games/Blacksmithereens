@@ -17,10 +17,11 @@ public class UIManager : MonoBehaviour {
     float barraMaxTamano;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         barraMaxTamano = barraVida.rectTransform.rect.width;
         rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
         rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
+        print("je");
     }
 	
 	// Update is called once per frame
@@ -65,6 +66,7 @@ public class UIManager : MonoBehaviour {
 
     public void ActualizaTextoRonda(int i)
     {
+        print("JAJ");
         rondaAnuncio.Play("AnuncioRonda", -1, 0);
         rondaEsquina.Play("AnuncioRonda", -1, 0);
         textoRondaAnuncio.text = "Ronda " + i;
