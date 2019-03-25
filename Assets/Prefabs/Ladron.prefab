@@ -24,11 +24,12 @@ GameObject:
   - component: {fileID: 61307323215864876}
   - component: {fileID: 114707864174570818}
   - component: {fileID: 114825634310574926}
-  - component: {fileID: 114599381873331942}
   - component: {fileID: 114253238130490988}
-  m_Layer: 10
+  - component: {fileID: 114805207663561762}
+  - component: {fileID: 114326356034943448}
+  m_Layer: 0
   m_Name: Ladron
-  m_TagString: Untagged
+  m_TagString: Ladron
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numGolpes: 3
   cantMat: 25
---- !u!114 &114599381873331942
+--- !u!114 &114326356034943448
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,8 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3eb11b9f22e3f04f996864715f9e5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 8
-  "da\xF1o": 10
   matRobados: 50
 --- !u!114 &114707864174570818
 MonoBehaviour:
@@ -129,7 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8950a06446ea745966ea1d68d2389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaEnemigo: 20
+  vidaEnemigo: 10
+--- !u!114 &114805207663561762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191263201681576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98617c9bd714d84a9b79b20564bf1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocidad: 8
+  "Da\xF1o": 0
 --- !u!114 &114825634310574926
 MonoBehaviour:
   m_ObjectHideFlags: 1
