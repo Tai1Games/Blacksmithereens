@@ -27,10 +27,9 @@ GameObject:
   - component: {fileID: 114707864174570818}
   - component: {fileID: 114825634310574926}
   - component: {fileID: 114346946180495186}
-  - component: {fileID: 114716076823827426}
   m_Layer: 0
   m_Name: Charger
-  m_TagString: Charger
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,8 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TiempoPreparacion: 3
   TiempoRepeticion: 7
-  fuerza: 800
+  fuerza: 1000
   TiempoDescanso: 1
+  velocidad: 5
 --- !u!114 &114707864174570818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,19 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaEnemigo: 10
---- !u!114 &114716076823827426
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1191263201681576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c98617c9bd714d84a9b79b20564bf1d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Velocidad: 5
-  "Da\xF1o": 10
 --- !u!114 &114825634310574926
 MonoBehaviour:
   m_ObjectHideFlags: 1
