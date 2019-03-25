@@ -2472,29 +2472,26 @@ MonoBehaviour:
       - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-      - puerta: {fileID: 1603208588}
-        tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
-        espera: 0
-      - puerta: {fileID: 807720451}
-        tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
-        espera: 5
-      - puerta: {fileID: 105927912}
-        tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
-        espera: 5
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-      - puerta: {fileID: 1603208588}
+  - ronda:
+    - oleada:
+      - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-      - puerta: {fileID: 807720451}
+  - ronda:
+    - oleada:
+      - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
-        espera: 5
-      - puerta: {fileID: 105927912}
+        espera: 0
+  - ronda:
+    - oleada:
+      - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
-        espera: 5
+        espera: 0
 --- !u!4 &399598630
 Transform:
   m_ObjectHideFlags: 0

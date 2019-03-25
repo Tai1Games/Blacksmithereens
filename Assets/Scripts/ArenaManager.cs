@@ -11,6 +11,7 @@ public class ArenaManager : MonoBehaviour
     public GameObject interfaz;
 
     private UIManager uim;
+    int contador = 1;
 
 
     [System.Serializable]
@@ -40,7 +41,6 @@ public class ArenaManager : MonoBehaviour
 
     void Start()
     {
-        print("ARENA1");
         uim = interfaz.GetComponent<UIManager>();
         SpawnArena(arena, 0);
     }
@@ -80,8 +80,8 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
-        print("ARENA2");
-        uim.ActualizaTextoRonda(i);
+        uim.ActualizaTextoRonda(contador);
+        contador++;
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }
