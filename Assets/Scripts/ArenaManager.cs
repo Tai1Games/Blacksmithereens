@@ -30,13 +30,14 @@ public class ArenaManager : MonoBehaviour
     {
         [SerializeField]
         public Oleada[] ronda;
+        public float tiempoFin;
     }
     [SerializeField]
     Ronda[] arena; //Array de rondas por arena
 
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
     private float tiempo = 0;
-    private float esperaTotal = 0;
+    private float tiempoFin = 0;
     private bool finRonda = false; //Indica si han tocado el centro tras terminar la ronda
     Stopwatch reloj = new Stopwatch();
 
@@ -90,15 +91,16 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnArena(Ronda[] arena, int i)
     {
+        tiempoFin = arena[i].tiempoFin;
         centroArena.SetActive(false);
         finRonda = false;
         SpawnRonda(arena[i].ronda, 0);
         StartCoroutine(FinRonda(arena[i].ronda, arena, i));
     }
 
-    void FormulaMateriales(float tiempo, Spawn[] oleada)
+    void FormulaMateriales(float tiempo, Oleada[] ronda)
     {
-        int mat = (int)(matBase * oleada.Length / (tiempo - esperaTotal));
+        int mat = (int)(matBase - (matBase/10)*(tiempo - tiempoFin ));
         UnityEngine.Debug.Log(mat);
         levelManager.SumarMateriales(mat);
     }
@@ -109,7 +111,6 @@ public class ArenaManager : MonoBehaviour
     IEnumerator Espera(Spawn[] oleada, int i)
     {
         yield return new WaitForSeconds(oleada[i].espera);
-        esperaTotal += oleada[i].espera;
         Instantiate(oleada[i].tipo, oleada[i].puerta);
         if (i + 1 < oleada.Length) SpawnOleada(oleada, i + 1);
     }
@@ -124,9 +125,8 @@ public class ArenaManager : MonoBehaviour
         tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds;
         tiempo /= 1000;
         UnityEngine.Debug.Log(tiempo);
-        FormulaMateriales(tiempo, oleada);
+        FormulaMateriales(tiempo, ronda);
         reloj.Reset();
-        esperaTotal = 0;
         if (i + 1 < ronda.Length) SpawnRonda(ronda, i + 1);
         else centroArena.SetActive(true);
     }
