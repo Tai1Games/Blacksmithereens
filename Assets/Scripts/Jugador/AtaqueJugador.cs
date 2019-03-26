@@ -29,6 +29,7 @@ public class AtaqueJugador : MonoBehaviour
         scriptEspadaAtaque = gameObject.GetComponentInChildren<EspadaAtaque>();
 
         arrayArmas[1].SetActive(false);
+        arrayArmas[2].SetActive(false);
     }
 
     void Update()

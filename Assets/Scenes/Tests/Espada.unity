@@ -2464,6 +2464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5c7677d961f1e44af11a1dd437e8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centroArena: {fileID: 2128667868}
   arena:
   - ronda:
     - oleada:
@@ -3588,7 +3589,7 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af370311c803a3948a894a578ef892de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104389,8 +104390,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076733476}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.091, y: -0.01, z: 0}
-  m_LocalScale: {x: 1.0000006, y: 1.0000006, z: 1}
+  m_LocalPosition: {x: 0.091, y: -0.019, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1731188831}
   m_RootOrder: 2
@@ -104406,6 +104407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52202a7cf9e8330438ea8e7023a652fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  durMaxEspada: 20
 --- !u!114 &2076733479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104500,7 +104502,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5cb32f1fc854ca54193cc48116144511, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 220286b6f3b24e64688db97948f8206b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104610,3 +104612,31 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2128667868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128667869}
+  m_Layer: 0
+  m_Name: centroArena
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128667869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128667868}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

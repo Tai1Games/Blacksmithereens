@@ -38,13 +38,13 @@ public class EspadaAtaque : MonoBehaviour {
         if (animador.GetCurrentAnimatorStateInfo(0).IsName("EspadaNormal"))      //animacion actual, para evitar ataques dobles
         {
             animador.SetTrigger("Ataque");
-            RestaDurEspada(1);
         }
     }
 
 
     /// <summary>
-    /// Resta 'cantidad' a la durabilidad actual de la espada
+    /// Resta 'cantidad' a la durabilidad actual de la espada.
+    /// En cada ataque, se llama desde la animacion de ataque de la espada
     /// </summary>
     /// <param name="cantidad">Puntos de durabilidad a ser descontados</param>
     public void RestaDurEspada(int cantidad)
