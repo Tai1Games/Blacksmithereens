@@ -2467,6 +2467,7 @@ MonoBehaviour:
   centroArena: {fileID: 1316093997}
   levelManager: {fileID: 1184957555}
   matBase: 50
+  factorMax: 2
   arena:
   - ronda:
     - oleada:
@@ -2482,7 +2483,7 @@ MonoBehaviour:
       - puerta: {fileID: 105927912}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 5
-    tiempoFin: 10
+    tiempoFin: 12
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
@@ -2497,7 +2498,7 @@ MonoBehaviour:
       - puerta: {fileID: 105927912}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 5
-    tiempoFin: 8
+    tiempoFin: 10
 --- !u!4 &399598630
 Transform:
   m_ObjectHideFlags: 0
