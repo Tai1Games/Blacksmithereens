@@ -9,7 +9,6 @@ using System.Diagnostics;
 public class ArenaManager : MonoBehaviour
 {
     public GameObject centroArena; //referencia al objeto que cambia de ronda
-    public LevelManager levelManager; //referencia al levelManager
     public float matBase; //materiales por pasarse una ronda de manera óptima
     public float factorMax; //tiempoFin * factorMax = tiempo a partir del cual recibes 0 materiales
     public GameObject interfaz;
@@ -111,7 +110,7 @@ public class ArenaManager : MonoBehaviour
         //formula exponencial que da matBase materiales si se pasa una ronda en el tiempo óptimo y 0 si se pasa en (tiempo óptimo * factorMax)
         int mat = (int)((matBase - (matBase * (tiempo - tiempoFin) / (tiempoFin * (factorMax - 1)))) / (tiempo - tiempoFin + 1));
         UnityEngine.Debug.Log(mat);
-        levelManager.SumarMateriales(mat);
+        LevelManager.instance.SumarMateriales(mat);
     }
 
     /// <summary>
