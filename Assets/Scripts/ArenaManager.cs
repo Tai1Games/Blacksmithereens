@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 /// <summary>
 /// Componente que controla los enemigos de la arena
@@ -8,11 +9,13 @@ using UnityEngine;
 public class ArenaManager : MonoBehaviour
 {
     public GameObject centroArena; //referencia al objeto que cambia de ronda
+    public LevelManager levelManager; //referencia al levelManager
+    public float matBase; //materiales por pasarse una ronda de manera óptima
+    public float factorMax; //tiempoFin * factorMax = tiempo a partir del cual recibes 0 materiales
     public GameObject interfaz;
 
-    private UIManager uim;
+    UIManager uim;
     int contador = 1;
-
 
     [System.Serializable]
     struct Spawn //Instancia de enemigo
@@ -32,12 +35,16 @@ public class ArenaManager : MonoBehaviour
     {
         [SerializeField]
         public Oleada[] ronda;
+        public float tiempoFin; //tiempo objetivo con el que pasarse una ronda
     }
     [SerializeField]
     Ronda[] arena; //Array de rondas por arena
 
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
+    private float tiempo = 0; //tiempo que el jugador tarda en pasarse una ronda
+    private float tiempoFin = 0; //variable auxiliar para Ronda.tiempoFin
     private bool finRonda = false; //Indica si han tocado el centro tras terminar la ronda
+    Stopwatch reloj = new Stopwatch(); //Reloj que mide el tiempo en tardarse una ronda
 
     void Start()
     {
@@ -79,9 +86,7 @@ public class ArenaManager : MonoBehaviour
     /// Spawnea la oleada que le indica el parametro "i"
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
-    {
-        uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
-        contador++; //Incrementa el indicador de ronda actual
+    {    
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }
@@ -91,10 +96,22 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnArena(Ronda[] arena, int i)
     {
+        reloj.Start(); //Empieza el reloj cuando empieza la ronda
+        uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
+        contador++; //Incrementa el indicador de ronda actual
+        tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia
         centroArena.SetActive(false);
         finRonda = false;
         SpawnRonda(arena[i].ronda, 0);
         StartCoroutine(FinRonda(arena[i].ronda, arena, i));
+    }
+
+    void FormulaMateriales(float tiempo, Oleada[] ronda)
+    {
+        //formula exponencial que da matBase materiales si se pasa una ronda en el tiempo óptimo y 0 si se pasa en (tiempo óptimo * factorMax)
+        int mat = (int)((matBase - (matBase * (tiempo - tiempoFin) / (tiempoFin * (factorMax - 1)))) / (tiempo - tiempoFin + 1));
+        UnityEngine.Debug.Log(mat);
+        levelManager.SumarMateriales(mat);
     }
 
     /// <summary>
@@ -115,7 +132,16 @@ public class ArenaManager : MonoBehaviour
         yield return new WaitUntil(() => eneMuertos >= oleada.Length);
         if (i + 1 < ronda.Length) SpawnRonda(ronda, i + 1);
         //Si no se comprueba, es que ha acabado la ronda
-        else centroArena.SetActive(true);
+        else
+        {
+            centroArena.SetActive(true);
+            reloj.Stop(); //para el reloj cuando se termina la ronda
+            tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds; //toma los segundos y milisegundos y los guarda
+            tiempo /= 1000;
+            UnityEngine.Debug.Log(tiempo);
+            FormulaMateriales(tiempo, ronda); //suma materiales
+            reloj.Reset(); //reloj a 0
+        }
     }
 
     /// <summary>
@@ -127,7 +153,7 @@ public class ArenaManager : MonoBehaviour
         //Al tocar el centro el jugador se sana
         LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
         //Empieza la siguiente ronda
-        yield return new WaitUntil(() => finRonda);
+        yield return new WaitUntil(() => finRonda);       
         if (i + 1 < arena.Length) SpawnArena(arena, i + 1);
         else LevelManager.instance.VuelveaMenu();
     }
