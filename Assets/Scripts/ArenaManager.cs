@@ -80,8 +80,8 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
-        uim.ActualizaTextoRonda(contador);
-        contador++;
+        uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
+        contador++; //Incrementa el indicador de ronda actual
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }

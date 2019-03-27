@@ -63,6 +63,10 @@ public class UIManager : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Actualiza el testo de la ronda (tanto el de la esquina como el del anuncio) y reproduce sus animaciones de aparición
+    /// </summary>
+    /// <param name="i"></param>
     public void ActualizaTextoRonda(int i)
     {
         rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
