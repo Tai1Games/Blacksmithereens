@@ -3256,12 +3256,12 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1310788069}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1530245024}
+      - m_Target: {fileID: 0}
         m_MethodName: CraftearTomahawk
         m_Mode: 1
         m_Arguments:
@@ -105046,11 +105046,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2007105063}
   m_CullTransparentMesh: 0
---- !u!1 &2101401911 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1396443353943538, guid: 86728740f4068af4189d498e2bf82cc7,
-    type: 2}
-  m_PrefabInternal: {fileID: 2109272992}
 --- !u!1001 &2109272992
 Prefab:
   m_ObjectHideFlags: 0
@@ -105141,33 +105136,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114285664819136870, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: velocidad
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114285664819136870, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: tomahawkLanzado
-      value: 
-      objectReference: {fileID: 1192406123984242, guid: cee778b258202b84bace7bf4662e96a2,
-        type: 2}
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: arrayArmas.Array.data[4]
-      value: 
-      objectReference: {fileID: 1830398869550144, guid: 81a65ae3d69d0a743af6fa83bb506093,
-        type: 2}
-    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: arrayArmas.Array.data[3]
-      value: 
-      objectReference: {fileID: 2101401911}
-    - target: {fileID: 95624936245437816, guid: 86728740f4068af4189d498e2bf82cc7,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 68fa4fed3b6f8bd4c8859c38732758d9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
   m_IsPrefabAsset: 0
