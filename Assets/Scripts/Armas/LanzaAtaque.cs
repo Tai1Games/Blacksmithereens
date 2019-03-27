@@ -13,16 +13,15 @@ public class LanzaAtaque : MonoBehaviour
 
     public GameObject Lanza;
     public float velocidad;
-    private Vector2 mouse_position; //posicion del raton
-    private Vector2 offset, screenPoint; //vectores para sacar el angulo
+    public int durMaxLanza = 20;       //Durabilidad máxima
 
     Animator animador;
     Transform transformLanza;
     AtaqueJugador scriptarmas;
     GameObject Lanzada;
-
-     int durMaxLanza = 20 ;       //Durabilidad máxima
-     int durActualLanza;                 //Durabilidad actual, la que va disminuyendo
+    Vector2 mouse_position; //posicion del raton
+    Vector2 offset, screenPoint; //vectores para sacar el angulo
+    int durActualLanza;                 //Durabilidad actual, la que va disminuyendo
 
     void Start()
     {
@@ -44,7 +43,6 @@ public class LanzaAtaque : MonoBehaviour
         if ((transformLanza.localPosition.y > -0.8) && animador.GetCurrentAnimatorStateInfo(0).IsName("LanzaNormal"))      //Posicion relativa al jugador, para evitar ataques dobles
         {
             animador.SetTrigger("Ataque");
-            RestaDurLanza(1);   //Esta llamada realmente iria e el OnTriggerEnter de HacerDano.cs
         }
     }
 
@@ -94,7 +92,7 @@ public class LanzaAtaque : MonoBehaviour
         print("Durabilidad Lanza: " + durActualLanza);
         if (durActualLanza <= 0)
         {
-            scriptarmas.CambioArma(0);
+            scriptarmas.CambioArma(Armas.Martillo);
             durActualLanza = durMaxLanza;
         }
     }
