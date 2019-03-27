@@ -16,11 +16,14 @@ public class UIManager : MonoBehaviour {
 
     float barraMaxTamano;
 
-	// Use this for initialization
-	void Awake () {
+    void Awake () {
         barraMaxTamano = barraVida.rectTransform.rect.width;
         rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
         rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
+    }
+    // Use this for initialization
+    void Start () {
+
     }
 	
 	// Update is called once per frame
