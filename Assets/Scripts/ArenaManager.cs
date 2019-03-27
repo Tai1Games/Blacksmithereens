@@ -8,6 +8,11 @@ using UnityEngine;
 public class ArenaManager : MonoBehaviour
 {
     public GameObject centroArena; //referencia al objeto que cambia de ronda
+    public GameObject interfaz;
+
+    private UIManager uim;
+    int contador = 1;
+
 
     [System.Serializable]
     struct Spawn //Instancia de enemigo
@@ -36,6 +41,7 @@ public class ArenaManager : MonoBehaviour
 
     void Start()
     {
+        uim = interfaz.GetComponent<UIManager>();
         SpawnArena(arena, 0);
     }
 
@@ -74,6 +80,8 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
     {
+        uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
+        contador++; //Incrementa el indicador de ronda actual
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }

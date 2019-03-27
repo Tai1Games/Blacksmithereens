@@ -8,12 +8,18 @@ public class UIManager : MonoBehaviour {
     public Text textoMateriales;
     public Image barraVida;
     public CanvasPopUpMat popUpMatCanvas;
+    public Text textoRondaEsquina;
+    public Text textoRondaAnuncio;
+
+    Animator rondaEsquina;
+    Animator rondaAnuncio;
 
     float barraMaxTamano;
 
-    private void Awake()
-    {
+    void Awake () {
         barraMaxTamano = barraVida.rectTransform.rect.width;
+        rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
+        rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
     }
     // Use this for initialization
     void Start () {
@@ -58,5 +64,17 @@ public class UIManager : MonoBehaviour {
         CanvasPopUpMat newPopUpMatCanvas = Instantiate(popUpMatCanvas, pos, Quaternion.identity);
         newPopUpMatCanvas.CambiaParametrosTexto(mat); //Cambia el texto a el número de materiales nuevos.
 
+    }
+
+    /// <summary>
+    /// Actualiza el testo de la ronda (tanto el de la esquina como el del anuncio) y reproduce sus animaciones de aparición
+    /// </summary>
+    /// <param name="i"></param>
+    public void ActualizaTextoRonda(int i)
+    {
+        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
+        rondaEsquina.Play("AnimacionEsquina", -1, 0);
+        textoRondaAnuncio.text = "Ronda " + i;
+        textoRondaEsquina.text = "Ronda " + i;
     }
 }
