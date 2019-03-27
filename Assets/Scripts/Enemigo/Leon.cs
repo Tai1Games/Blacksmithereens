@@ -10,6 +10,7 @@ public class Leon : MonoBehaviour {
     public float tiempoSalto;
     public float tiempoEspera;
     public float velocidad;
+    public float tiempoTerminarSalto;
 
     float t;
     Animator animador;
@@ -47,19 +48,28 @@ public class Leon : MonoBehaviour {
             t += Time.fixedDeltaTime; //El contador de tiempo se va incrementando
             rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
 
-            if (t >= tiempoSalto || rb.position.x > posicionJugador.x - 0.5f && rb.position.y > posicionJugador.y - 0.5f &&
+            if (t >= tiempoSalto)
+                StartCoroutine(TerminaSalto(0)); //Terminamos el salto sin esperar
+            else if (rb.position.x > posicionJugador.x - 0.5f && rb.position.y > posicionJugador.y - 0.5f &&
                     rb.position.x < posicionJugador.x + 0.5f && rb.position.y < posicionJugador.y + 0.5f)
-                //Cuando t es igual al tiempo definido de salto o el león está en la posición del jugador al inicio del salto, el salto acaba
-            {
-                saltando = false;
-                t = 0; //Se reinicia el tiempo
-                rb.velocity = Vector2.zero;
-                Physics2D.IgnoreLayerCollision(9, 8, false); //Las colisiones entre el león y el jugador/enemigos vuelven a funcionar
-                Physics2D.IgnoreLayerCollision(9, 10, false);
-            }
+                StartCoroutine(TerminaSalto(tiempoTerminarSalto)); //Terminamos el salto esperando el tiempo elegido
         }
     }
 
+    /// <summary>
+    /// Espera un tiempo determinado par ahcer daño si el león está encima del jugador. Si no, no lo hace
+    /// </summary>
+    /// <param name="tiempo"></param>
+    /// <returns></returns>
+    private IEnumerator TerminaSalto(float tiempo)
+    {
+        saltando = false;
+        t = 0; //Se reinicia el tiempo
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(tiempo);
+        Physics2D.IgnoreLayerCollision(9, 8, false); //Las colisiones entre el león y el jugador/enemigos vuelven a funcionar
+        Physics2D.IgnoreLayerCollision(9, 10, false);
+    }
 
     /// <summary>
     /// Comienza la corrutina de salto

@@ -137,6 +137,7 @@ MonoBehaviour:
   tiempoSalto: 1
   tiempoEspera: 3
   velocidad: 15
+  tiempoTerminarSalto: 0.5
 --- !u!114 &114282677425596078
 MonoBehaviour:
   m_ObjectHideFlags: 1
