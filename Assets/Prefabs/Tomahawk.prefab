@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tomahawkLanzado: {fileID: 0}
-  velocidad: 0
+  velocidad: 10
   durMaxTomahawk: 3
 --- !u!212 &212841290640632618
 SpriteRenderer:

@@ -365,7 +365,7 @@ Animator:
   m_GameObject: {fileID: 1396443353943538}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68fa4fed3b6f8bd4c8859c38732758d9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -433,8 +433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaebc17c040131d489642b97a76b063c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tomahawkLanzado: {fileID: 0}
-  velocidad: 0
+  tomahawkLanzado: {fileID: 1192406123984242, guid: cee778b258202b84bace7bf4662e96a2,
+    type: 2}
+  velocidad: 10
   durMaxTomahawk: 3
 --- !u!114 &114307578194258110
 MonoBehaviour:
@@ -546,7 +547,7 @@ MonoBehaviour:
   - {fileID: 1594534678569304}
   - {fileID: 1803825315929390}
   - {fileID: 1355867992541984}
-  - {fileID: 1830398869550144, guid: 81a65ae3d69d0a743af6fa83bb506093, type: 2}
+  - {fileID: 1396443353943538}
 --- !u!114 &114898728978801208
 MonoBehaviour:
   m_ObjectHideFlags: 1
