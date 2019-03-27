@@ -11,23 +11,18 @@ public class Charger : MonoBehaviour {
     public float TiempoRepeticion;
     public int fuerza;
     public float TiempoDescanso;
+    public float velocidad;
 
-    private float velocidad;
     private Rigidbody2D rb;
     private Vector2 movimiento;
     private GameObject jugador;
-    private bool moveratras = false;
-    private bool EstadoEnemigo = false;//si es true usa este scipt para moverse
-    private bool cargarotacion = false;
-    private MovimientoEnemigo movEnemigo;
     private Vector2 diferencia;
     private float angulo;
+    private bool moverse = true;
+    private bool moveratras = false;
 
-
-    void Start ()
+	void Start ()
     {
-        movEnemigo = GetComponent<MovimientoEnemigo>();
-        velocidad = movEnemigo.DevuelveVelocidad();
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         InvokeRepeating("ComienzaCarga", 0, TiempoRepeticion);
@@ -35,8 +30,9 @@ public class Charger : MonoBehaviour {
 	
 	void Update ()
     {
-        if (!EstadoEnemigo && !cargarotacion)
+        if (moverse || moveratras)
         {
+            //diferencia de posicion entre el jugador y el enemigo
             diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
             angulo = Mathf.Atan2(diferencia.x, diferencia.y) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
             transform.rotation = Quaternion.Euler(0, 0, -angulo); //cambia la rotacion del enemigo
@@ -45,12 +41,18 @@ public class Charger : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (moveratras) //El enemigo se mueve hacia atrás
+        if (jugador != null && moverse) //cacheo de referencia
+        {
+            //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
+            movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
+            //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
+            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
+        }
+        else if (moveratras) //El enemigo se mueve hacia atrás
         {
             movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
             rb.velocity = Vector2.ClampMagnitude(-movimiento * velocidad, velocidad);
         }
-
     }
 
 
@@ -69,29 +71,16 @@ public class Charger : MonoBehaviour {
     private IEnumerator Carga()
     {
         moveratras = false; //Si es true, el enemigo se mueve hacia atrás
-        EstadoEnemigo = true;
-        movEnemigo.CambiarEstadoEnemigo(EstadoEnemigo); //como va a seguir al jugador, usa el MoviminetoEnemigo
+        moverse = true; //Si es true, el enemigo se mueve hacia delante mediante rb.velocity
         velocidad /= 2; //Se reduce la velocidad para prepararse antes de la carga
         yield return new WaitForSeconds(TiempoPreparacion); //Se espera durante un tiempo de preparación elegido desde el editor
+        moverse = false; //Se cancela el movimiento mediante rb.velocity para añadir una fuerza de carga
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        EstadoEnemigo = false;
-        movEnemigo.CambiarEstadoEnemigo(EstadoEnemigo); 
-        rb.velocity = Vector2.zero;  //se para
         yield return new WaitForSeconds(0.5f);
-        EstadoEnemigo = true;
-        movEnemigo.CambiarEstadoEnemigo(EstadoEnemigo);
-        yield return new WaitForSeconds(0.01f);
-        cargarotacion = true;
-        Vector2 DireccionCarga = movEnemigo.DevolverMovimiento().normalized;  //coge la direccion hacia la q se tiene q mover
-        EstadoEnemigo = false;
-        movEnemigo.CambiarEstadoEnemigo(EstadoEnemigo);
-        rb.AddForce(DireccionCarga * fuerza); //Se añade la fuerza de carga
+        rb.AddForce(movimiento * fuerza); //Se añade la fuerza de carga
         yield return new WaitForSeconds(TiempoDescanso); //Se espera durante un tiempo de descanso
-        cargarotacion = false;
         velocidad *= 2; //La velocidad vuelve a a normalidad
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-        EstadoEnemigo = false;
-        movEnemigo.CambiarEstadoEnemigo(EstadoEnemigo); //deja de usar el MovimientoEnemigo para moverse
         moveratras = true; //El enemigo comienza a alejarse del jugador, tras lo cual comenzará el proceso de carga de nuevo
     }
 }
