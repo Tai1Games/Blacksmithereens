@@ -5,7 +5,7 @@ using UnityEngine;
 /*
     * Este meétodo se encarga de:
     *  llevar la cuenta de la durabilidad de la espada
-    *  que al al recibir la orden de ataque(ataqueJugador.cs), la espada se mueva hacia delante y luego vuelva a su posicion normal.
+    *  que al al recibir la orden de ataque(ataqueJugador.cs), la espada ataque y luego vuelva a su posicion normal.
    */
 
 public class EspadaAtaque : MonoBehaviour {
