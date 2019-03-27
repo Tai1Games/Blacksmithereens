@@ -2472,7 +2472,7 @@ MonoBehaviour:
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
-        tipo: {fileID: 1700993920282976, guid: 8212148661b86f54ca227caa483f3f27, type: 2}
+        tipo: {fileID: 1552595272882708, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
         espera: 0
     tiempoFin: 0
 --- !u!4 &399598630
@@ -2488,48 +2488,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &545335404
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -68.298706
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 63.703228
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3.0671062
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068112878743192, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &605571469
 GameObject:
   m_ObjectHideFlags: 0
