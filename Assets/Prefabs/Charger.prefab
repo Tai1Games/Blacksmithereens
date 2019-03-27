@@ -27,11 +27,7 @@ GameObject:
   - component: {fileID: 114707864174570818}
   - component: {fileID: 114825634310574926}
   - component: {fileID: 114346946180495186}
-<<<<<<< HEAD
-  m_Layer: 0
-=======
   m_Layer: 10
->>>>>>> parent of 79e4c86... Merge branch 'Develop' into León
   m_Name: Charger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,11 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8950a06446ea745966ea1d68d2389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  vidaEnemigo: 10
-=======
   vidaEnemigo: 35
->>>>>>> parent of 79e4c86... Merge branch 'Develop' into León
 --- !u!114 &114825634310574926
 MonoBehaviour:
   m_ObjectHideFlags: 1
