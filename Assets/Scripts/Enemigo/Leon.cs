@@ -11,16 +11,18 @@ public class Leon : MonoBehaviour {
     public float tiempoEspera;
     public float velocidad;
     public float tiempoTerminarSalto;
+    public float fuerzaKnockback;
 
     float t;
-    Animator animador;
     bool saltando = false;
+    bool knockback = false; 
+    float angulo;
+    Animator animador;
     Rigidbody2D rb;
     GameObject jugador;
-    Vector2 diferencia;
-    float angulo;
     Vector2 movimiento;
     Vector2 posicionJugador;
+    Vector2 diferencia;
 
     void Start ()
     {
@@ -43,16 +45,19 @@ public class Leon : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (saltando)
+        if (!knockback)
         {
-            t += Time.fixedDeltaTime; //El contador de tiempo se va incrementando
-            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
+            if (saltando)
+            {
+                t += Time.fixedDeltaTime; //El contador de tiempo se va incrementando
+                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
 
-            if (t >= tiempoSalto)
-                StartCoroutine(TerminaSalto(0)); //Terminamos el salto sin esperar
-            else if (rb.position.x > posicionJugador.x - 0.5f && rb.position.y > posicionJugador.y - 0.5f &&
-                    rb.position.x < posicionJugador.x + 0.5f && rb.position.y < posicionJugador.y + 0.5f)
-                StartCoroutine(TerminaSalto(tiempoTerminarSalto)); //Terminamos el salto esperando el tiempo elegido
+                if (t >= tiempoSalto)
+                    StartCoroutine(TerminaSalto(0)); //Terminamos el salto sin esperar
+                else if (rb.position.x > posicionJugador.x - 0.5f && rb.position.y > posicionJugador.y - 0.5f &&
+                        rb.position.x < posicionJugador.x + 0.5f && rb.position.y < posicionJugador.y + 0.5f)
+                    StartCoroutine(TerminaSalto(tiempoTerminarSalto)); //Terminamos el salto esperando el tiempo elegido
+            }
         }
     }
 
@@ -97,5 +102,20 @@ public class Leon : MonoBehaviour {
             yield return new WaitUntil(() => saltando == false); //Espera hasta que saltando sea igual a false
             yield return new WaitForSeconds(tiempoEspera); //Espera antes de volver a comenzar el bucle
         }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        StartCoroutine(Knockback());
+    }
+
+    private IEnumerator Knockback()
+    {
+        knockback = true;   //desactiva movimineto normal
+        rb.velocity = (movimiento * (-1) * fuerzaKnockback);  //le añade la fuerza
+        yield return new WaitForSeconds(0.2f);
+        rb.velocity = Vector2.zero;  //para al leon
+        knockback = false;  //activa movimineto normal
     }
 }

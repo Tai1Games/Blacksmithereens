@@ -11,9 +11,11 @@ public class Ladron : MonoBehaviour
     public float velocidad;
     public int daño;
     public int matRobados;
+    public float fuerzaKnockback;
 
     bool volver = false;
     bool robado = false;
+    bool knockback = false;
     Vector2 offset = new Vector2 (0.5f, 0.5f);
     Rigidbody2D rb;
     Vector2 movimiento;
@@ -39,29 +41,32 @@ public class Ladron : MonoBehaviour
     }
 
      void FixedUpdate()
-    {
-        if (jugador != null && volver == false) //cacheo de referencia
+     {
+        if (!knockback)  //si no se está aplicando knockback
         {
-            //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
-            movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
-            //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
-            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
-        }
-        else if (jugador != null) //Si volver = true, el ladron huye del jugador hacia su punto de salida
-        {
-            //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
-            movimiento = new Vector2(salida.x - rb.position.x, salida.y - rb.position.y).normalized;
-            //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
-            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
-            //Si el ladron está huyendo y llega al punto de salida, desaparece
-            if (transform.position.x > salida.x - offset.x && transform.position.y > salida.y - offset.y &&
-                transform.position.x < salida.x + offset.x && transform.position.y < salida.y + offset.y)
+            if (jugador != null && volver == false) //cacheo de referencia
             {
-                LevelManager.instance.EnemigoMuerto();
-                Destroy(gameObject);
+                //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
+                movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
+                //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
+                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
+            }
+            else if (jugador != null) //Si volver = true, el ladron huye del jugador hacia su punto de salida
+            {
+                //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
+                movimiento = new Vector2(salida.x - rb.position.x, salida.y - rb.position.y).normalized;
+                //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
+                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
+                //Si el ladron está huyendo y llega al punto de salida, desaparece
+                if (transform.position.x > salida.x - offset.x && transform.position.y > salida.y - offset.y &&
+                    transform.position.x < salida.x + offset.x && transform.position.y < salida.y + offset.y)
+                {
+                    LevelManager.instance.EnemigoMuerto();
+                    Destroy(gameObject);
+                }
             }
         }
-    }
+     }
 
     /// <summary>
     /// Si el ladrón ha robado materiales, los devolverá al morir y se mostrará el texto pop-up (este método es invocado por MuerteEnemigo)
@@ -103,5 +108,29 @@ public class Ladron : MonoBehaviour
                 volver = true;
             }
         }
+    }
+
+
+    /// <summary>
+    /// Al entrar en contacto con un arma, a este objeto se le aplica un knockback
+    /// </summary>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+         StartCoroutine(Knockback());        //empieza proceso knockback
+    }
+
+
+    /// <summary>
+    /// Controla todo el proceso del knockback
+    /// </summary>
+    private IEnumerator Knockback()
+    {
+        Vector2 knock; //direccion del knockback
+        knockback = true; //desactiva el movimineto normal
+        if (!volver) knock = movimiento * (-1) *fuerzaKnockback;  //si va hacia a ti
+        else knock = movimiento * 10 * fuerzaKnockback;  //si se está alejando
+        rb.velocity = knock; //aplica fuerza
+        yield return new WaitForSeconds(0.2f);
+        knockback = false; //activa el movimineto normal
     }
 }
