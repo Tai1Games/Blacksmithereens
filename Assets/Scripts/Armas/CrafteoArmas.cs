@@ -17,7 +17,7 @@ public class CrafteoArmas : MonoBehaviour {
 	void Start () {
         scriptMateriales = LevelManager.instance.Jugador().GetComponent<Materiales>();
         scriptArmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,6 +25,7 @@ public class CrafteoArmas : MonoBehaviour {
         {
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
         }
 	}
     public void CraftearLanza()
@@ -34,6 +35,7 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteLanza);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
 
             scriptArmas.CambioArma(Armas.Lanza);
 
@@ -47,6 +49,7 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteEspada);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
 
             scriptArmas.CambioArma(Armas.Espada);
 
@@ -61,7 +64,10 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteTomahawk);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
+
             scriptArmas.CambioArma(Armas.Tomahawk);
+
             Debug.Log("CrafteandoTomahawk");
         }
     }
