@@ -12,7 +12,6 @@ public class Charger : MonoBehaviour {
     public int fuerza;
     public float TiempoDescanso;
     public float velocidad;
-    public float fuerzaKnockback;
 
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -100,12 +99,12 @@ public class Charger : MonoBehaviour {
     /// </summary>
     private IEnumerator Knockback()
     {
-        Vector2 knock;
-        knockback = true;  //desactiva movimineto general
-        if (moverse) knock = (new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y)) * (-1);  //calculo del knockback segun su direccion
-        else knock = movimiento * 10;
-        rb.velocity = (knock * fuerzaKnockback);  //le añade la fuerza de knockback
-        yield return new WaitForSeconds(0.2f);
-        knockback = false;  //activa movimiento general
+        if(moveratras || moverse)  //si no está durante la carga
+        {
+            knockback = true;  //desactiva movimineto general        
+            rb.velocity = Vector2.zero;
+            yield return new WaitForSeconds(0.2f);
+            knockback = false;  //activa movimiento general
+        }
     }
 }

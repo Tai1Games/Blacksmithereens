@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4551592639387242}
   - component: {fileID: 212892923432695732}
-  - component: {fileID: 114235914255917596}
   - component: {fileID: 50412625067784850}
   - component: {fileID: 61837330231876784}
+  - component: {fileID: 114235914255917596}
   m_Layer: 0
   m_Name: LanzaLanzada
   m_TagString: Untagged
