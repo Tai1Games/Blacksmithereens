@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour {
     public void ActualizaMateriales(int materiales, int materialesMax)
     {
         string texto = materiales + "/" + materialesMax;
-        Debug.Log(texto);
         textoMateriales.text = materiales + "/" + materialesMax;
     }
 
@@ -59,10 +58,10 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     /// <param name="mat"></param> Cantidad de materiales a mostrar.
     /// <param name="pos"></param> Posición a la que los muestra.
-    public void CreaPopUpMateriales (string mat, Vector2 pos)
+    public void CreaPopUpMateriales (string mat, Vector2 pos, Color color, Vector3 escala)
     {
         CanvasPopUpMat newPopUpMatCanvas = Instantiate(popUpMatCanvas, pos, Quaternion.identity);
-        newPopUpMatCanvas.CambiaParametrosTexto(mat); //Cambia el texto a el número de materiales nuevos.
+        newPopUpMatCanvas.CambiaParametrosTexto (mat, color, escala); //Cambia el texto a el número de materiales nuevos.
 
     }
 
