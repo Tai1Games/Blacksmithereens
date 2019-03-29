@@ -25,7 +25,7 @@ public class EnemigoDropeaMatMartillo : MonoBehaviour {
         if (numGolpes > 0) //Si no se pueden obtener más materiales del enemigo, no se suma nada.
         {
             LevelManager.instance.SumarMateriales(cantMat); //Se suman materiales.
-            LevelManager.instance.MuestraPopUpMat(("+ " + cantMat), new Vector2(this.transform.position.x, this.transform.position.y), Color.black, new Vector3 (1,1,1)); //Se muestra el pop up de los nuevos materiales.
+            LevelManager.instance.MuestraPopUpMat(("+ " + cantMat), new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Color.black, new Vector3(1, 1, 1)); //Se muestra el pop up de los nuevos materiales.
             numGolpes--;  //Se resta en 1 el número de golpes disponibles.
         }
     }
