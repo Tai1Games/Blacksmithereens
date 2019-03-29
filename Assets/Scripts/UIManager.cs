@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour {
 
     public Text textoMateriales;
     public Image barraVida;
-    public CanvasPopUpMat popUpMatCanvas;
+    public CanvasPopUpText popUpMatCanvas;
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
 
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour {
     /// <param name="pos"></param> Posición a la que los muestra.
     public void CreaPopUpMateriales (string mat, Vector2 pos, Color color, Vector3 escala)
     {
-        CanvasPopUpMat newPopUpMatCanvas = Instantiate(popUpMatCanvas, pos, Quaternion.identity);
+        CanvasPopUpText newPopUpMatCanvas = Instantiate(popUpMatCanvas, pos, Quaternion.identity);
         newPopUpMatCanvas.CambiaParametrosTexto (mat, color, escala); //Cambia el texto a el número de materiales nuevos.
 
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasPopUpMat : MonoBehaviour {
+public class CanvasPopUpText : MonoBehaviour {
 
     private Text texto;
     private Animator animacion;
