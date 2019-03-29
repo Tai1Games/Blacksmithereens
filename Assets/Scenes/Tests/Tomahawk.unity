@@ -2982,6 +2982,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 991061576}
   m_CullTransparentMesh: 0
+--- !u!1 &1039099403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1594534678569304, guid: 86728740f4068af4189d498e2bf82cc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 2109272992}
 --- !u!1 &1106849779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,12 +3256,12 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1310788069}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1530245024}
+      - m_Target: {fileID: 0}
         m_MethodName: CraftearTomahawk
         m_Mode: 1
         m_Arguments:
@@ -3417,6 +3422,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.07, y: 1.52}
   m_EdgeRadius: 0
+--- !u!1 &1382606673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1803825315929390, guid: 86728740f4068af4189d498e2bf82cc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 2109272992}
 --- !u!1 &1404838760
 GameObject:
   m_ObjectHideFlags: 0
@@ -105043,6 +105053,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: arrayArmas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 9.97
@@ -105074,6 +105089,52 @@ Prefab:
     - target: {fileID: 4981770389802668, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: martillo
+      value: 
+      objectReference: {fileID: 1039099403}
+    - target: {fileID: 4539860655893492, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328742617101418, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: lanza
+      value: 
+      objectReference: {fileID: 1382606673}
+    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: arrayArmas.Array.data[0]
+      value: 
+      objectReference: {fileID: 1039099403}
+    - target: {fileID: 114882074931322432, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: arrayArmas.Array.data[1]
+      value: 
+      objectReference: {fileID: 1382606673}
+    - target: {fileID: 1803825315929390, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594534678569304, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212887565889041574, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 19ea52d6a8d55f34b8c83f02598cf0f9,
+        type: 3}
+    - target: {fileID: 1355867992541984, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
