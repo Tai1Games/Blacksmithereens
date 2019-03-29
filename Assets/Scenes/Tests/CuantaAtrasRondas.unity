@@ -3400,7 +3400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1316093998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3412,7 +3412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211961dc93eabb046ade60a901fc6351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arenaManager: {fileID: 399598629}
+  ui: {fileID: 1530245019}
 --- !u!212 &1316093999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3778,6 +3778,8 @@ MonoBehaviour:
   textoRondaEsquina: {fileID: 1878459870}
   textoRondaAnuncio: {fileID: 729145687}
   cuentaAtras: {fileID: 959855057}
+  tiempoCuentaAtras: 0.65
+  arenaManager: {fileID: 399598629}
 --- !u!114 &1530245020
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour {
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
     public Text cuentaAtras;
+    public float tiempoCuentaAtras;
+    public ArenaManager arenaManager;
 
     Animator rondaEsquina;
     Animator rondaAnuncio;
@@ -74,11 +76,20 @@ public class UIManager : MonoBehaviour {
     /// <param name="i"></param>
     public void ActualizaTextoRonda(int i)
     {
-        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
-        rondaEsquina.Play("AnimacionEsquina", -1, 0);
         textoRondaAnuncio.text = "Ronda " + i;
         textoRondaEsquina.text = "Ronda " + i;
+    }
+
+    public void EmpiezaCuntaAtras()
+    {
         StartCoroutine(CuentaAtras());
+    }
+
+
+    public void AnuncioRonda()
+    {
+        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
+        rondaEsquina.Play("AnimacionEsquina", -1, 0);
     }
 
 
@@ -87,15 +98,18 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     private IEnumerator CuentaAtras()
     {
-        yield return new WaitForSeconds(0.5f);
+        AnuncioRonda();
         cuentaAtras.enabled = true;
-        yield return new WaitForSeconds(0.5f);
+        cuentaAtras.text = "3";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
         cuentaAtras.text = "2";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(tiempoCuentaAtras);
         cuentaAtras.text = "1";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(tiempoCuentaAtras);
         cuentaAtras.text = "GO!";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(tiempoCuentaAtras);
         cuentaAtras.enabled = false;
+        arenaManager.TocarCentro();
+
     }
 }

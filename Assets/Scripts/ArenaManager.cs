@@ -98,8 +98,7 @@ public class ArenaManager : MonoBehaviour
         reloj.Start(); //Empieza el reloj cuando empieza la ronda
         uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
         contador++; //Incrementa el indicador de ronda actual
-        tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia
-        centroArena.SetActive(false);
+        tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia        
         finRonda = false;
         SpawnRonda(arena[i].ronda, 0);
         StartCoroutine(FinRonda(arena[i].ronda, arena, i));

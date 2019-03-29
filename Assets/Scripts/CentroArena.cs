@@ -5,7 +5,7 @@ using UnityEngine;
 public class CentroArena : MonoBehaviour
 {
 
-    public ArenaManager arenaManager; //referencia al arenaManager
+    public UIManager ui; //referencia al arenaManager
 
     // Use this for initialization
     void Start()
@@ -24,6 +24,10 @@ public class CentroArena : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ControlJugador>()) arenaManager.TocarCentro();
+        if (collision.gameObject.GetComponent<ControlJugador>())
+        {
+            ui.EmpiezaCuntaAtras();
+            this.gameObject.SetActive(false);
+        }
     }
 }
