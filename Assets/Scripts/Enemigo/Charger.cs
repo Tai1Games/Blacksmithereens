@@ -12,6 +12,7 @@ public class Charger : MonoBehaviour {
     public int fuerza;
     public float TiempoDescanso;
     public float velocidad;
+    public float fuerzaKnockbackLanza;
 
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -89,22 +90,39 @@ public class Charger : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Al entrar en contacto con un arma, a este objeto se le aplica un knockback
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(Knockback());
+        if (collision.tag != "Lanza") StartCoroutine(ParonAlRecibirGolpe());
+        else StartCoroutine(Knockback());
     }
+
+
+    /// <summary>
+    /// Controla todo el proceso del paron cuando recibe un golpe
+    /// </summary>
+    private IEnumerator ParonAlRecibirGolpe()
+    {
+        knockback = true; //desactiva el movimineto normal
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.2f);
+        knockback = false; //activa el movimineto normal
+    }
+
 
     /// <summary>
     /// Controla todo el proceso del knockback
     /// </summary>
     private IEnumerator Knockback()
     {
-        if(moveratras || moverse)  //si no está durante la carga
-        {
-            knockback = true;  //desactiva movimineto general        
-            rb.velocity = Vector2.zero;
-            yield return new WaitForSeconds(0.2f);
-            knockback = false;  //activa movimiento general
-        }
+        Vector2 knock = Vector2.zero;
+        knockback = true; //desactiva el movimineto normal
+        if (moveratras) knock = movimiento * 10;
+        else if(moverse) knock = movimiento * (-1) *fuerzaKnockbackLanza;
+        rb.velocity = knock;
+        yield return new WaitForSeconds(0.2f);
+        knockback = false; //activa el movimineto normal
     }
 }

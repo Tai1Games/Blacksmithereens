@@ -89,9 +89,10 @@ GameObject:
   - component: {fileID: 95808254606185326}
   - component: {fileID: 114671527327583200}
   - component: {fileID: 114942220535323846}
+  - component: {fileID: 114990927924369062}
   m_Layer: 0
   m_Name: lanza
-  m_TagString: Untagged
+  m_TagString: Lanza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +143,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596454162701506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.97, y: 0.48, z: 0}
   m_LocalScale: {x: 6.284, y: 6.284, z: 1}
   m_Children:
   - {fileID: 4328742617101418}
@@ -467,8 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e9a4413f196894689322e4d50e2d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lanza: {fileID: 0}
-  velocidad: 0
+  Lanza: {fileID: 1904581897116602, guid: d0aba06c0e6876445ac17ab5f755f299, type: 2}
+  velocidad: 10
   durMaxLanza: 20
 --- !u!114 &114981328061260682
 MonoBehaviour:
@@ -482,6 +483,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durMaxEspada: 20
+--- !u!114 &114990927924369062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803825315929390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c592c143473f32144ba4ba8e483fcc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212055587434371104
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -11,6 +11,7 @@ public class Ladron : MonoBehaviour
     public float velocidad;
     public int daño;
     public int matRobados;
+    public float fuerzaKnockbackLanza;
 
     bool volver = false;
     bool robado = false;
@@ -115,7 +116,8 @@ public class Ladron : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         StartCoroutine(ParonAlRecibirGolpe());        //empieza proceso knockback
+        if (collision.tag != "Lanza") StartCoroutine(ParonAlRecibirGolpe());        //empieza proceso knockback
+        else StartCoroutine(Knockback());
     }
 
 
@@ -132,21 +134,13 @@ public class Ladron : MonoBehaviour
 
 
     /// <summary>
-    /// Cuando es llamado activa un knockback
-    /// </summary>
-    public void SetKnockback()
-    {
-        StartCoroutine(Knockback());
-    }
-
-    /// <summary>
     /// Controla todo el proceso del knockback
     /// </summary>
     private IEnumerator Knockback()
     {
         Vector2 knock;
         knockback = true; //desactiva el movimineto normal
-        if (!volver) knock = movimiento * (-1);
+        if (!volver) knock = movimiento * (-1) *fuerzaKnockbackLanza;
         else knock = movimiento * 10;
         rb.velocity = knock;
         yield return new WaitForSeconds(0.2f);

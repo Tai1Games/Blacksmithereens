@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114235914255917596}
   m_Layer: 0
   m_Name: LanzaLanzada
-  m_TagString: Untagged
+  m_TagString: Lanza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

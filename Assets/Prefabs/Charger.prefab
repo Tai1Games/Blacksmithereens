@@ -133,7 +133,7 @@ MonoBehaviour:
   fuerza: 1000
   TiempoDescanso: 1
   velocidad: 5
-  fuerzaKnockback: 2
+  fuerzaKnockbackLanza: 1
 --- !u!114 &114707864174570818
 MonoBehaviour:
   m_ObjectHideFlags: 1
