@@ -26,7 +26,7 @@ public class CentroArena : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ControlJugador>())
         {
-            ui.EmpiezaCuntaAtras();
+            ui.EmpiezaCuntaAtras();  //activa cuenta atras
             this.gameObject.SetActive(false);
         }
     }

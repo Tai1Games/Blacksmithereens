@@ -39,6 +39,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField]
     Ronda[] arena; //Array de rondas por arena
 
+    private bool empiezaRonda=false;
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
     private float tiempo = 0; //tiempo que el jugador tarda en pasarse una ronda
     private float tiempoFin = 0; //variable auxiliar para Ronda.tiempoFin
@@ -48,7 +49,8 @@ public class ArenaManager : MonoBehaviour
     void Start()
     {
         uim = interfaz.GetComponent<UIManager>();
-        SpawnArena(arena, 0);
+        SpawnArena(arena, 1);
+        uim.ActualizaTextoRonda(1); 
     }
 
     void Update()
@@ -65,7 +67,7 @@ public class ArenaManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Indica el cambio de ronda cuando se toca el centro
+    /// Indica que se h terminado una ronda
     /// </summary>
     public void TocarCentro()
     {
@@ -96,8 +98,6 @@ public class ArenaManager : MonoBehaviour
     void SpawnArena(Ronda[] arena, int i)
     {
         reloj.Start(); //Empieza el reloj cuando empieza la ronda
-        uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
-        contador++; //Incrementa el indicador de ronda actual
         tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia        
         finRonda = false;
         SpawnRonda(arena[i].ronda, 0);
@@ -152,7 +152,23 @@ public class ArenaManager : MonoBehaviour
         LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
         //Empieza la siguiente ronda
         yield return new WaitUntil(() => finRonda);       
-        if (i + 1 < arena.Length) SpawnArena(arena, i + 1);
+        if (i + 1 < arena.Length)
+        {
+            contador++; //Incrementa el indicador de ronda actual
+            uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
+            yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
+            SpawnArena(arena, i + 1);
+            empiezaRonda = false;
+        }
         else LevelManager.instance.VuelveaMenu();
+    }
+
+
+    /// <summary>
+    /// Cuando es llamado empieza una nueva ronda
+    /// </summary>
+    public void EmpiezaRonda()
+    {
+        empiezaRonda = true;
     }
 }

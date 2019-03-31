@@ -98,6 +98,9 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     private IEnumerator CuentaAtras()
     {
+        //hay q actualizar cartel y empezar ronda
+
+        arenaManager.TocarCentro();  //termina la ronda actual
         AnuncioRonda();
         cuentaAtras.enabled = true;
         cuentaAtras.text = "3";
@@ -109,7 +112,7 @@ public class UIManager : MonoBehaviour {
         cuentaAtras.text = "GO!";
         yield return new WaitForSeconds(tiempoCuentaAtras);
         cuentaAtras.enabled = false;
-        arenaManager.TocarCentro();
+        arenaManager.EmpiezaRonda();  //empieza la proxima linea
 
     }
 }
