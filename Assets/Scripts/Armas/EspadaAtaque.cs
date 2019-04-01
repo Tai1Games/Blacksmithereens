@@ -59,4 +59,12 @@ public class EspadaAtaque : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Resetea al valor maximo la durabilidad de la espada
+    /// </summary>
+    public void ReseteaDurEspada()
+    {
+        durActualEspada = durMaxEspada;
+    }
+
 }

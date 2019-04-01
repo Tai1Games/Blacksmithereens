@@ -78,5 +78,14 @@ public class AtaqueJugador : MonoBehaviour
         arrayArmas[(int)armaActual].SetActive(false);
         armaActual = arma;
         arrayArmas[(int)armaActual].SetActive(true);
+
+        switch (arma) {
+            case Armas.Lanza:
+                scriptLanzaAtaque.ReseteaDurLanza();
+                break;
+            case Armas.Espada:
+                scriptEspadaAtaque.ReseteaDurEspada();
+                break;
+        }
     }
 }
