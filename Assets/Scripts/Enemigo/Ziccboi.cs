@@ -18,7 +18,6 @@ public class Ziccboi : MonoBehaviour {
     private float angulo;
     Animator anim;
     bool atacando = false;
-    bool moviendo = true;
 
 	void Start ()
     {
@@ -45,14 +44,13 @@ public class Ziccboi : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (jugador != null && moviendo == true) //cacheo de referencia
+        if (jugador != null) //cacheo de referencia
         {
             //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
             movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
             //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
             rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
         }
-        else rb.velocity = Vector2.zero;
     }
 
     /// <summary>
@@ -61,11 +59,8 @@ public class Ziccboi : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator ZiccboiAtaca()
     {
-        moviendo = false;
-        anim.Play("EspadaZiccboiAtaca"); //Se reproduce la animación de ataque de la espada
-        yield return new WaitForSeconds(0.42f);
-        moviendo = true;
-        yield return new WaitForSeconds (tiempoEspera); //Se espera a que acabe + un tiempo de espera a elegir
+        anim.Play("EspadaZiccboiAtaca", -1, 0); //Se reproduce la animación de ataque de la espada
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(-1).length + tiempoEspera); //Se espera a que acabe + un tiempo de espera a elegir
         atacando = false; //Se pone el ataque a false para poder volver a atacar
     }
 }

@@ -20,21 +20,18 @@ public class ControlJugador : MonoBehaviour {
 
     private void Update()
     {
-        
-            movimiento = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
+        movimiento = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
 
-            if (movimiento != Vector2.zero) animacion.SetTrigger("Movimineto");
-            else animacion.SetTrigger("Quieto");
-
-
-            mouse_position = Input.mousePosition; //obtiene posicion del raton
-            screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
-            offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
-            angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
-            angle -= 90;
-            transform.rotation = Quaternion.Euler(0, 0, angle); //cambia la rotación del jugador
+        if (movimiento != Vector2.zero) animacion.SetTrigger("Movimineto");
+        else animacion.SetTrigger("Quieto");
         
 
+        mouse_position = Input.mousePosition; //obtiene posicion del raton
+        screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
+        offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
+        angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
+        angle -= 90;
+        transform.rotation = Quaternion.Euler(0, 0, angle); //cambia la rotación del jugador
     }
 
     void FixedUpdate () {

@@ -35,10 +35,7 @@ public class VidaEnemigo : MonoBehaviour {
         vidaActual = vidaActual - cantidad;
         if (vidaActual <= 0 && scriptMuerte) //Si existe el componente adecuado para morir, se muere el enemigo
         {
-            
             scriptMuerte.Muerte();
         }
-        else
-            LevelManager.instance.MuestraPopUpMat(cantidad.ToString(), new Vector3(this.transform.position.x + 0.5f, this.transform.position.y, this.transform.position.z), Color.red, new Vector3(1, 1, 0));
     }
 }

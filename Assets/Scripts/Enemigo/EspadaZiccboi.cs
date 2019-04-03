@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmaEnemigo : MonoBehaviour {
+public class EspadaZiccboi : MonoBehaviour {
     
     private GameObject jugador;
     public int daño;

@@ -23,8 +23,6 @@ GameObject:
   - component: {fileID: 114235914255917596}
   - component: {fileID: 50412625067784850}
   - component: {fileID: 61837330231876784}
-  - component: {fileID: 114014668117834656}
-  - component: {fileID: 114611279330498054}
   m_Layer: 0
   m_Name: LanzaLanzada
   m_TagString: Untagged
@@ -52,7 +50,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904581897116602}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -90,18 +88,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &114014668117834656
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904581897116602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06920b6930e8e8849a4b6e6837bb450a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiempoDestruir: 1
 --- !u!114 &114235914255917596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,18 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acbc0e17fbacb84892282f981ad0bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114611279330498054
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904581897116602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06920b6930e8e8849a4b6e6837bb450a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiempoDestruir: 1
 --- !u!212 &212892923432695732
 SpriteRenderer:
   m_ObjectHideFlags: 1

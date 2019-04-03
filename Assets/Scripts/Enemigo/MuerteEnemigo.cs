@@ -31,7 +31,7 @@ public class MuerteEnemigo : MonoBehaviour {
         else //Si no, devuelve matdropeados
         {
             LevelManager.instance.SumarMateriales(matDropeados);
-            LevelManager.instance.MuestraPopUpMat("+ " + matDropeados.ToString(), new Vector2(transform.position.x, transform.position.y), Color.black, new Vector3 (1,1,0)); //Dice al LvlManager que muestre los materiales nuevos en la posición donde muere
+            LevelManager.instance.MuestraPopUpMat("+ " + matDropeados.ToString(), new Vector2(transform.position.x, transform.position.y)); //Dice al LvlManager que muestre los materiales nuevos en la posición donde muere
         }
         LevelManager.instance.EnemigoMuerto();
         Destroy(this.gameObject);

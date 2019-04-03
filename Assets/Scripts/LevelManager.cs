@@ -83,9 +83,9 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     /// <param name="mat"></param> Materiales a mostrar en pantalla
     /// <param name="pos"></param> Posición a la que se quieren enseñar
-    public void MuestraPopUpMat(string mat, Vector2 pos, Color color, Vector3 escala)
+    public void MuestraPopUpMat(string mat, Vector2 pos)
     {
-        uiManager.CreaPopUpMateriales(mat, pos, color, escala);
+        uiManager.CreaPopUpMateriales(mat, pos);
     }
 
     public void VuelveaMenu()
