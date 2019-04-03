@@ -97,6 +97,9 @@ public class AtaqueJugador : MonoBehaviour
             case Armas.Espada:
                 scriptEspadaAtaque.ReseteaDurEspada();
                 break;
+            case Armas.Tomahawk:
+                scriptTomahawkAtaque.ReseteaDurTomahawk();
+                break;
         }
     }
 }
