@@ -10,6 +10,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    public ControlJugador jugador;
+    public CrafteoArmas menuArmas;
+
+    private bool juegoPausado = false;
 
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
@@ -47,5 +51,32 @@ public class GameManager : MonoBehaviour {
     public void Salir()
     {
         Application.Quit();
+    }
+
+    /// <summary>
+    /// Devuelve si el juego está pausado o no
+    /// </summary>
+    public bool Pausa()
+    {
+        return juegoPausado;
+    }
+
+    /// <summary>
+    /// Cambia el esto del juego en cuanto a la pausa
+    /// </summary>
+    public void CambiarPausa( bool estado)
+    {
+        juegoPausado = estado;
+        if (juegoPausado)
+        {
+            jugador.enabled = false;
+            menuArmas.enabled = false;
+        }
+        else
+        {
+            jugador.enabled = true;
+            menuArmas.enabled = true;
+
+        }
     }
 }

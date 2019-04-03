@@ -26,6 +26,7 @@ public class MenuPausa : MonoBehaviour {
             {
                 menuPausa.SetActive(true);  //muestra el menu
                 Time.timeScale = 0;  //desactiva el juego
+                GameManager.instance.CambiarPausa(true);
             }
         }
 	}
@@ -37,5 +38,6 @@ public class MenuPausa : MonoBehaviour {
     {
         menuPausa.SetActive(false);  //desactiva el menu
         Time.timeScale = 1;  //activa el juego
+        GameManager.instance.CambiarPausa(false);
     }
 }
