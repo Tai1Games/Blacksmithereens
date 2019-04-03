@@ -40,7 +40,7 @@ public class LanzaAtaque : MonoBehaviour
     /// Comprueba si la lanza está cerca del jugador y, en ese caso, activa la animación de ataque
     /// </summary>
      public void AtaqueLanza() {
-        if ((transformLanza.localPosition.y > -0.8) && animador.GetCurrentAnimatorStateInfo(0).IsName("LanzaNormal"))      //Posicion relativa al jugador, para evitar ataques dobles
+        if (animador.GetCurrentAnimatorStateInfo(0).IsName("LanzaNormal"))      //Posicion relativa al jugador, para evitar ataques dobles
         {
             animador.SetTrigger("Ataque");
         }
@@ -95,6 +95,13 @@ public class LanzaAtaque : MonoBehaviour
             scriptarmas.CambioArma(Armas.Martillo);
             durActualLanza = durMaxLanza;
         }
+    }
+
+    /// <summary>
+    /// Resetea al valor maximo la durabilidad de la lanza
+    /// </summary>
+    public void ReseteaDurLanza() {
+        durActualLanza = durMaxLanza;
     }
 
 }
