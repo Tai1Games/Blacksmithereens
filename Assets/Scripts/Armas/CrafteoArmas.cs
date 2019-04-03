@@ -18,7 +18,7 @@ public class CrafteoArmas : MonoBehaviour {
         scriptMateriales = LevelManager.instance.Jugador().GetComponent<Materiales>();
         scriptArmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         if (Input.GetButtonDown("Jump") ||Input.GetButtonDown("Fire3")) //abre y cierra el menu con el espacio y la rueda del raton
@@ -71,4 +71,6 @@ public class CrafteoArmas : MonoBehaviour {
             Debug.Log("CrafteandoTomahawk");
         }
     }
+
+
 }
