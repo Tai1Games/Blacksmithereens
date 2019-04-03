@@ -8,7 +8,7 @@ public class CrafteoArmas : MonoBehaviour {
 
     public GameObject menuArmas;
     public int CosteTomahawk = 30, CosteEspada = 70, CosteLanza = 70;
-
+    
     bool menuActivo = false;
     Materiales scriptMateriales;
     AtaqueJugador scriptArmas;
@@ -21,11 +21,14 @@ public class CrafteoArmas : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Jump") ||Input.GetButtonDown("Fire3")) //abre y cierra el menu con el espacio y la rueda del raton
-        {
-            menuActivo = !menuActivo;
-            menuArmas.SetActive(menuActivo);
-        }
+       
+            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire3")) //abre y cierra el menu con el espacio y la rueda del raton
+            {
+                menuActivo = !menuActivo;
+                menuArmas.SetActive(menuActivo);
+            }
+        
+
 	}
     public void CraftearLanza()
     {
@@ -64,4 +67,6 @@ public class CrafteoArmas : MonoBehaviour {
             scriptArmas.CambioArma(Armas.Tomahawk);
         }
     }
+
+
 }
