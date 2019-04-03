@@ -126,7 +126,7 @@ public class Charger : MonoBehaviour {
         {
             Vector2 knock = Vector2.zero;
             knockback = true; //desactiva el movimineto normal
-            if (moveratras) knock = movimiento * 10;
+            if (moveratras) knock = movimiento * 10 *(-1);
             else if (moverse) knock = movimiento * (-1) * fuerzaKnockbackLanza;
             rb.velocity = knock;
             yield return new WaitForSeconds(0.2f);
