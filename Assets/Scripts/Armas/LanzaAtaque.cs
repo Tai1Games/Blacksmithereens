@@ -13,7 +13,7 @@ public class LanzaAtaque : MonoBehaviour
 
     public GameObject Lanza;
     public float velocidad;
-    public int durMaxLanza = 20;       //Durabilidad máxima
+    public int durMaxLanza = 20; //Durabilidad máxima
 
     Animator animador;
     Transform transformLanza;
@@ -63,7 +63,6 @@ public class LanzaAtaque : MonoBehaviour
             Lanzada.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
             Lanzada.GetComponent<HacerDanoLanzaLanzada>().SetDurabilidad(durActualLanza); //le pasa a la lanza la durabilidad actual
             durActualLanza = durMaxLanza;  //resetea la durabiliad complete de la lanza
-            Invoke("Destruir", 1f); 
 
             this.gameObject.SetActive(false); 
 
@@ -71,16 +70,7 @@ public class LanzaAtaque : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Destruye el objeto pasado
-    /// </summary>
-    private void Destruir()
-    {
-        if (Lanza != null)
-        {
-            Destroy(Lanzada.gameObject);
-        }
-    }
+
 
 
     /// <summary>

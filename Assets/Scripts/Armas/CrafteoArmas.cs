@@ -70,4 +70,6 @@ public class CrafteoArmas : MonoBehaviour {
             Debug.Log("CrafteandoTomahawk");
         }
     }
+
+
 }
