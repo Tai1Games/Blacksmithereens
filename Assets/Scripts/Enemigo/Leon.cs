@@ -109,7 +109,7 @@ public class Leon : MonoBehaviour {
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Lanza")StartCoroutine(Knockback());  //empieza el knockback
+        if (collision.tag == "Lanza" && collision.tag != "Jugador")StartCoroutine(Knockback());  //empieza el knockback
     }
 
     /// <summary>

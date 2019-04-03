@@ -95,8 +95,9 @@ public class Charger : MonoBehaviour {
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Lanza") StartCoroutine(ParonAlRecibirGolpe());
-        else StartCoroutine(Knockback());
+
+        if (collision.tag != "Lanza" && collision.tag != "Jugador") StartCoroutine(ParonAlRecibirGolpe());
+        else if(collision.tag != "Jugador") StartCoroutine(Knockback());
     }
 
 
@@ -105,10 +106,14 @@ public class Charger : MonoBehaviour {
     /// </summary>
     private IEnumerator ParonAlRecibirGolpe()
     {
-        knockback = true; //desactiva el movimineto normal
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(0.2f);
-        knockback = false; //activa el movimineto normal
+        if (moveratras || moverse)
+        {
+            knockback = true; //desactiva el movimineto normal
+            rb.velocity = Vector2.zero;
+            yield return new WaitForSeconds(0.2f);
+            knockback = false; //activa el movimineto normal
+        }
+
     }
 
 
@@ -117,12 +122,16 @@ public class Charger : MonoBehaviour {
     /// </summary>
     private IEnumerator Knockback()
     {
-        Vector2 knock = Vector2.zero;
-        knockback = true; //desactiva el movimineto normal
-        if (moveratras) knock = movimiento * 10;
-        else if(moverse) knock = movimiento * (-1) *fuerzaKnockbackLanza;
-        rb.velocity = knock;
-        yield return new WaitForSeconds(0.2f);
-        knockback = false; //activa el movimineto normal
+        if(moveratras || moverse)
+        {
+            Vector2 knock = Vector2.zero;
+            knockback = true; //desactiva el movimineto normal
+            if (moveratras) knock = movimiento * 10;
+            else if (moverse) knock = movimiento * (-1) * fuerzaKnockbackLanza;
+            rb.velocity = knock;
+            yield return new WaitForSeconds(0.2f);
+            knockback = false; //activa el movimineto normal
+        }
+
     }
 }

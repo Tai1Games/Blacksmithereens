@@ -116,8 +116,8 @@ public class Ladron : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Lanza") StartCoroutine(ParonAlRecibirGolpe());        //empieza proceso knockback
-        else StartCoroutine(Knockback());
+        if (collision.tag != "Lanza" && collision.tag != "Jugador") StartCoroutine(ParonAlRecibirGolpe());        //empieza proceso knockback
+        else if (collision.tag != "Jugador") StartCoroutine(Knockback());
     }
 
 
