@@ -17,18 +17,16 @@ public class CrafteoArmas : MonoBehaviour {
 	void Start () {
         scriptMateriales = LevelManager.instance.Jugador().GetComponent<Materiales>();
         scriptArmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-       
-            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire3")) //abre y cierra el menu con el espacio y la rueda del raton
-            {
-                menuActivo = !menuActivo;
-                menuArmas.SetActive(menuActivo);
-            }
-        
-
+        if (Input.GetButtonDown("Jump") ||Input.GetButtonDown("Fire3")) //abre y cierra el menu con el espacio y la rueda del raton
+        {
+            menuActivo = !menuActivo;
+            menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
+        }
 	}
     public void CraftearLanza()
     {
@@ -37,6 +35,7 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteLanza);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
 
             scriptArmas.CambioArma(Armas.Lanza);
 
@@ -50,6 +49,7 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteEspada);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
 
             scriptArmas.CambioArma(Armas.Espada);
 
@@ -64,7 +64,10 @@ public class CrafteoArmas : MonoBehaviour {
             scriptMateriales.RestarMateriales(CosteTomahawk);
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
+            scriptArmas.enabled = !menuActivo;
+
             scriptArmas.CambioArma(Armas.Tomahawk);
+            Debug.Log("CrafteandoTomahawk");
         }
     }
 
