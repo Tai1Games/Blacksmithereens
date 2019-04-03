@@ -106124,6 +106124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jugador: {fileID: 1731188827}
   menuArmas: {fileID: 1530245024}
+  ataquejugador: {fileID: 1731188823}
 --- !u!4 &2004558427
 Transform:
   m_ObjectHideFlags: 0

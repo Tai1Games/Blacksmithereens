@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     public ControlJugador jugador;
     public CrafteoArmas menuArmas;
+    public AtaqueJugador ataquejugador;
 
     private bool juegoPausado = false;
 
@@ -69,11 +70,13 @@ public class GameManager : MonoBehaviour {
         juegoPausado = estado;
         if (juegoPausado)
         {
+            ataquejugador.enabled = false;
             jugador.enabled = false;
             menuArmas.enabled = false;
         }
         else
         {
+            ataquejugador.enabled = true;
             jugador.enabled = true;
             menuArmas.enabled = true;
 
