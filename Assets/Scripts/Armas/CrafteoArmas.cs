@@ -62,7 +62,6 @@ public class CrafteoArmas : MonoBehaviour {
             menuActivo = !menuActivo;
             menuArmas.SetActive(menuActivo);
             scriptArmas.CambioArma(Armas.Tomahawk);
-            Debug.Log("CrafteandoTomahawk");
         }
     }
 }

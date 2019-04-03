@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.5}
-  m_EffectDistance: {x: 0.01, y: 0.01}
+  m_EffectColor: {r: 0.3207547, g: 0.25872195, b: 0.25872195, a: 1}
+  m_EffectDistance: {x: 0.02, y: 0.02}
   m_UseGraphicAlpha: 1
 --- !u!114 &114812759614266028
 MonoBehaviour:
@@ -187,7 +187,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &224000824116357564
 RectTransform:
@@ -223,6 +223,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.51, y: -0.44}
+  m_AnchoredPosition: {x: 15.073227, y: 2.5776856}
   m_SizeDelta: {x: 4.328, y: 2.583}
   m_Pivot: {x: 0.5, y: 0.5}

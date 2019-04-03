@@ -2476,7 +2476,7 @@ MonoBehaviour:
         espera: 0
     - oleada:
       - puerta: {fileID: 1459695423}
-        tipo: {fileID: 1700993920282976, guid: 8212148661b86f54ca227caa483f3f27, type: 2}
+        tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
     tiempoFin: 10
   - ronda:
@@ -2484,25 +2484,25 @@ MonoBehaviour:
       - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-    tiempoFin: 0
+    tiempoFin: 10
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-    tiempoFin: 0
+    tiempoFin: 10
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-    tiempoFin: 0
+    tiempoFin: 10
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
         tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
         espera: 0
-    tiempoFin: 0
+    tiempoFin: 10
 --- !u!4 &399598630
 Transform:
   m_ObjectHideFlags: 0
@@ -3256,13 +3256,13 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1310788069}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: CraftearTomahawk
+      - m_Target: {fileID: 1530245018}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
