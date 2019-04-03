@@ -6,9 +6,12 @@ public class HacerDaño : MonoBehaviour {
     
     private GameObject jugador;
     public int daño;
+    VidaEnemigo vidaEnemigo;
+    VidaBingBong vidaBingBong;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
     }
 
@@ -20,12 +23,13 @@ public class HacerDaño : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        VidaEnemigo vida;
-        vida = col.GetComponent<VidaEnemigo>();   //coge referencia al objeto colisionado
+        
+        vidaEnemigo = col.GetComponent<VidaEnemigo>();   //coge referencia al objeto colisionado
+        vidaBingBong = col.GetComponent<VidaBingBong>();
 
-        if (vida != null)
-        {
-            vida.RestaVida(daño);
-        }
+        if (vidaEnemigo != null)
+            vidaEnemigo.RestaVida(daño);
+        else if (vidaBingBong != null)
+            vidaBingBong.RestaVida(daño);
     }
 }
