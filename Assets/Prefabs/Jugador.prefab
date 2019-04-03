@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95828896743555912}
   - component: {fileID: 114478157120611076}
   - component: {fileID: 114981328061260682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Espada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 95624936245437816}
   - component: {fileID: 114285664819136870}
   - component: {fileID: 114583832013908642}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tomahawk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 114215373716630142}
   - component: {fileID: 114502643151004964}
   - component: {fileID: 114364286727423784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Martillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 114406747486264206}
   - component: {fileID: 114882074931322432}
   - component: {fileID: 95608144373420202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jugador
   m_TagString: Jugador
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 95808254606185326}
   - component: {fileID: 114671527327583200}
   - component: {fileID: 114942220535323846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lanza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c3bc8bf0f5876479630b5957b91b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 15
+  "da\xF1o": 35
 --- !u!114 &114502643151004964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lanza: {fileID: 1904581897116602, guid: d0aba06c0e6876445ac17ab5f755f299, type: 2}
-  velocidad: 10
+  velocidad: 50
   durMaxLanza: 20
 --- !u!114 &114981328061260682
 MonoBehaviour:

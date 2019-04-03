@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Controla el movimiento del enemigo (lineal) con velocidad ajustable y la rotacion
 /// </summary>
-public class Ziccboi : MonoBehaviour {
+public class Lancero : MonoBehaviour {
 
     public float velocidad;
     public float offsetAtaque;
@@ -36,10 +36,10 @@ public class Ziccboi : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0, 0, -angulo); //cambia la rotacion del enemigo
         if(rb.position.x > jugador.transform.position.x - offsetAtaque && rb.position.y > jugador.transform.position.y - offsetAtaque &&
                     rb.position.x < jugador.transform.position.x + offsetAtaque && rb.position.y < jugador.transform.position.y + offsetAtaque
-                    && atacando == false) //Si el ziccboi está a menos de una determinada distancia del jugador y no está atacando ya...
+                    && atacando == false) //Si el lancero está a menos de una determinada distancia del jugador y no está atacando ya...
         {
             atacando = true;
-            StartCoroutine(ZiccboiAtaca()); //Comienza la corrutina de ataque
+            StartCoroutine(LanceroAtaca()); //Comienza la corrutina de ataque
         }
     }
 
@@ -56,16 +56,16 @@ public class Ziccboi : MonoBehaviour {
     }
 
     /// <summary>
-    /// Controla el ataque del ziccboi y la espera tras este
+    /// Controla el ataque del lancero y la espera tras este
     /// </summary>
     /// <returns></returns>
-    private IEnumerator ZiccboiAtaca()
+    private IEnumerator LanceroAtaca()
     {
         moviendo = false;
-        anim.Play("EspadaZiccboiAtaca"); //Se reproduce la animación de ataque de la espada
-        yield return new WaitForSeconds(0.42f);
+        anim.Play("LanzaLanceroAtaca"); //Se reproduce la animación de ataque de la lanza
+        yield return new WaitForSeconds(0.5f);
         moviendo = true;
-        yield return new WaitForSeconds (tiempoEspera); //Se espera a que acabe + un tiempo de espera a elegir
+        yield return new WaitForSeconds(tiempoEspera); //Se espera a que acabe + un tiempo de espera a elegir
         atacando = false; //Se pone el ataque a false para poder volver a atacar
     }
 }

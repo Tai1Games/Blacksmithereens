@@ -8,7 +8,7 @@ public class CrafteoArmas : MonoBehaviour {
 
     public GameObject menuArmas;
     public int CosteTomahawk = 30, CosteEspada = 70, CosteLanza = 70;
-
+    
     bool menuActivo = false;
     Materiales scriptMateriales;
     AtaqueJugador scriptArmas;
@@ -67,8 +67,9 @@ public class CrafteoArmas : MonoBehaviour {
             scriptArmas.enabled = !menuActivo;
 
             scriptArmas.CambioArma(Armas.Tomahawk);
-
             Debug.Log("CrafteandoTomahawk");
         }
     }
+
+
 }
