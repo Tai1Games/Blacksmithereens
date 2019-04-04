@@ -108,6 +108,8 @@ public class ArenaManager : MonoBehaviour
 
     void FormulaMateriales(float tiempo, Oleada[] ronda)
     {
+        if (tiempoFin == 0) tiempoFin = 10; //por si a ciertos desarrolladores se les olvida poner el tiempoFin
+        if (tiempo < tiempoFin) tiempo = tiempoFin; //para que matBase sea el límite de materiales recibidos 
         //formula exponencial que da matBase materiales si se pasa una ronda en el tiempo óptimo y 0 si se pasa en (tiempo óptimo * factorMax)
         int mat = (int)((matBase - (matBase * (tiempo - tiempoFin) / (tiempoFin * (factorMax - 1)))) / (tiempo - tiempoFin + 1));
         StartCoroutine(MuestraPopUp(mat));
