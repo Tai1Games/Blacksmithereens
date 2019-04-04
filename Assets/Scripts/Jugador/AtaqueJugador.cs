@@ -89,17 +89,24 @@ public class AtaqueJugador : MonoBehaviour
         arrayArmas[(int)armaActual].SetActive(false);
         armaActual = arma;
         arrayArmas[(int)armaActual].SetActive(true);
+		LevelManager.instance.ActualizaDurabilidad(1, 1);
 
-        switch (arma) {
-            case Armas.Lanza:
+		switch (arma) {
+			case Armas.Martillo:
+				LevelManager.instance.CambiaSpriteUI(Armas.Martillo);
+				break;
+			case Armas.Lanza:
                 scriptLanzaAtaque.ReseteaDurLanza();
+				LevelManager.instance.CambiaSpriteUI(Armas.Lanza);
                 break;
             case Armas.Espada:
                 scriptEspadaAtaque.ReseteaDurEspada();
-                break;
+				LevelManager.instance.CambiaSpriteUI(Armas.Espada);
+				break;
             case Armas.Tomahawk:
                 scriptTomahawkAtaque.ReseteaDurTomahawk();
-                break;
+				LevelManager.instance.CambiaSpriteUI(Armas.Tomahawk);
+				break;
         }
     }
 }

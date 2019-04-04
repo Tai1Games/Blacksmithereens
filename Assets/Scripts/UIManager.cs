@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-    public Text textoMateriales;
     public Image barraVida;
-    public CanvasPopUpText popUpMatCanvas;
+	public Image barraDurabilidad;
+	public CanvasPopUpText popUpMatCanvas;
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
+	public Text textoMateriales;
 
-    Animator rondaEsquina;
+	CambiaSprite cambiaSprite;
+	Animator rondaEsquina;
     Animator rondaAnuncio;
 
     float barraMaxTamano;
@@ -23,7 +25,7 @@ public class UIManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-
+		cambiaSprite = GetComponent<CambiaSprite>();
     }
 	
 	// Update is called once per frame
@@ -76,4 +78,18 @@ public class UIManager : MonoBehaviour {
         textoRondaAnuncio.text = "Ronda " + i;
         textoRondaEsquina.text = "Ronda " + i;
     }
+
+	/// <summary>
+	/// Actualiza la barra de durabilidad con respecto al maximo y la actual durabilida del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		float angulo = (max - actual) * 136f / max;
+		barraDurabilidad.rectTransform.localRotation = Quaternion.Euler(0, 0, angulo);
+	}
+
+	public void CambiaSprite(Armas arma)
+	{
+		cambiaSprite.CambiaSpriteUI(arma);
+	}
 }
