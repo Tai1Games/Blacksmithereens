@@ -85,7 +85,9 @@ public class LanzaAtaque : MonoBehaviour
             scriptarmas.CambioArma(Armas.Martillo);
             durActualLanza = durMaxLanza;
         }
-    }
+		else
+			LevelManager.instance.ActualizaDurabilidad(durMaxLanza, durActualLanza);
+	}
 
     /// <summary>
     /// Resetea al valor maximo la durabilidad de la lanza

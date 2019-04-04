@@ -71,7 +71,9 @@ public class TomahawkAtaque : MonoBehaviour {
             scriptArmas.CambioArma(0);
             durActualTomahawk = durMaxTomahawk;
         }
-    }
+		else
+			LevelManager.instance.ActualizaDurabilidad(durMaxTomahawk, durActualTomahawk);
+	}
 
     /// <summary>
     /// Resetea al valor maximo la durabilidad del tomahawk
