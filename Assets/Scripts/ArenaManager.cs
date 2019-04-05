@@ -49,7 +49,7 @@ public class ArenaManager : MonoBehaviour
     void Start()
     {
         uim = interfaz.GetComponent<UIManager>();
-        SpawnArena(arena, 1);
+        SpawnArena(arena, 0);
         uim.ActualizaTextoRonda(1); 
     }
 
