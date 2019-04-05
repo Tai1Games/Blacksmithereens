@@ -81,12 +81,17 @@ public class UIManager : MonoBehaviour {
         textoRondaEsquina.text = "Ronda " + i;
     }
 
+    /// <summary>
+    /// Empieza el proceso de la cuenta atrás
+    /// </summary>
     public void EmpiezaCuntaAtras()
     {
         StartCoroutine(CuentaAtras());
     }
 
-
+    /// <summary>
+    /// Activa la animacion de cuenta atrás
+    /// </summary>
     public void AnuncioRonda()
     {
         rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
