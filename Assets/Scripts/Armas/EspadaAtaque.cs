@@ -51,12 +51,22 @@ public class EspadaAtaque : MonoBehaviour {
     {
         durActualEspada -= cantidad;
         print("Durabilidad Espada: " + durActualEspada);
-        if (durActualEspada <= 0)
-        {
-            scriptarmas.CambioArma(Armas.Martillo);
-            durActualEspada = durMaxEspada;
-        }   
+		if (durActualEspada <= 0)
+		{
+			scriptarmas.CambioArma(Armas.Martillo);
+			durActualEspada = durMaxEspada;
+		}
+		else
+			LevelManager.instance.ActualizaDurabilidad(durMaxEspada, durActualEspada);
 
+    }
+
+    /// <summary>
+    /// Resetea al valor maximo la durabilidad de la espada
+    /// </summary>
+    public void ReseteaDurEspada()
+    {
+        durActualEspada = durMaxEspada;
     }
 
 }

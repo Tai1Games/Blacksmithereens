@@ -71,7 +71,7 @@ public class Ladron : MonoBehaviour
         if (robado) 
         {
             jugador.GetComponent<Materiales>().SumarMateriales(matRobados);
-            LevelManager.instance.MuestraPopUpMat("+ " + matRobados.ToString(), new Vector2(transform.position.x, transform.position.y)); //Dice al LvlManager que muestre los materiales nuevos en la posición donde muere
+            LevelManager.instance.MuestraPopUpMat("+ " + matRobados.ToString(), new Vector2(transform.position.x, transform.position.y), Color.black, new Vector3 (1,1,0)); //Dice al LvlManager que muestre los materiales nuevos en la posición donde muere
         }
     }
 
@@ -98,7 +98,7 @@ public class Ladron : MonoBehaviour
                 if (numMateriales < matRobados) matRobados = numMateriales;
                 mat.RestarMateriales(matRobados);
 
-                LevelManager.instance.MuestraPopUpMat("- " + matRobados, new Vector2(transform.position.x, transform.position.y));
+                LevelManager.instance.MuestraPopUpMat("- " + matRobados, new Vector2(transform.position.x, transform.position.y), Color.yellow, new Vector3(1.5f, 1.5f, 0));
                
                 volver = true;
             }
