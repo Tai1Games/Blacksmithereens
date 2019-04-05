@@ -20,14 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4551592639387242}
   - component: {fileID: 212892923432695732}
-  - component: {fileID: 114235914255917596}
   - component: {fileID: 50412625067784850}
   - component: {fileID: 61837330231876784}
   - component: {fileID: 114014668117834656}
   - component: {fileID: 114611279330498054}
   m_Layer: 0
   m_Name: LanzaLanzada
-  m_TagString: Untagged
+  m_TagString: Lanza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
