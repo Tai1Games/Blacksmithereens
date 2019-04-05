@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 95808254606185326}
   - component: {fileID: 114671527327583200}
   - component: {fileID: 114942220535323846}
+  - component: {fileID: 114990927924369062}
   m_Layer: 8
   m_Name: lanza
   m_TagString: Lanza
@@ -588,7 +589,7 @@ MonoBehaviour:
   durMaxEspada: 20
 --- !u!114 &114990927924369062
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803825315929390}
