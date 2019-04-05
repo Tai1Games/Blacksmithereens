@@ -78,14 +78,27 @@ public class LevelManager : MonoBehaviour {
         uiManager.ActualizaMateriales(materiales, materialesMax);
     }
 
+	/// <summary>
+	/// Cambia la ui para reflejar la durabilidad del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		uiManager.ActualizaDurabilidad(max, actual);
+	}
+
+	public void CambiaSpriteUI(Armas arma)
+	{
+		uiManager.CambiaSprite(arma);
+	}
+
     /// <summary>
     /// Dice al UIManager que muestre los nuevos materiales obtenidos
     /// </summary>
     /// <param name="mat"></param> Materiales a mostrar en pantalla
     /// <param name="pos"></param> Posición a la que se quieren enseñar
-    public void MuestraPopUpMat(string mat, Vector2 pos)
+    public void MuestraPopUpMat(string mat, Vector2 pos, Color color, Vector3 escala)
     {
-        uiManager.CreaPopUpMateriales(mat, pos);
+        uiManager.CreaPopUpMateriales(mat, pos, color, escala);
     }
 
     public void VuelveaMenu()

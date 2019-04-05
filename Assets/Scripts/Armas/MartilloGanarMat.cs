@@ -20,7 +20,6 @@ public class MartilloGanarMat : MonoBehaviour {
         //Al colisionar con el enemigo, activa su método para obtener materiales adicionales
         EnemigoDropeaMatMartillo sumaMat;
         sumaMat = objeto.GetComponent<EnemigoDropeaMatMartillo>();
-
         if (sumaMat != null) sumaMat.OtorgarMat();
     }
 }

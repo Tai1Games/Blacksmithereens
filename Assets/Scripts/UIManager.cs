@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-    public Text textoMateriales;
     public Image barraVida;
-    public CanvasPopUpMat popUpMatCanvas;
+	public Image barraDurabilidad;
+	public CanvasPopUpText popUpMatCanvas;
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
+	public Text textoMateriales;
 
-    Animator rondaEsquina;
+	CambiaSprite cambiaSprite;
+	Animator rondaEsquina;
     Animator rondaAnuncio;
 
     float barraMaxTamano;
@@ -23,7 +25,7 @@ public class UIManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-
+		cambiaSprite = GetComponent<CambiaSprite>();
     }
 	
 	// Update is called once per frame
@@ -49,7 +51,6 @@ public class UIManager : MonoBehaviour {
     public void ActualizaMateriales(int materiales, int materialesMax)
     {
         string texto = materiales + "/" + materialesMax;
-        Debug.Log(texto);
         textoMateriales.text = materiales + "/" + materialesMax;
     }
 
@@ -59,10 +60,10 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     /// <param name="mat"></param> Cantidad de materiales a mostrar.
     /// <param name="pos"></param> Posición a la que los muestra.
-    public void CreaPopUpMateriales (string mat, Vector2 pos)
+    public void CreaPopUpMateriales (string mat, Vector2 pos, Color color, Vector3 escala)
     {
-        CanvasPopUpMat newPopUpMatCanvas = Instantiate(popUpMatCanvas, pos, Quaternion.identity);
-        newPopUpMatCanvas.CambiaParametrosTexto(mat); //Cambia el texto a el número de materiales nuevos.
+        CanvasPopUpText newPopUpMatCanvas = Instantiate(popUpMatCanvas, pos, Quaternion.identity);
+        newPopUpMatCanvas.CambiaParametrosTexto (mat, color, escala); //Cambia el texto a el número de materiales nuevos.
 
     }
 
@@ -77,4 +78,18 @@ public class UIManager : MonoBehaviour {
         textoRondaAnuncio.text = "Ronda " + i;
         textoRondaEsquina.text = "Ronda " + i;
     }
+
+	/// <summary>
+	/// Actualiza la barra de durabilidad con respecto al maximo y la actual durabilida del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		float angulo = (max - actual) * 136f / max;
+		barraDurabilidad.rectTransform.localRotation = Quaternion.Euler(0, 0, angulo);
+	}
+
+	public void CambiaSprite(Armas arma)
+	{
+		cambiaSprite.CambiaSpriteUI(arma);
+	}
 }

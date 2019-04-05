@@ -9,7 +9,7 @@ public enum Armas
     Martillo,
     Lanza,
     Espada,
-    Tomahawk
+    Tomahawk,
 }
 
 public class AtaqueJugador : MonoBehaviour
@@ -21,15 +21,20 @@ public class AtaqueJugador : MonoBehaviour
     LanzaAtaque scriptLanzaAtaque;
     MartilloAtaque scriptMartilloAtaque;
     EspadaAtaque scriptEspadaAtaque;
+    TomahawkAtaque scriptTomahawkAtaque;
+    
 
     void Start()
     {
         scriptMartilloAtaque = gameObject.GetComponentInChildren<MartilloAtaque>();
         scriptLanzaAtaque = gameObject.GetComponentInChildren<LanzaAtaque>();
         scriptEspadaAtaque = gameObject.GetComponentInChildren<EspadaAtaque>();
+        scriptTomahawkAtaque = gameObject.GetComponentInChildren<TomahawkAtaque>();
 
-        arrayArmas[1].SetActive(false);
-        arrayArmas[2].SetActive(false);
+        for (int k = 1; k < arrayArmas.Length; k++)
+        {
+            arrayArmas[k].SetActive(false);
+        }
     }
 
     void Update()
@@ -48,6 +53,9 @@ public class AtaqueJugador : MonoBehaviour
                 case Armas.Espada: //espada
                     scriptEspadaAtaque.AtaqueEspadas();  //Avisa a la espada para que ataque.
                     break;
+                case Armas.Tomahawk:
+                    scriptTomahawkAtaque.tomahawkAtaque();  //Avisa al tomahawk para que ataque.
+                    break;
                 default:
                     Debug.Log("ningun arma seleccionada");
                     break;
@@ -60,6 +68,9 @@ public class AtaqueJugador : MonoBehaviour
             {
                 case Armas.Lanza: //lanza
                     scriptLanzaAtaque.LanzarLanza();    //Avisa a lanza para que sea lanzada.
+                    break;
+                case Armas.Tomahawk: //tomahawk
+                    scriptTomahawkAtaque.LanzarTomahawk();  //Avisa al tomahawk para que sea lanzado.
                     break;
                 default:
                     Debug.Log("ningun arma seleccionada");
@@ -78,5 +89,24 @@ public class AtaqueJugador : MonoBehaviour
         arrayArmas[(int)armaActual].SetActive(false);
         armaActual = arma;
         arrayArmas[(int)armaActual].SetActive(true);
+		LevelManager.instance.ActualizaDurabilidad(1, 1);
+
+		switch (arma) {
+			case Armas.Martillo:
+				LevelManager.instance.CambiaSpriteUI(Armas.Martillo);
+				break;
+			case Armas.Lanza:
+                scriptLanzaAtaque.ReseteaDurLanza();
+				LevelManager.instance.CambiaSpriteUI(Armas.Lanza);
+                break;
+            case Armas.Espada:
+                scriptEspadaAtaque.ReseteaDurEspada();
+				LevelManager.instance.CambiaSpriteUI(Armas.Espada);
+				break;
+            case Armas.Tomahawk:
+                scriptTomahawkAtaque.ReseteaDurTomahawk();
+				LevelManager.instance.CambiaSpriteUI(Armas.Tomahawk);
+				break;
+        }
     }
 }
