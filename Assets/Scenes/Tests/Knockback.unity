@@ -944,7 +944,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2468,6 +2468,7 @@ MonoBehaviour:
   matBase: 50
   factorMax: 10
   interfaz: {fileID: 1530245018}
+  tiempoEsperaPopUpMat: 1.5
   arena:
   - ronda:
     - oleada:
@@ -3332,7 +3333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211961dc93eabb046ade60a901fc6351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arenaManager: {fileID: 399598629}
+  ui: {fileID: 0}
 --- !u!212 &1316093999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3686,12 +3687,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675ca74b1bd7db0478d8a72039f979bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoMateriales: {fileID: 349531685}
   barraVida: {fileID: 1798976667}
+  barraDurabilidad: {fileID: 0}
   popUpMatCanvas: {fileID: 114308442505919724, guid: 77a1c55971e7e0943b6b3f428140185c,
     type: 2}
   textoRondaEsquina: {fileID: 1878459870}
   textoRondaAnuncio: {fileID: 729145687}
+  cuentaAtras: {fileID: 0}
+  tiempoCuentaAtras: 0
+  arenaManager: {fileID: 0}
+  textoMateriales: {fileID: 349531685}
 --- !u!114 &1530245020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4189,7 +4194,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
