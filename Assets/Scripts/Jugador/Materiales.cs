@@ -10,7 +10,7 @@ public class Materiales : MonoBehaviour {
 
     public int matMax = 200;
 
-    int matActuales = 200;
+    int matActuales = 0;
 
     private void Start()
     {
