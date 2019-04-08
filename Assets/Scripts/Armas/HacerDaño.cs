@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HacerDaño : MonoBehaviour {
-    
-    private GameObject jugador;
+
     public int daño;
 
 	// Use this for initialization
 	void Start () {
-
     }
 
     // Update is called once per frame
@@ -28,4 +26,6 @@ public class HacerDaño : MonoBehaviour {
             vida.RestaVida(daño);
         }
     }
+
+
 }

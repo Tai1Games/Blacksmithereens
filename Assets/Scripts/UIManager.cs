@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour {
 	public CanvasPopUpText popUpMatCanvas;
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
+    public Text cuentaAtras;
+    public float tiempoCuentaAtras;
+    public ArenaManager arenaManager;
 	public Text textoMateriales;
 
 	CambiaSprite cambiaSprite;
@@ -19,6 +22,7 @@ public class UIManager : MonoBehaviour {
     float barraMaxTamano;
 
     void Awake () {
+        cuentaAtras.enabled = false;
         barraMaxTamano = barraVida.rectTransform.rect.width;
         rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
         rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
@@ -73,12 +77,51 @@ public class UIManager : MonoBehaviour {
     /// <param name="i"></param>
     public void ActualizaTextoRonda(int i)
     {
-        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
-        rondaEsquina.Play("AnimacionEsquina", -1, 0);
         textoRondaAnuncio.text = "Ronda " + i;
         textoRondaEsquina.text = "Ronda " + i;
     }
 
+    /// <summary>
+    /// Empieza el proceso de la cuenta atrás
+    /// </summary>
+    public void EmpiezaCuntaAtras()
+    {
+        StartCoroutine(CuentaAtras());
+    }
+
+    /// <summary>
+    /// Activa la animacion de cuenta atrás
+    /// </summary>
+    public void AnuncioRonda()
+    {
+        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
+        rondaEsquina.Play("AnimacionEsquina", -1, 0);
+    }
+
+
+    /// <summary>
+    /// Inicia una cuenta atrás para el comienzo de la ronda
+    /// </summary>
+    private IEnumerator CuentaAtras()
+    {
+        //hay q actualizar cartel y empezar ronda
+
+        arenaManager.TocarCentro();  //termina la ronda actual
+        AnuncioRonda();
+        cuentaAtras.enabled = true;
+        cuentaAtras.text = "3";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.text = "2";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.text = "1";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.text = "GO!";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.enabled = false;
+        arenaManager.EmpiezaRonda();  //empieza la proxima linea
+
+    }
+    
 	/// <summary>
 	/// Actualiza la barra de durabilidad con respecto al maximo y la actual durabilida del arma
 	/// </summary>
