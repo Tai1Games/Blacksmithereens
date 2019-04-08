@@ -70,6 +70,15 @@ public class TomahawkAtaque : MonoBehaviour {
         {
             scriptArmas.CambioArma(0);
             durActualTomahawk = durMaxTomahawk;
-        }
+        }        
     }
+
+    /// <summary>
+    /// Resetea al valor maximo la durabilidad del tomahawk
+    /// </summary>
+    public void ReseteaDurTomahawk()
+    {
+        durActualTomahawk = durMaxTomahawk;
+    }
+
 }
