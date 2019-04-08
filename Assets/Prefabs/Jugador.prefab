@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c3bc8bf0f5876479630b5957b91b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 1
+  "da\xF1o": 2
 --- !u!114 &114285664819136870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c3bc8bf0f5876479630b5957b91b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 35
+  "da\xF1o": 30
 --- !u!114 &114502643151004964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c3bc8bf0f5876479630b5957b91b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 15
+  "da\xF1o": 20
 --- !u!114 &114882074931322432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lanza: {fileID: 1904581897116602, guid: d0aba06c0e6876445ac17ab5f755f299, type: 2}
   velocidad: 50
-  durMaxLanza: 20
+  durMaxLanza: 10
 --- !u!114 &114981328061260682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52202a7cf9e8330438ea8e7023a652fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durMaxEspada: 20
+  durMaxEspada: 15
 --- !u!212 &212055587434371104
 SpriteRenderer:
   m_ObjectHideFlags: 1
