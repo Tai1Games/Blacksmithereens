@@ -54,8 +54,11 @@ public class TomahawkAtaque : MonoBehaviour {
             screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
             offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
             lanzado.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
+            Vector3 newDir =   new Vector3(offset.x - transform.position.x , offset.y - transform.position.y, 0);
+            lanzado.GetComponent<CambiaDir>().nuevaDirección(newDir);
             restaDurTomahawk(1); //resta un punto de durabilidad al arma
-
+            
+            
         }
     }
 

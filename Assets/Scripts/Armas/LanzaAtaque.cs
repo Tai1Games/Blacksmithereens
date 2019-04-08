@@ -63,7 +63,7 @@ public class LanzaAtaque : MonoBehaviour
             Lanzada.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
             Lanzada.GetComponent<HacerDanoLanzaLanzada>().SetDurabilidad(durActualLanza); //le pasa a la lanza la durabilidad actual
             durActualLanza = durMaxLanza;  //resetea la durabiliad complete de la lanza
-
+            Lanzada.GetComponent<Transform>().right = new Vector3 (transform.position.x - mouse_position.x, transform.position.y - mouse_position.y, 0);
             this.gameObject.SetActive(false); 
 
             scriptarmas.CambioArma(0); //cambia al martillo 

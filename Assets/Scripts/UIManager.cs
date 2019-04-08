@@ -85,11 +85,11 @@ public class UIManager : MonoBehaviour {
 	public void ActualizaDurabilidad(int max, int actual)
 	{
 		float angulo = (max - actual) * 136f / max;
-		barraDurabilidad.rectTransform.localRotation = Quaternion.Euler(0, 0, angulo);
+		//barraDurabilidad.rectTransform.localRotation = Quaternion.Euler(0, 0, angulo);
 	}
 
 	public void CambiaSprite(Armas arma)
 	{
-		cambiaSprite.CambiaSpriteUI(arma);
+		//cambiaSprite.CambiaSpriteUI(arma);
 	}
 }

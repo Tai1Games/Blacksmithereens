@@ -3690,12 +3690,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675ca74b1bd7db0478d8a72039f979bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoMateriales: {fileID: 349531685}
   barraVida: {fileID: 1798976667}
+  barraDurabilidad: {fileID: 0}
   popUpMatCanvas: {fileID: 114308442505919724, guid: 77a1c55971e7e0943b6b3f428140185c,
     type: 2}
   textoRondaEsquina: {fileID: 1878459870}
   textoRondaAnuncio: {fileID: 729145687}
+  textoMateriales: {fileID: 349531685}
 --- !u!114 &1530245020
 MonoBehaviour:
   m_ObjectHideFlags: 0
