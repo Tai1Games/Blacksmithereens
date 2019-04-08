@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lanza: {fileID: 1904581897116602, guid: d0aba06c0e6876445ac17ab5f755f299, type: 2}
-  velocidad: 2
+  velocidad: 40
   durMaxLanza: 20
 --- !u!114 &114981328061260682
 MonoBehaviour:

@@ -50,12 +50,14 @@ public class TomahawkAtaque : MonoBehaviour {
             lanzado = (GameObject)Instantiate(tomahawkLanzado, transform); //crea la lanza que va a ser lanzada
             lanzado.GetComponent<SpriteRenderer>().sortingOrder = 1; //cambia la sortingLayer
             lanzado.transform.parent = null;  //elimina el padre de la lanzaLanzada para evitar que rote con el jugador
-            mouse_position = Input.mousePosition; //obtiene posicion del raton
-            screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
-            offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
+
+            Vector2 offset = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
+            angle -= 90;
+            lanzado.transform.rotation = Quaternion.Euler(0, 0, angle);
+
             lanzado.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
-            Vector3 newDir =   new Vector3(offset.x - transform.position.x , offset.y - transform.position.y, 0);
-            lanzado.GetComponent<CambiaDir>().nuevaDirección(newDir);
+
             restaDurTomahawk(1); //resta un punto de durabilidad al arma
             
             
