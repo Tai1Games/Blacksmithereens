@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4349872781619488}
   - component: {fileID: 212055741399177208}
   - component: {fileID: 61836857509201926}
-  - component: {fileID: 114334310858863622}
   - component: {fileID: 95458615462186676}
   - component: {fileID: 114439128710955874}
   m_Layer: 0
@@ -181,20 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matDropeados: 30
---- !u!114 &114334310858863622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1321258096944764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5e9a4413f196894689322e4d50e2d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Lanza: {fileID: 0}
-  velocidad: 0
-  durMaxLanza: 20
 --- !u!114 &114439128710955874
 MonoBehaviour:
   m_ObjectHideFlags: 1

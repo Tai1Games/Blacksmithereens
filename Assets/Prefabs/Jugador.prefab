@@ -586,6 +586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durMaxEspada: 15
+  espadaPrefab: {fileID: 1873192244501622, guid: ada851d676e89754e945555f229228ec,
+    type: 2}
+  velocidad: 30
 --- !u!212 &212055587434371104
 SpriteRenderer:
   m_ObjectHideFlags: 1
