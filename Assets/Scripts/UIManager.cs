@@ -5,25 +5,31 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-    public Text textoMateriales;
     public Image barraVida;
-    public CanvasPopUpText popUpMatCanvas;
+	public Image barraDurabilidad;
+	public CanvasPopUpText popUpMatCanvas;
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
+    public Text cuentaAtras;
+    public float tiempoCuentaAtras;
+    public ArenaManager arenaManager;
+	public Text textoMateriales;
 
-    Animator rondaEsquina;
+	CambiaSprite cambiaSprite;
+	Animator rondaEsquina;
     Animator rondaAnuncio;
 
     float barraMaxTamano;
 
     void Awake () {
+        cuentaAtras.enabled = false;
         barraMaxTamano = barraVida.rectTransform.rect.width;
         rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
         rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
     }
     // Use this for initialization
     void Start () {
-
+		cambiaSprite = GetComponent<CambiaSprite>();
     }
 	
 	// Update is called once per frame
@@ -71,9 +77,62 @@ public class UIManager : MonoBehaviour {
     /// <param name="i"></param>
     public void ActualizaTextoRonda(int i)
     {
-        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
-        rondaEsquina.Play("AnimacionEsquina", -1, 0);
         textoRondaAnuncio.text = "Ronda " + i;
         textoRondaEsquina.text = "Ronda " + i;
     }
+
+    /// <summary>
+    /// Empieza el proceso de la cuenta atrás
+    /// </summary>
+    public void EmpiezaCuntaAtras()
+    {
+        StartCoroutine(CuentaAtras());
+    }
+
+    /// <summary>
+    /// Activa la animacion de cuenta atrás
+    /// </summary>
+    public void AnuncioRonda()
+    {
+        rondaAnuncio.Play("AnimacionAnuncio", -1, 0);
+        rondaEsquina.Play("AnimacionEsquina", -1, 0);
+    }
+
+
+    /// <summary>
+    /// Inicia una cuenta atrás para el comienzo de la ronda
+    /// </summary>
+    private IEnumerator CuentaAtras()
+    {
+        //hay q actualizar cartel y empezar ronda
+
+        arenaManager.TocarCentro();  //termina la ronda actual
+        AnuncioRonda();
+        cuentaAtras.enabled = true;
+        cuentaAtras.text = "3";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.text = "2";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.text = "1";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.text = "GO!";
+        yield return new WaitForSeconds(tiempoCuentaAtras);
+        cuentaAtras.enabled = false;
+        arenaManager.EmpiezaRonda();  //empieza la proxima linea
+
+    }
+    
+	/// <summary>
+	/// Actualiza la barra de durabilidad con respecto al maximo y la actual durabilida del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		float angulo = (max - actual) * 136f / max;
+		barraDurabilidad.rectTransform.localRotation = Quaternion.Euler(0, 0, angulo);
+	}
+
+	public void CambiaSprite(Armas arma)
+	{
+		cambiaSprite.CambiaSpriteUI(arma);
+	}
 }

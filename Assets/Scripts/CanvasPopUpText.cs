@@ -29,11 +29,11 @@ public class CanvasPopUpText : MonoBehaviour {
         texto = GetComponentInChildren<Text>();
         animacion = GetComponentInChildren<Animator>();
 
-        print(color);
+        //print(color);
         texto.text = mat; //Cambia el texto al número de materiales
         texto.color = color; //Cambia el color del texto
         texto.rectTransform.localScale = escala;  //Cambia el tamaño del texto
-        print(texto.color);
+        //print(texto.color);
 
         AnimatorClipInfo[] clipInfo = animacion.GetCurrentAnimatorClipInfo(0); //Tiempo que tarda la animacion del texto en finalizar
         Destroy(gameObject, clipInfo[0].clip.length);  //El objeto se destruye al pasar el tiempo de animación

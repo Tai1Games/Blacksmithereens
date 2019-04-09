@@ -78,6 +78,19 @@ public class LevelManager : MonoBehaviour {
         uiManager.ActualizaMateriales(materiales, materialesMax);
     }
 
+	/// <summary>
+	/// Cambia la ui para reflejar la durabilidad del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		uiManager.ActualizaDurabilidad(max, actual);
+	}
+
+	public void CambiaSpriteUI(Armas arma)
+	{
+		uiManager.CambiaSprite(arma);
+	}
+
     /// <summary>
     /// Dice al UIManager que muestre los nuevos materiales obtenidos
     /// </summary>
