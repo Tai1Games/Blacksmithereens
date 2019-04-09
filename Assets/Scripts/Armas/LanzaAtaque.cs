@@ -58,9 +58,9 @@ public class LanzaAtaque : MonoBehaviour
             Lanzada.GetComponent<SpriteRenderer>().sortingOrder = 1; //cambia la sortingLayer
             Lanzada.transform.parent = null;  //elimina el padre de la lanzaLanzada para evitar que rote con el jugador
 
-            Vector2 offset = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
-            Lanzada.transform.rotation = Quaternion.Euler(0, 0, angle);
+            Vector2 offset = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position); //Vector entre el mouse y el jugador
+            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //transforma a ángulos
+            Lanzada.transform.rotation = Quaternion.Euler(0, 0, angle); //aplica la rotación
 
             Lanzada.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
             Lanzada.GetComponent<HacerDanoLanzaLanzada>().SetDurabilidad(durActualLanza); //le pasa a la lanza la durabilidad actual

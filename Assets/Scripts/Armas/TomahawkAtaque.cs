@@ -12,7 +12,7 @@ public class TomahawkAtaque : MonoBehaviour {
 
     Animator animador;
     AtaqueJugador scriptArmas;
-    GameObject lanzado;
+    GameObject tomLanzado;
 
     public int durMaxTomahawk = 3; //durabilidad del tomahawk
     private int durActualTomahawk;
@@ -47,13 +47,16 @@ public class TomahawkAtaque : MonoBehaviour {
 
         if (transform.localPosition.y < 0.09768)      //Posicion relativa al jugador, para evitar ataques dobles
         {
-            lanzado = (GameObject)Instantiate(tomahawkLanzado, transform); //crea la lanza que va a ser lanzada
-            lanzado.GetComponent<SpriteRenderer>().sortingOrder = 1; //cambia la sortingLayer
-            lanzado.transform.parent = null;  //elimina el padre de la lanzaLanzada para evitar que rote con el jugador
-            mouse_position = Input.mousePosition; //obtiene posicion del raton
-            screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
-            offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
-            lanzado.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
+            tomLanzado = (GameObject)Instantiate(tomahawkLanzado, transform); //crea la lanza que va a ser lanzada
+            tomLanzado.GetComponent<SpriteRenderer>().sortingOrder = 1; //cambia la sortingLayer
+            tomLanzado.transform.parent = null;  //elimina el padre de la lanzaLanzada para evitar que rote con el jugador
+
+            Vector2 offset = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position); //Vector entre el mouse y el jugador
+            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //transforma a ángulos 
+            angle -= 90; //el sprite temporal no está rotado adecuadamente
+            tomLanzado.transform.rotation = Quaternion.Euler(0, 0, angle); //aplica la rotación
+
+            tomLanzado.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
             restaDurTomahawk(1); //resta un punto de durabilidad al arma
 
         }
