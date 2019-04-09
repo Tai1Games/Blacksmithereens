@@ -198,7 +198,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 0.6.1
+          m_StringArgument: Hito1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -934,9 +934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a4ee999334a714f815b1667c04703c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jugador: {fileID: 0}
-  menuArmas: {fileID: 0}
-  ataquejugador: {fileID: 0}
 --- !u!224 &1540714448
 RectTransform:
   m_ObjectHideFlags: 0

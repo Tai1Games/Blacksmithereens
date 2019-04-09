@@ -118,7 +118,6 @@ MonoBehaviour:
   velocidad: 8
   "da\xF1o": 10
   matRobados: 50
-  fuerzaKnockbackLanza: 1
 --- !u!114 &114707864174570818
 MonoBehaviour:
   m_ObjectHideFlags: 1

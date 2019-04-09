@@ -17,13 +17,9 @@ public class VidaJugador : MonoBehaviour {
     float t;
     Animator animador;
 
-	private void Awake()
-	{
-		vidaActual = vidaMax;
-	}
-
 	// Use this for initialization
 	void Start () {
+        vidaActual = vidaMax;
         muerte = GetComponent<MuerteJugador>();
         animador = GetComponent<Animator>();
 	}

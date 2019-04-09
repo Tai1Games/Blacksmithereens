@@ -109,10 +109,9 @@ GameObject:
   - component: {fileID: 95808254606185326}
   - component: {fileID: 114671527327583200}
   - component: {fileID: 114942220535323846}
-  - component: {fileID: 114990927924369062}
   m_Layer: 8
   m_Name: lanza
-  m_TagString: Lanza
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,7 +586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durMaxEspada: 20
-
 --- !u!212 &212055587434371104
 SpriteRenderer:
   m_ObjectHideFlags: 1
