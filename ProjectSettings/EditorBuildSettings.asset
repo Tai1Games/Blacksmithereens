@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototipos/0.6.1.unity
     guid: d82cdee69556dff4a85c1c77bc80c291
+  - enabled: 1
+    path: Assets/Scenes/Tests/MenuGanar.unity
+    guid: 764dea6688e269944936d3a4520c94ad
   m_configObjects: {}
