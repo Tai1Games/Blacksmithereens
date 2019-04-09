@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Hitos/Hito1.unity
     guid: 5e32ba2589e0bea42b4659b47fedb258
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototipos/0.6.1.unity
     guid: d82cdee69556dff4a85c1c77bc80c291
+  - enabled: 1
+    path: Assets/Scenes/Prototipos/0.6.2.unity
+    guid: 69169a58ed466304e94c05095165f184
   m_configObjects: {}
