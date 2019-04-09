@@ -106449,6 +106449,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114981328061260682, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: espadaPrefab
+      value: 
+      objectReference: {fileID: 1873192244501622, guid: ada851d676e89754e945555f229228ec,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
   m_IsPrefabAsset: 0
