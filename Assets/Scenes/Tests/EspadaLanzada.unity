@@ -944,7 +944,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2483,13 +2483,16 @@ MonoBehaviour:
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
-        tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
+        tipo: {fileID: 1191263201681576, guid: 27a62749e9bf19a41a89e1eab35c0194, type: 2}
         espera: 0
+      - puerta: {fileID: 1459695423}
+        tipo: {fileID: 1975767892682964, guid: 321dcf3ac8eb12741a2b685a34104aa7, type: 2}
+        espera: 5
     tiempoFin: 0
   - ronda:
     - oleada:
       - puerta: {fileID: 1459695423}
-        tipo: {fileID: 1191263201681576, guid: 91a39d1d46728e34d9fe985af259c6c7, type: 2}
+        tipo: {fileID: 1552595272882708, guid: 4247797dec318a54c83fedabe25bc5d4, type: 2}
         espera: 0
     tiempoFin: 0
   - ronda:
@@ -3252,12 +3255,12 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1310788069}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1530245024}
         m_MethodName: CraftearTomahawk
         m_Mode: 1
         m_Arguments:
@@ -3333,7 +3336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211961dc93eabb046ade60a901fc6351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
+  arenaManager: {fileID: 399598629}
 --- !u!212 &1316093999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3462,7 +3465,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 1815
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 84b17174f428f4b419bc85287eac1230, type: 2}
   m_TargetDisplay: 0
@@ -3687,13 +3690,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675ca74b1bd7db0478d8a72039f979bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textoMateriales: {fileID: 349531685}
   barraVida: {fileID: 1798976667}
-  barraDurabilidad: {fileID: 0}
   popUpMatCanvas: {fileID: 114308442505919724, guid: 77a1c55971e7e0943b6b3f428140185c,
     type: 2}
   textoRondaEsquina: {fileID: 1878459870}
   textoRondaAnuncio: {fileID: 729145687}
-  textoMateriales: {fileID: 349531685}
 --- !u!114 &1530245020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4191,7 +4193,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -105077,7 +105079,37 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114990927924369062, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+    - target: {fileID: 114981328061260682, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: espadaPrefab
+      value: 
+      objectReference: {fileID: 1873192244501622, guid: ada851d676e89754e945555f229228ec,
+        type: 2}
+    - target: {fileID: 114981328061260682, guid: 86728740f4068af4189d498e2bf82cc7,
+        type: 2}
+      propertyPath: velocidad
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226581442190512, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226581442190512, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226581442190512, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226581442190512, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226581442190512, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86728740f4068af4189d498e2bf82cc7, type: 2}
   m_IsPrefabAsset: 0

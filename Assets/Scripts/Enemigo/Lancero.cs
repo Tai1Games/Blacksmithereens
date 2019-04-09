@@ -19,8 +19,9 @@ public class Lancero : MonoBehaviour {
     Animator anim;
     bool atacando = false;
     bool moviendo = true;
+    bool knockback = false;
 
-	void Start ()
+    void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
@@ -45,14 +46,17 @@ public class Lancero : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (jugador != null && moviendo == true) //cacheo de referencia
+        if (!knockback)
         {
-            //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
-            movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
-            //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
-            rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
+            if (jugador != null && moviendo == true) //cacheo de referencia
+            {
+                //halla el vector direccion entre la posicion del enemigo y la del jugador y lo normaliza
+                movimiento = new Vector2(jugador.transform.position.x - rb.position.x, jugador.transform.position.y - rb.position.y).normalized;
+                //mueve al enemigo asegurandose de que no supera la velocidad si se mueve en diagonal
+                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
+            }
+            else rb.velocity = Vector2.zero;
         }
-        else rb.velocity = Vector2.zero;
     }
 
     /// <summary>
@@ -67,5 +71,40 @@ public class Lancero : MonoBehaviour {
         moviendo = true;
         yield return new WaitForSeconds(tiempoEspera); //Se espera a que acabe + un tiempo de espera a elegir
         atacando = false; //Se pone el ataque a false para poder volver a atacar
+    }
+
+    /// <summary>
+    /// Al entrar en contacto con un arma, a este objeto se le aplica un knockback
+    /// </summary>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag != "Lanza" && collision.tag != "Jugador") StartCoroutine(ParonAlRecibirGolpe());        //empieza proceso knockback
+        else if (collision.tag != "Jugador") StartCoroutine(Knockback());
+    }
+
+
+    /// <summary>
+    /// Controla todo el proceso del paron cuando recibe un golpe
+    /// </summary>
+    private IEnumerator ParonAlRecibirGolpe()
+    {
+        knockback = true; //desactiva el movimineto normal
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.2f);
+        knockback = false; //activa el movimineto normal
+    }
+
+
+    /// <summary>
+    /// Controla todo el proceso del knockback
+    /// </summary>
+    private IEnumerator Knockback()
+    {
+        Vector2 knock;
+        knockback = true; //desactiva el movimineto normal
+        knock = movimiento * -1;
+        rb.velocity = knock;
+        yield return new WaitForSeconds(0.2f);
+        knockback = false; //activa el movimineto normal
     }
 }
