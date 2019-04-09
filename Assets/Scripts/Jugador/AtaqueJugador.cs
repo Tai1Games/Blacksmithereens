@@ -72,6 +72,9 @@ public class AtaqueJugador : MonoBehaviour
                 case Armas.Tomahawk: //tomahawk
                     scriptTomahawkAtaque.LanzarTomahawk();  //Avisa al tomahawk para que sea lanzado.
                     break;
+                case Armas.Espada:
+                    scriptEspadaAtaque.LanzarEspada();
+                    break;
                 default:
                     Debug.Log("ningun arma seleccionada");
                     break;
