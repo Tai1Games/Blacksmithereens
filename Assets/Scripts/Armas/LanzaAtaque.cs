@@ -57,9 +57,11 @@ public class LanzaAtaque : MonoBehaviour
             Lanzada = (GameObject)Instantiate(Lanza, transform); //crea la lanza que va a ser lanzada
             Lanzada.GetComponent<SpriteRenderer>().sortingOrder = 1; //cambia la sortingLayer
             Lanzada.transform.parent = null;  //elimina el padre de la lanzaLanzada para evitar que rote con el jugador
-            mouse_position = Input.mousePosition; //obtiene posicion del raton
-            screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
-            offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
+
+            Vector2 offset = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
+            Lanzada.transform.rotation = Quaternion.Euler(0, 0, angle);
+
             Lanzada.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(offset, velocidad); //impulsa la lanza
             Lanzada.GetComponent<HacerDanoLanzaLanzada>().SetDurabilidad(durActualLanza); //le pasa a la lanza la durabilidad actual
             durActualLanza = durMaxLanza;  //resetea la durabiliad complete de la lanza
