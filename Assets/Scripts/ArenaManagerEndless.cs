@@ -9,8 +9,6 @@ using System.Diagnostics;
 public class ArenaManagerEndless : MonoBehaviour
 {
     public GameObject centroArena; //referencia al objeto que cambia de ronda
-    public float matBase; //materiales por pasarse una ronda de manera óptima
-    public float factorMax; //tiempoFin * factorMax = tiempo a partir del cual recibes 0 materiales
     public GameObject interfaz;
     public float tiempoEsperaPopUpMat = 1.5f;
 
@@ -18,10 +16,9 @@ public class ArenaManagerEndless : MonoBehaviour
     int contador = 1;
 
     [SerializeField]
-    Transform[] spawnPoints = new Transform[4];
+    Transform[] puertas = new Transform[4];
     [SerializeField]
-    GameObject[] enemies = new GameObject[5];
-
+    GameObject[] enemigos = new GameObject[5];
 
     [System.Serializable]
     struct Spawn //Instancia de enemigo
@@ -41,37 +38,18 @@ public class ArenaManagerEndless : MonoBehaviour
     {
         [SerializeField]
         public Oleada[] ronda;
-        //public float tiempoFin; //tiempo objetivo con el que pasarse una ronda
     }
-    /*[SerializeField]
-    Ronda[] arena; //Array de rondas por arena*/
 
     private bool empiezaRonda = false;
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
-    private float tiempo = 0; //tiempo que el jugador tarda en pasarse una ronda
-    private float tiempoFin = 0; //variable auxiliar para Ronda.tiempoFin
     private bool finRonda = false; //Indica si han tocado el centro tras terminar la ronda
-    Stopwatch reloj = new Stopwatch(); //Reloj que mide el tiempo en tardarse una ronda
 
     void Start()
     {
         uim = interfaz.GetComponent<UIManager>();
-        int n = Random.Range(1, 3);
-        Ronda r;
-        r.ronda = new Oleada[n];
-        for (int i = 0; i < r.ronda.Length; i++)
-        {
-            n = Random.Range(2, 5);
-            r.ronda[i].oleada = new Spawn[n];
-            for(int j=0;j<r.ronda[i].oleada.Length; i++)
-            {
-                n = Random.Range(0, 5);
-                r.ronda[i].oleada[j].puerta = spawnPoints[n];
-                n = Random.Range(0, 6);
-                r.ronda[i].oleada[j].tipo = enemies[n];
-            }
-        }
+        Ronda r = NewRonda(0);
         SpawnRonda(r.ronda, 0);
+        StartCoroutine(FinRonda(r));
         uim.ActualizaTextoRonda(1);
     }
 
@@ -96,6 +74,29 @@ public class ArenaManagerEndless : MonoBehaviour
         finRonda = true;
     }
 
+    Ronda NewRonda(int contador)
+    {
+        int n = Random.Range(1, 3);
+        Ronda r;
+        r.ronda = new Oleada[n];
+        for (int i = 0; i < r.ronda.Length; i++)
+        {
+            n = Random.Range(1, 4 + contador);
+            UnityEngine.Debug.Log("n" + n);
+            r.ronda[i].oleada = new Spawn[n];
+            for (int j = 0; j < r.ronda[i].oleada.Length; j++)
+            {
+                n = Random.Range(0, puertas.Length);
+                r.ronda[i].oleada[j].puerta = puertas[n];
+                n = Random.Range(0, enemigos.Length);
+                r.ronda[i].oleada[j].tipo = enemigos[n];
+                float m = Random.Range(0.0f, 2.5f);
+                r.ronda[i].oleada[j].espera = m;
+            }
+        }
+        return r;
+    }
+
     /// <summary>
     /// Spawnea el enemigo que le inidica el parametro "i"
     /// </summary>
@@ -114,24 +115,9 @@ public class ArenaManagerEndless : MonoBehaviour
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }
 
-    /// <summary>
-    /// Spawnea la ronda que le indica el parametro "i"
-    /// </summary>
-    /*void SpawnArena(Ronda[] arena, int i)
+    void FormulaMateriales()
     {
-        reloj.Start(); //Empieza el reloj cuando empieza la ronda
-        tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia        
-        finRonda = false;
-        SpawnRonda(arena[i].ronda, 0);
-        StartCoroutine(FinRonda(arena[i].ronda, arena, i));
-    }*/
-
-    void FormulaMateriales(float tiempo, Oleada[] ronda)
-    {
-        if (tiempoFin == 0) tiempoFin = 10; //por si a ciertos desarrolladores se les olvida poner el tiempoFin
-        if (tiempo < tiempoFin) tiempo = tiempoFin; //para que matBase sea el límite de materiales recibidos 
-        //formula exponencial que da matBase materiales si se pasa una ronda en el tiempo óptimo y 0 si se pasa en (tiempo óptimo * factorMax)
-        int mat = (int)((matBase - (matBase * (tiempo - tiempoFin) / (tiempoFin * (factorMax - 1)))) / (tiempo - tiempoFin + 1));
+        int mat = 30;
         StartCoroutine(MuestraPopUp(mat));
     }
 
@@ -164,12 +150,7 @@ public class ArenaManagerEndless : MonoBehaviour
         else
         {
             centroArena.SetActive(true);
-            reloj.Stop(); //para el reloj cuando se termina la ronda
-            tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds; //toma los segundos y milisegundos y los guarda
-            tiempo /= 1000;
-            UnityEngine.Debug.Log(tiempo);
-            FormulaMateriales(tiempo, ronda); //suma materiales
-            reloj.Reset(); //reloj a 0
+            FormulaMateriales(); //suma materiales
         }
     }
 
@@ -177,23 +158,21 @@ public class ArenaManagerEndless : MonoBehaviour
     /// Espera a que se toque el centro de la arena y llama a la siguiente ronda
     /// Si no existe, vuelve al menú
     /// </summary>
-    IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
+    IEnumerator FinRonda(Ronda r)
     {
-        //Al tocar el centro el jugador se sana
-        LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
+        //Al tocar el centro el jugador se sana       
         //Empieza la siguiente ronda
         yield return new WaitUntil(() => finRonda);
-        if (i + 1 < arena.Length)
-        {
-            contador++; //Incrementa el indicador de ronda actual
-            uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
-            yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
-            SpawnArena(arena, i + 1);
-            empiezaRonda = false;
-        }
-        else GameManager.instance.CargaEscena("MenuGanar");
+        LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
+        contador++; //Incrementa el indicador de ronda actual
+        uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
+        yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
+        r = NewRonda(contador);
+        finRonda = false;
+        SpawnRonda(r.ronda, 0);
+        StartCoroutine(FinRonda(r));
+        empiezaRonda = false;
     }
-
 
     /// <summary>
     /// Cuando es llamado empieza una nueva ronda

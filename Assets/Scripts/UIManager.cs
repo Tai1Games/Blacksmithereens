@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
     public Text textoRondaAnuncio;
     public Text cuentaAtras;
     public float tiempoCuentaAtras;
+    //public ArenaManagerEndless arenaManager;
     public ArenaManager arenaManager;
 	public Text textoMateriales;
 

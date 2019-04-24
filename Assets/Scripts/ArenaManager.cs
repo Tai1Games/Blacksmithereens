@@ -157,11 +157,11 @@ public class ArenaManager : MonoBehaviour
     /// Si no existe, vuelve al menú
     /// </summary>
     IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
-    {
+    {       
+        //Empieza la siguiente ronda
+        yield return new WaitUntil(() => finRonda);
         //Al tocar el centro el jugador se sana
         LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
-        //Empieza la siguiente ronda
-        yield return new WaitUntil(() => finRonda);       
         if (i + 1 < arena.Length)
         {
             contador++; //Incrementa el indicador de ronda actual

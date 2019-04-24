@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject jugador;
     public UIManager uiManager;
     public ArenaManager arenaManager;
+    //public ArenaManagerEndless arenaManager;
 
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
