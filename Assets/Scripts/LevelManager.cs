@@ -103,6 +103,6 @@ public class LevelManager : MonoBehaviour {
 
     public void VuelveaMenu()
     {
-        SceneManager.LoadScene("Menu 1");
+        SceneManager.LoadScene("MenuGuerrilla");
     }
 }
