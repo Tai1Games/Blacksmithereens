@@ -47,6 +47,14 @@ public class GameManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Este método se encarga de cargar la escena de final de partida
+    /// </summary>
+    public void GameOver()
+    {
+        CargaEscena("GameOverMenu");
+    }
+
+    /// <summary>
     /// Sale del juego.
     /// </summary>
     public void Salir()

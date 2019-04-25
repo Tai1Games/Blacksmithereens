@@ -12,7 +12,6 @@ public class VidaJugador : MonoBehaviour {
     public float tiempoInvulnerabilidad;
 
     int vidaActual;
-    MuerteJugador muerte;
     bool invulnerable;
     float t;
     Animator animador;
@@ -24,7 +23,6 @@ public class VidaJugador : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        muerte = GetComponent<MuerteJugador>();
         animador = GetComponent<Animator>();
 	}
 	
@@ -50,7 +48,7 @@ public class VidaJugador : MonoBehaviour {
             vidaActual = vidaActual - cantidad;
             if (vidaActual <= 0)
             {
-                muerte.JugadorMuere();
+                GameManager.instance.GameOver();
             }
             else
                 StartCoroutine(Invulnerabilidad()); //Se comienza la corrutina de invulnerabilidad

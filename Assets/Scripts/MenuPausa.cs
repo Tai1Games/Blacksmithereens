@@ -7,6 +7,7 @@ public class MenuPausa : MonoBehaviour {
 
     public GameObject menuPausa;
     bool juegoPausado = false;
+    public GameObject controles;
 
 
 	// Use this for initialization
@@ -39,5 +40,16 @@ public class MenuPausa : MonoBehaviour {
         menuPausa.SetActive(false);  //desactiva el menu
         Time.timeScale = 1;  //activa el juego
         GameManager.instance.CambiarPausa(false);
+    }
+
+    /// <summary>
+    /// Este método activa y desactiva el panel que muestra los controles
+    /// </summary>
+    public void Controles()
+    {
+        if (controles.activeInHierarchy)
+            controles.SetActive(false);
+        else
+            controles.SetActive(true);
     }
 }
