@@ -12,7 +12,7 @@ public class HacerDaño : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        enemigosDañados = new Collider2D[3];
+        enemigosDañados = new Collider2D[0];
     }
 
     // Update is called once per frame
@@ -25,38 +25,30 @@ public class HacerDaño : MonoBehaviour {
     {        
         VidaEnemigo vida;
         vida = col.GetComponent<VidaEnemigo>();   //coge referencia al objeto colisionado
-        dañado = false;
-
-        for (int i = 0; i < enemigosDañados.Length; i++)  //busca en el array de enemigos a ver si ese enemigo ya esta registrado o no
+       
+        
+        if(vida != null)
         {
-            if (enemigosDañados[i] == col) dañado = true;
+            dañado = false;
+            int i = 0;
+            while ( i < enemigosDañados.Length && !dañado)  //busca en el array de enemigos a ver si ese enemigo ya esta registrado o no
+            {
+                if (enemigosDañados[i] == col) dañado = true;
+                i++;
+            }
+
+            if (!dañado)
+            {
+                vida.RestaVida(daño);
+                System.Array.Resize(ref enemigosDañados, pos + 1);  //añade una posicion al array
+                enemigosDañados[pos] = col;
+                pos++;
+            }
         }
 
-        if (vida != null && !dañado)
-        {
-            vida.RestaVida(daño);
-            System.Array.Resize(ref enemigosDañados, pos+1);  //añade una posicion al array
-            enemigosDañados[pos] = col;
-            pos++;
-        }
+
     }
 
-    /// <summary>
-    /// Busca si el enimigo que se le pasa ya se le ha tocado durante esa animacion
-    /// provisinalmente es bool por que es necesario para el martillo, tengo que preguntar a guille si esto es legal o no
-    /// </summary>
-    /// <param name="col"></param>
-    /// <returns></returns>
-    public bool BuscarEnemigo(Collider2D col)
-    {
-
-        for (int i = 0; i < enemigosDañados.Length; i++)
-        {
-            if (enemigosDañados[i] == col) dañado = true;
-        }
-
-        return dañado;
-    }
 
 
     /// <summary>
