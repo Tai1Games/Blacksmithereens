@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 95808254606185326}
   - component: {fileID: 114671527327583200}
   - component: {fileID: 114942220535323846}
-  - component: {fileID: 114990927924369062}
   m_Layer: 8
   m_Name: lanza
   m_TagString: Lanza
@@ -302,7 +301,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396443353943538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
