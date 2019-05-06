@@ -43,7 +43,7 @@ public class VidaJugador : MonoBehaviour {
     /// <param name="cantidad">Cantidad de vida a restar</param>
     public void RestaVida(int cantidad)
     {
-        if(invulnerable == false) //Si el boooleano de invulnerabilidad está activado, no se resta vida
+        if (invulnerable == false) //Si el boooleano de invulnerabilidad está activado, no se resta vida
         {
             vidaActual = vidaActual - cantidad;
             if (vidaActual <= 0)
@@ -82,5 +82,13 @@ public class VidaJugador : MonoBehaviour {
             animador.Play("Invulnerabilidad", -1, 0);
             yield return new WaitForSeconds(1);
         }
+    }
+
+    /// <summary>
+    /// Suma 10000 puntos de vida al juegador
+    /// </summary>
+    public void CheatsVida()
+    {
+        vidaActual = 10000;
     }
 }

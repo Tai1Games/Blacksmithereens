@@ -10,11 +10,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
-    public ControlJugador jugador;
+    public GameObject GOjugador;
     public CrafteoArmas menuArmas;
-    public AtaqueJugador ataquejugador;
 
+    private ControlJugador jugador;
+    private AtaqueJugador ataquejugador;
     private bool juegoPausado = false;
+    private VidaJugador vidaJ;
 
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
@@ -28,13 +30,21 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(this.gameObject);
+
+        ataquejugador = GOjugador.GetComponent<AtaqueJugador>();
+        jugador = GOjugador.GetComponent<ControlJugador>();
+        vidaJ = GOjugador.GetComponent<VidaJugador>();
     }
     void Start () {
 		
 	}
 	   
 	void Update () {
-		
+        if (Input.GetKeyDown("p"))
+        {
+            vidaJ.CheatsVida();
+            ataquejugador.SubirDaño();
+        }
 	}
 
     /// <summary>

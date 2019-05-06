@@ -28,4 +28,13 @@ public class HacerDaño : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Añade 10000 de daño a cada arma
+    /// </summary>
+    public void CheatsArmas()
+    {
+        daño = 10000;
+    }
+
+
 }

@@ -103,4 +103,13 @@ public class EspadaAtaque : MonoBehaviour {
         scriptarmas.CambioArma(0); //cambia al martillo
     }
 
+    /// <summary>
+    /// Sube la durabilidad a 1000 y el daño a 10000
+    /// </summary>
+    public void ActivaCheats()
+    {
+        durActualEspada = durMaxEspada = 1000;
+        HacerDaño daño = GetComponent<HacerDaño>();
+        daño.CheatsArmas();
+    }
 }

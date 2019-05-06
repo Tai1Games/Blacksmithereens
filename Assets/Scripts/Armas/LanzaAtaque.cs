@@ -98,4 +98,14 @@ public class LanzaAtaque : MonoBehaviour
         durActualLanza = durMaxLanza;
     }
 
+    /// <summary>
+    /// Sube la durabilidad a 1000 y el daño a 10000
+    /// </summary>
+    public void ActivaCheats()
+    {
+        durActualLanza = durMaxLanza = 1000;
+        HacerDaño daño = GetComponent<HacerDaño>();
+        daño.CheatsArmas();
+    }
+
 }

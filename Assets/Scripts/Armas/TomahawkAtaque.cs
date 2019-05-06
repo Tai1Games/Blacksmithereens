@@ -9,8 +9,7 @@ public class TomahawkAtaque : MonoBehaviour {
     public float velocidad; //velocidad del objeto creado
     private Vector2 mouse_position;
     private Vector2 offset, screenPoint;
-
-    Animator animador;
+    
     AtaqueJugador scriptArmas;
     GameObject tomLanzado;
 
@@ -19,8 +18,7 @@ public class TomahawkAtaque : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        animador = gameObject.GetComponent<Animator>();
+        
         durActualTomahawk = durMaxTomahawk;  //asignamos la durabilidad del tomahawk
         scriptArmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
     
@@ -31,13 +29,6 @@ public class TomahawkAtaque : MonoBehaviour {
 		
 	}
 
-    public void tomahawkAtaque()
-    {
-        if ((transform.localPosition.y < 0.09768)) //Posicion relativa al jugador, para evitar ataques dobles
-        {
-            animador.SetTrigger("AtaqueTomahawk");  //Trigger para activar la animación
-        }
-    }
 
     /// <summary>
     /// Instancia un tomahawk arrojable y resta 1 punto de durabilidad al arma.
@@ -84,6 +75,14 @@ public class TomahawkAtaque : MonoBehaviour {
     public void ReseteaDurTomahawk()
     {
         durActualTomahawk = durMaxTomahawk;
+    }
+
+    /// <summary>
+    /// Sube el numero de unidades disponibles a 10000
+    /// </summary>
+    public void ActivaCheats()
+    {
+        durActualTomahawk = durMaxTomahawk = 10000;
     }
 
 }

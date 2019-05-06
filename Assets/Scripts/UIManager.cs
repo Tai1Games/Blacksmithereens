@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour {
     /// <param name="vidaMax">vida maxima del jugador</param>
     public void ActualizaVida(int vida, int vidaMax)
     {
-        barraVida.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,((float)vida / vidaMax * barraMaxTamano));
+        if(vida<=100)barraVida.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,((float)vida / vidaMax * barraMaxTamano));
     }
 
     /// <summary>

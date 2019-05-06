@@ -28,4 +28,14 @@ public class MartilloAtaque : MonoBehaviour
             animacion.SetTrigger("Ataque");  //Trigger para activar la animación
         }
     }
+
+    /// <summary>
+    /// Sube la durabilidad a 1000 y la vida a 10000
+    /// </summary>
+    public void ActivaCheats()
+    {        
+        HacerDaño daño = GetComponent<HacerDaño>();
+        daño.CheatsArmas();
+    }
 }
+
