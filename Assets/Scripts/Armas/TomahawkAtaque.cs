@@ -15,10 +15,11 @@ public class TomahawkAtaque : MonoBehaviour {
 
     public int durMaxTomahawk = 3; //durabilidad del tomahawk
     private int durActualTomahawk;
+    private int durAux;
 
     // Use this for initialization
     void Start () {
-        
+        durAux = durMaxTomahawk;
         durActualTomahawk = durMaxTomahawk;  //asignamos la durabilidad del tomahawk
         scriptArmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
     
@@ -80,9 +81,10 @@ public class TomahawkAtaque : MonoBehaviour {
     /// <summary>
     /// Sube el numero de unidades disponibles a 10000
     /// </summary>
-    public void ActivaCheats()
+    public void ActivaCheats(bool estado)
     {
-        durActualTomahawk = durMaxTomahawk = 10000;
+        if (estado) durActualTomahawk = durMaxTomahawk = 10000;
+        else durMaxTomahawk = durActualTomahawk = durAux;
     }
 
 }

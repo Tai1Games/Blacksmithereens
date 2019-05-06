@@ -32,10 +32,11 @@ public class MartilloAtaque : MonoBehaviour
     /// <summary>
     /// Sube la durabilidad a 1000 y la vida a 10000
     /// </summary>
-    public void ActivaCheats()
+    public void ActivaCheats(bool estado)
     {        
         HacerDaño daño = GetComponent<HacerDaño>();
-        daño.CheatsArmas();
+        if(estado)daño.CheatsArmas(true);
+        else daño.CheatsArmas(false);
     }
 }
 

@@ -18,6 +18,7 @@ public class EspadaAtaque : MonoBehaviour {
     Animator animador;                  //animador de la espada
     AtaqueJugador scriptarmas;          //script que lleva el jugador y que le permite atacar
     int durActualEspada;                //Durabilidad actual, la que va disminuyendo
+    int durAux;
 
     GameObject espadaLanzada;           //espada lanzada en si
     
@@ -29,6 +30,7 @@ public class EspadaAtaque : MonoBehaviour {
         animador = gameObject.GetComponent<Animator>();     //asignamos las referencias
         durActualEspada = durMaxEspada;
         scriptarmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
+        durAux = durMaxEspada;
     }
 
     void Update()
@@ -106,10 +108,19 @@ public class EspadaAtaque : MonoBehaviour {
     /// <summary>
     /// Sube la durabilidad a 1000 y el daño a 10000
     /// </summary>
-    public void ActivaCheats()
+    public void ActivaCheats(bool estado)
     {
-        durActualEspada = durMaxEspada = 1000;
         HacerDaño daño = GetComponent<HacerDaño>();
-        daño.CheatsArmas();
+        if (estado)
+        {
+            durActualEspada = durMaxEspada = 1000;
+            daño.CheatsArmas(true);
+        }
+        else
+        {
+            durActualEspada = durMaxEspada = durAux;
+            daño.CheatsArmas(false);
+        }
+
     }
 }

@@ -12,6 +12,7 @@ public class VidaJugador : MonoBehaviour {
     public float tiempoInvulnerabilidad;
 
     int vidaActual;
+    int vidaAux;
     bool invulnerable;
     float t;
     Animator animador;
@@ -24,6 +25,7 @@ public class VidaJugador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animador = GetComponent<Animator>();
+        vidaAux = vidaMax;
 	}
 	
 	// Update is called once per frame
@@ -54,7 +56,7 @@ public class VidaJugador : MonoBehaviour {
                 StartCoroutine(Invulnerabilidad()); //Se comienza la corrutina de invulnerabilidad
             LevelManager.instance.ActualizaVida(vidaActual, vidaMax);
             
-        }
+        }    
     }
 
     /// <summary>
@@ -63,6 +65,7 @@ public class VidaJugador : MonoBehaviour {
     /// <param name="cantidad">Cantidad de vida a añadir</param>
     public void SumaVida(int cantidad)
     {
+        
         vidaActual = vidaActual + cantidad;
         if(vidaActual > vidaMax)
         {
@@ -87,8 +90,9 @@ public class VidaJugador : MonoBehaviour {
     /// <summary>
     /// Suma 10000 puntos de vida al juegador
     /// </summary>
-    public void CheatsVida()
+    public void CheatsVida(bool estado)
     {
-        vidaActual = 10000;
+        if(estado) vidaActual = vidaMax = 10000;
+        else vidaActual = vidaMax = vidaAux;
     }
 }

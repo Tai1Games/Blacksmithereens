@@ -117,12 +117,23 @@ public class AtaqueJugador : MonoBehaviour
     /// <summary>
     /// Sube el daño de cada arma a 10000 y la durabiliadad a 1000
     /// </summary>
-    public void SubirDaño()
+    public void SubirDaño(bool estado)
     {
-        scriptEspadaAtaque.ActivaCheats();
-        scriptMartilloAtaque.ActivaCheats();
-        scriptLanzaAtaque.ActivaCheats();
-        scriptTomahawkAtaque.ActivaCheats();
+        if (estado)  //ativa cheats
+        {
+            scriptEspadaAtaque.ActivaCheats(true);
+            scriptMartilloAtaque.ActivaCheats(true);
+            scriptLanzaAtaque.ActivaCheats(true);
+            scriptTomahawkAtaque.ActivaCheats(true);
+        }
+        else  //desactiva cheats
+        {
+            scriptEspadaAtaque.ActivaCheats(false);
+            scriptMartilloAtaque.ActivaCheats(false);
+            scriptLanzaAtaque.ActivaCheats(false);
+            scriptTomahawkAtaque.ActivaCheats(false);
+        }
+
     }
 
 }
