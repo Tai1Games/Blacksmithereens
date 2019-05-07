@@ -105,4 +105,9 @@ public class LevelManager : MonoBehaviour {
     {
         SceneManager.LoadScene("MenuGuerrilla");
     }
+
+    public void mostrarTextoFinRonda(bool mostrar)
+    {
+        uiManager.muestraTextoFinalRonda(mostrar);
+    }
 }

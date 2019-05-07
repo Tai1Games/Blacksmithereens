@@ -135,4 +135,10 @@ public class UIManager : MonoBehaviour {
 	{
 		cambiaSprite.CambiaSpriteUI(arma);
 	}
+
+    public void muestraTextoFinalRonda(bool mostrar)
+    {
+        TextoFinalDeRonda texto = this.GetComponentInChildren<TextoFinalDeRonda>();
+        texto.activar(mostrar);
+    }
 }
