@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
     public float tiempoCuentaAtras;
     public ArenaManager arenaManager;
 	public Text textoMateriales;
+    public TextoFinalDeRonda textoFinalRonda;
 
 	CambiaSprite cambiaSprite;
 	Animator rondaEsquina;
@@ -138,7 +139,6 @@ public class UIManager : MonoBehaviour {
 
     public void muestraTextoFinalRonda(int id)
     {
-        TextoFinalDeRonda texto = this.GetComponentInChildren<TextoFinalDeRonda>();
-        texto.devuelveFragmento(id);
+        textoFinalRonda.devuelveFragmento(id);
     }
 }
