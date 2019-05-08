@@ -6,6 +6,7 @@ public class HacerDaño : MonoBehaviour {
 
     public int daño;
 
+    private int dañoAux;
     private Collider2D[] enemigosDañados;
     private int pos=0;
     private bool dañado;
@@ -13,6 +14,7 @@ public class HacerDaño : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         enemigosDañados = new Collider2D[0];
+        dañoAux = daño;
     }
 
     // Update is called once per frame
@@ -50,6 +52,14 @@ public class HacerDaño : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Añade 10000 de daño a cada arma
+    /// </summary>
+    public void CheatsArmas(bool estado)
+    {
+        if (estado) daño = 10000;
+        else daño = dañoAux;
+    }
 
     /// <summary>
     /// Una vez se ha terminado la animacion llama a este metodo que resetea los parametros para el proximo ataque
