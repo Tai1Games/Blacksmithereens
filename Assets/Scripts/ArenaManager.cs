@@ -16,8 +16,8 @@ public class ArenaManager : MonoBehaviour
 
     UIManager uim;
     int contador = 1;
-
     [System.Serializable]
+
     struct Spawn //Instancia de enemigo
     {
         public Transform puerta; //punto donde aparece el enemigo
@@ -36,6 +36,7 @@ public class ArenaManager : MonoBehaviour
         [SerializeField]
         public Oleada[] ronda;
         public float tiempoFin; //tiempo objetivo con el que pasarse una ronda
+        public int idNota; //Nota que será mostrada al final de la ronda
     }
     [SerializeField]
     Ronda[] arena; //Array de rondas por arena
@@ -142,7 +143,8 @@ public class ArenaManager : MonoBehaviour
         //Si no se comprueba, es que ha acabado la ronda
         else
         {
-            centroArena.SetActive(true);
+            centroArena.SetActive(true);         
+            centroArena.GetComponent<CentroArena>().asignarIDTexto(arena[contador-1].idNota);            
             reloj.Stop(); //para el reloj cuando se termina la ronda
             tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds; //toma los segundos y milisegundos y los guarda
             tiempo /= 1000;
@@ -165,10 +167,9 @@ public class ArenaManager : MonoBehaviour
         if (i + 1 < arena.Length)
         {
             contador++; //Incrementa el indicador de ronda actual
-            uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
             yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
             SpawnArena(arena, i + 1);
-            empiezaRonda = false;
+            empiezaRonda = false;   
         }
         else GameManager.instance.CargaEscena("MenuGanarG");
     }

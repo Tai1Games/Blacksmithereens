@@ -6,6 +6,7 @@ public class CentroArena : MonoBehaviour
 {
 
     public UIManager ui; //referencia al arenaManager
+    private int idTexto;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,11 @@ public class CentroArena : MonoBehaviour
 
     }
 
+    public void asignarIDTexto (int ID)
+    {
+        idTexto = ID;
+    }
+
     /// <summary>
     /// Cuando colisiona con el jugador, se lo indica al arenaManager
     /// </summary>
@@ -26,7 +32,8 @@ public class CentroArena : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ControlJugador>())
         {
-            LevelManager.instance.mostrarTextoFinRonda(true);
+            Debug.Log(idTexto);
+            if (idTexto != 0) LevelManager.instance.mostrarTextoFinRonda(idTexto);
             ui.EmpiezaCuntaAtras();  //activa cuenta atras
             this.gameObject.SetActive(false);
         }

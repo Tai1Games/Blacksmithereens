@@ -136,9 +136,9 @@ public class UIManager : MonoBehaviour {
 		cambiaSprite.CambiaSpriteUI(arma);
 	}
 
-    public void muestraTextoFinalRonda(bool mostrar)
+    public void muestraTextoFinalRonda(int id)
     {
         TextoFinalDeRonda texto = this.GetComponentInChildren<TextoFinalDeRonda>();
-        texto.activar(mostrar);
+        texto.devuelveFragmento(id);
     }
 }
