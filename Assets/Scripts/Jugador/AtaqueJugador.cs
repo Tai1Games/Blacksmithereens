@@ -54,7 +54,7 @@ public class AtaqueJugador : MonoBehaviour
                     scriptEspadaAtaque.AtaqueEspadas();  //Avisa a la espada para que ataque.
                     break;
                 case Armas.Tomahawk:
-                    scriptTomahawkAtaque.tomahawkAtaque();  //Avisa al tomahawk para que ataque.
+                    scriptTomahawkAtaque.LanzarTomahawk();  //Avisa al tomahawk para que sea lanzado
                     break;
                 default:
                     Debug.Log("ningun arma seleccionada");
@@ -112,4 +112,28 @@ public class AtaqueJugador : MonoBehaviour
 				break;
         }
     }
+
+
+    /// <summary>
+    /// Sube el daño de cada arma a 10000 y la durabiliadad a 1000
+    /// </summary>
+    public void SubirDaño(bool estado)
+    {
+        if (estado)  //ativa cheats
+        {
+            scriptEspadaAtaque.ActivaCheats(true);
+            scriptMartilloAtaque.ActivaCheats(true);
+            scriptLanzaAtaque.ActivaCheats(true);
+            scriptTomahawkAtaque.ActivaCheats(true);
+        }
+        else  //desactiva cheats
+        {
+            scriptEspadaAtaque.ActivaCheats(false);
+            scriptMartilloAtaque.ActivaCheats(false);
+            scriptLanzaAtaque.ActivaCheats(false);
+            scriptTomahawkAtaque.ActivaCheats(false);
+        }
+
+    }
+
 }
