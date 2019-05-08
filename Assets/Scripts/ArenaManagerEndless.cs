@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Diagnostics;
 
 /// <summary>
-/// Componente que controla los enemigos de la arena
+/// Componente que controla los enemigos de la arena en modo endless
 /// </summary>
 public class ArenaManagerEndless : MonoBehaviour
 {

@@ -12,7 +12,8 @@ public class LevelManager : MonoBehaviour {
     public GameObject jugador;
     public UIManager uiManager;
     public ArenaManager arenaManager;
-    //public ArenaManagerEndless arenaManager;
+    public ArenaManagerEndless arenaManagerEndless;
+    public bool endless;
 
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
@@ -47,7 +48,8 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void EnemigoMuerto()
     {
-        arenaManager.EnemigoMuerto();
+        if (endless) arenaManagerEndless.EnemigoMuerto();
+        else arenaManager.EnemigoMuerto();
     }
 
     /// <summary>
