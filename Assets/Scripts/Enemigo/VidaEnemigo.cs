@@ -34,8 +34,7 @@ public class VidaEnemigo : MonoBehaviour {
     {
         vidaActual = vidaActual - cantidad;
         if (vidaActual <= 0 && scriptMuerte) //Si existe el componente adecuado para morir, se muere el enemigo
-        {
-            
+        {            
             scriptMuerte.Muerte();
         }
         else

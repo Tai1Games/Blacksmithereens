@@ -14,7 +14,7 @@ public class LanzaAtaque : MonoBehaviour
     public GameObject Lanza;
     public float velocidad;
     public int durMaxLanza = 20; //Durabilidad máxima
-
+    
     Animator animador;
     Transform transformLanza;
     AtaqueJugador scriptarmas;
