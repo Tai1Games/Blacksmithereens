@@ -14,7 +14,7 @@ public class LanzaAtaque : MonoBehaviour
     public GameObject Lanza;
     public float velocidad;
     public int durMaxLanza = 20; //Durabilidad máxima
-
+    
     Animator animador;
     Transform transformLanza;
     AtaqueJugador scriptarmas;
@@ -22,6 +22,7 @@ public class LanzaAtaque : MonoBehaviour
     Vector2 mouse_position; //posicion del raton
     Vector2 offset, screenPoint; //vectores para sacar el angulo
     int durActualLanza;                 //Durabilidad actual, la que va disminuyendo
+    int durAux;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class LanzaAtaque : MonoBehaviour
         transformLanza = gameObject.GetComponent<Transform>();
         durActualLanza = durMaxLanza;
         scriptarmas = LevelManager.instance.Jugador().GetComponent<AtaqueJugador>();
+        durAux = durMaxLanza;
     }
 
     void Update()
@@ -96,6 +98,25 @@ public class LanzaAtaque : MonoBehaviour
     /// </summary>
     public void ReseteaDurLanza() {
         durActualLanza = durMaxLanza;
+    }
+
+    /// <summary>
+    /// Sube la durabilidad a 1000 y el daño a 10000 o resetea los valores por defecto
+    /// </summary>
+    public void ActivaCheats(bool estado)
+    {
+        HacerDaño daño = GetComponent<HacerDaño>();
+        if (estado)
+        {
+            durActualLanza = durMaxLanza = 1000;
+            daño.CheatsArmas(true);
+        }
+        else
+        {
+            durMaxLanza = durActualLanza = durAux;
+            daño.CheatsArmas(false);
+        }
+
     }
 
 }

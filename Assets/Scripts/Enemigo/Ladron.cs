@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
 /// Controla el movimiento del enemigo (lineal) con velocidad ajustable y la rotacion
 /// </summary>
 public class Ladron : MonoBehaviour
 {
-
     public float velocidad;
     public int daño;
     public int matRobados;
@@ -24,16 +24,26 @@ public class Ladron : MonoBehaviour
     float angulo;
     private Vector2 salida;
 
+    enum puertas { Norte, Oeste, Sur, Este } //Enum que indica todas las puertas disponibles para escapar
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
-        salida = transform.position;
+
+        int puertaActual = (int)System.Enum.Parse(typeof(puertas) ,transform.parent.name); //Obtenemos el valor numérico de la puerta inicial
+        int PuertaDestino; //Valor numérico de la puerta por la que saldrá
+        do
+        {
+            PuertaDestino = Random.Range(0, 4);
+        } while (PuertaDestino == puertaActual); //Selecciona una puerta de salida que NO sea por la misma que entró
+        Transform padrePuertas = transform.parent; //Obtenemos el padre que contiene todas las puertas disponibles.
+        salida = (padrePuertas.transform.parent).GetChild(PuertaDestino).transform.position; //Buscamos la posición de la puerta de salida.
+
     }
 
     void Update()
     {
-
         //diferencia de posicion entre el jugador y el enemigo
         diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
         angulo = Mathf.Atan2(diferencia.x, diferencia.y) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados

@@ -11,10 +11,11 @@ public class Materiales : MonoBehaviour {
     public int matMax = 200;
 
     int matActuales = 0;
+    int matAux;
 
     private void Start()
     {
-        
+        matAux = matMax;
     }
 
     private void Update()
@@ -51,5 +52,17 @@ public class Materiales : MonoBehaviour {
     public int DecirMateriales()
     {
         return matActuales;
+    }
+
+
+    /// <summary>
+    /// suma 10000 materiales
+    /// </summary>
+    public void ActivaCheats(bool estado)
+    {
+        if(estado)matActuales = matMax = 10000;
+        else matActuales = matMax = matAux;
+
+        LevelManager.instance.ActualizaMateriales(matActuales, matMax);
     }
 }
