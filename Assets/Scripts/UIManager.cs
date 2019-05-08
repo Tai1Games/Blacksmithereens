@@ -13,8 +13,7 @@ public class UIManager : MonoBehaviour {
     public Text cuentaAtras;
     public ArenaManager arenaManager;
     public ArenaManagerEndless arenaManagerEndless;
-    public float tiempoCuentaAtras;
-    public bool endless;
+    public float tiempoCuentaAtras;    
 	public Text textoMateriales;
 
 	CambiaSprite cambiaSprite;
@@ -22,12 +21,14 @@ public class UIManager : MonoBehaviour {
     Animator rondaAnuncio;
 
     float barraMaxTamano;
+    bool endless;
 
     void Awake () {
         cuentaAtras.enabled = false;
         barraMaxTamano = barraVida.rectTransform.rect.width;
         rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
         rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
+        endless = LevelManager.instance.endless;
     }
     // Use this for initialization
     void Start () {
