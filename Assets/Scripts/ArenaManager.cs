@@ -143,8 +143,8 @@ public class ArenaManager : MonoBehaviour
         //Si no se comprueba, es que ha acabado la ronda
         else
         {
-            centroArena.SetActive(true);         
-            centroArena.GetComponent<CentroArena>().asignarIDTexto(arena[contador-1].idNota);            
+            centroArena.SetActive(true);  //Activa el centro de la arena para pasar de ronda.
+            centroArena.GetComponent<CentroArena>().asignarIDTexto(arena[contador-1].idNota); //Asigna al centro de la arena el ID de la ronda para mostrar el texto.
             reloj.Stop(); //para el reloj cuando se termina la ronda
             tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds; //toma los segundos y milisegundos y los guarda
             tiempo /= 1000;

@@ -137,6 +137,10 @@ public class UIManager : MonoBehaviour {
 		cambiaSprite.CambiaSpriteUI(arma);
 	}
 
+    /// <summary>
+    /// Le dice al objeto que controla la nota que la muestre.
+    /// </summary>
+    /// <param name="id"> ID que identifica el fragmento de texto correspondiente. </param>
     public void muestraTextoFinalRonda(int id)
     {
         textoFinalRonda.devuelveFragmento(id);

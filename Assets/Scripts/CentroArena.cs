@@ -6,7 +6,7 @@ public class CentroArena : MonoBehaviour
 {
 
     public UIManager ui; //referencia al arenaManager
-    private int idTexto;
+    private int idTexto; //ID para encontrar el fragmento de texto para la nota al final de la ronda
 
     // Use this for initialization
     void Start()
@@ -20,6 +20,10 @@ public class CentroArena : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Cambia el ID de la arena al que recibe del ArenaManager.
+    /// </summary>
+    /// <param name="ID"> ID que identifica el fragmento de texto correspondiente </param>
     public void asignarIDTexto (int ID)
     {
         idTexto = ID;
@@ -32,9 +36,9 @@ public class CentroArena : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ControlJugador>())
         {
-            if (idTexto != 0) LevelManager.instance.mostrarTextoFinRonda(idTexto);
-            else ui.EmpiezaCuntaAtras();
-            this.gameObject.SetActive(false);
+            if (idTexto != 0) LevelManager.instance.mostrarTextoFinRonda(idTexto); //Muestra la nota del final de la ronda
+            else ui.EmpiezaCuntaAtras(); //Si no tiene ninguna nota asignada, empieza la siguiente ronda instantáneamente.
+            this.gameObject.SetActive(false); //Desactiva el gameObject
         }
     }
 }
