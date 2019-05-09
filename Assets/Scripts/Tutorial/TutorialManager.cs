@@ -9,8 +9,10 @@ public class TutorialManager : MonoBehaviour {
     public GameObject miniMapa, durabilidadArmas;
     public Text textoAnuncioRonda, materiales, ronda;
     public GameObject[] instrucciones;
-    public GameObject enemigo;
+    public GameObject enemigo, menuFinTutorial;
 
+
+    private GameObject en;
     private int paso = 0; //indica por que paso del turorial va el jugador
 
 	// Use this for initialization
@@ -22,6 +24,7 @@ public class TutorialManager : MonoBehaviour {
         textoAnuncioRonda.enabled = false;
         materiales.enabled = false;
         ronda.enabled = false;
+        menuFinTutorial.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -63,7 +66,7 @@ public class TutorialManager : MonoBehaviour {
             case 3: //martillo
                 instrucciones[paso].SetActive(true);
 
-                GameObject en = (GameObject)Instantiate(enemigo);
+                en = (GameObject)Instantiate(enemigo);
                 DarMaterialesTutorial mat = en.GetComponent<DarMaterialesTutorial>();
                 mat.SetTutorialManager(this);
                 paso++;
@@ -98,6 +101,15 @@ public class TutorialManager : MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 {
                     instrucciones[paso].SetActive(false);
+                    paso++;
+                }
+                break;
+            case 9:
+                if (en == null)
+                {
+                    menuFinTutorial.SetActive(true);
+                    Time.timeScale = 0;  //desactiva el juego
+                    GameManager.instance.CambiarPausa(true);
                     paso++;
                 }
                 break;
