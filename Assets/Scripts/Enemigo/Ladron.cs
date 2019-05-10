@@ -30,15 +30,23 @@ public class Ladron : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
-
-        int puertaActual = (int)System.Enum.Parse(typeof(puertas) ,transform.parent.name); //Obtenemos el valor numérico de la puerta inicial
-        int PuertaDestino; //Valor numérico de la puerta por la que saldrá
-        do
+        try
         {
-            PuertaDestino = Random.Range(0, 4);
-        } while (PuertaDestino == puertaActual); //Selecciona una puerta de salida que NO sea por la misma que entró
-        Transform padrePuertas = transform.parent; //Obtenemos el padre que contiene todas las puertas disponibles.
-        salida = (padrePuertas.transform.parent).GetChild(PuertaDestino).transform.position; //Buscamos la posición de la puerta de salida.
+            int puertaActual = (int)System.Enum.Parse(typeof(puertas), transform.parent.name); //Obtenemos el valor numérico de la puerta inicial
+            int PuertaDestino; //Valor numérico de la puerta por la que saldrá
+            do
+            {
+                PuertaDestino = Random.Range(0, 4);
+            } while (PuertaDestino == puertaActual); //Selecciona una puerta de salida que NO sea por la misma que entró
+            Transform padrePuertas = transform.parent; //Obtenemos el padre que contiene todas las puertas disponibles.
+            salida = (padrePuertas.transform.parent).GetChild(PuertaDestino).transform.position; //Buscamos la posición de la puerta de salida.
+        }
+
+        catch
+        {
+            salida = this.transform.position;
+        }
+        
 
     }
 

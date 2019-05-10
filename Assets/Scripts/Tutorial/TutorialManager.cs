@@ -10,9 +10,10 @@ public class TutorialManager : MonoBehaviour {
     public Text textoAnuncioRonda, materiales, ronda;
     public GameObject[] instrucciones;
     public GameObject enemigo, menuFinTutorial;
+    public GameObject charger, ladron, thickboi, lancero, leon;
 
 
-    private GameObject en;
+    private GameObject en, leo, cha, thic,lad, lan;
     private int paso = 0; //indica por que paso del turorial va el jugador
 
 	// Use this for initialization
@@ -66,7 +67,7 @@ public class TutorialManager : MonoBehaviour {
             case 3: //martillo
                 instrucciones[paso].SetActive(true);
 
-                en = (GameObject)Instantiate(enemigo);
+                en = Instantiate(enemigo);
                 DarMaterialesTutorial mat = en.GetComponent<DarMaterialesTutorial>();
                 mat.SetTutorialManager(this);
                 paso++;
@@ -104,18 +105,62 @@ public class TutorialManager : MonoBehaviour {
                     paso++;
                 }
                 break;
-            case 9:
+            case 9: //tutorial terminado    
                 if (en == null)
                 {
-                    menuFinTutorial.SetActive(true);
-                    Time.timeScale = 0;  //desactiva el juego
-                    GameManager.instance.CambiarPausa(true);
+                    instrucciones[paso].SetActive(true);
+                    cha = Instantiate(charger);
+                    paso++;
+                }              
+                break;
+            case 10:
+                if(cha == null)
+                {
+                    instrucciones[paso].SetActive(true);
+                    lad = Instantiate(ladron);
+                    instrucciones[paso].SetActive(false);
                     paso++;
                 }
                 break;
+            case 11:
+                if (lad == null)
+                {
+                    instrucciones[paso].SetActive(true);
+                    thic = Instantiate(thickboi);
+                    instrucciones[paso].SetActive(false);
+                    paso++;
+                }
+                break;
+            case 12:
+                if (thic == null)
+                {
+                    instrucciones[paso].SetActive(true);
+                    lan = Instantiate(lancero);
+                    instrucciones[paso].SetActive(false);
+                    paso++;
+                }
+                break;
+            case 13:
+                if (lan == null)
+                {
+                    instrucciones[paso].SetActive(true);
+                    leo = Instantiate(leon);
+                    instrucciones[paso].SetActive(false);
+                    paso++;
+                }
+                break;
+            case 14:
+                if (leo == null)
+                {
+                    menuFinTutorial.SetActive(true);
+                    instrucciones[paso].SetActive(false);
+                    Time.timeScale = 0;  //desactiva el juego
+                    GameManager.instance.CambiarPausa(true);
+                }
+                break;
         }
-
 	}
+
 
 
     public void MaterialesRecolectados()
@@ -127,9 +172,12 @@ public class TutorialManager : MonoBehaviour {
     }
 
 
-    public void LanzaComprada()
+    public void SiguientePaso()
     {
-        instrucciones[paso ].SetActive(false);
-        paso++;
+        if (paso < instrucciones.Length && paso == 6)
+        {
+            instrucciones[paso].SetActive(false);
+            paso++;
+        }
     }
 }
