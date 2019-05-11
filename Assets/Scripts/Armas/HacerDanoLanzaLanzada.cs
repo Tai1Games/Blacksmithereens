@@ -23,14 +23,16 @@ public class HacerDanoLanzaLanzada : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        int daño;
+        float daño;
+        float durab = durabilidad;
         VidaEnemigo vida;
         vida = col.GetComponent<VidaEnemigo>();   //coge referencia al objeto colisionado
 
         if (vida != null)
         {
-            daño = 20 + (durabilidad / 10) * 20;  //formula para calcular el daño según la durabilidad de la lanza al ser lanzada
-            vida.RestaVida(daño);
+            daño = 20 + (durab/ 10) * 20;  //formula para calcular el daño según la durabilidad de la lanza al ser lanzada
+            int daño2 = (int)Mathf.Round(daño);
+            vida.RestaVida(daño2);
         }
     }
 
