@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Cambia el esto del juego en cuanto a la pausa
     /// </summary>
-    public void CambiarPausa(bool estado)
+    public void CambiarPausa( bool estado)
     {
         juegoPausado = estado;
         if (juegoPausado)
