@@ -51,12 +51,15 @@ public class GameManager : MonoBehaviour {
                 vidaJ.CheatsVida(true);
                 ataquejugador.SubirDaño(true);
                 matJ.ActivaCheats(true);
+                LevelManager.instance.Reproducir(4);
             }
             else  //los desactiva
             {
                 vidaJ.CheatsVida(false);
                 ataquejugador.SubirDaño(false);
                 matJ.ActivaCheats(false);
+                LevelManager.instance.Reproducir(5);
+                LevelManager.instance.Reproducir();
             }
 
             
