@@ -108,4 +108,13 @@ public class LevelManager : MonoBehaviour {
     {
         SceneManager.LoadScene("MenuGuerrilla");
     }
+
+    /// <summary>
+    /// Le dice al UI manager que muestre la nota al final de la ronda
+    /// </summary>
+    /// <param name="id"> ID que identifica el fragmento de texto. </param>
+    public void mostrarTextoFinRonda(int id)
+    {
+        uiManager.muestraTextoFinalRonda(id);
+    }
 }
