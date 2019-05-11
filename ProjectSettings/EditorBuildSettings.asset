@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Hitos/MenuGanar.unity
     guid: 764dea6688e269944936d3a4520c94ad
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Hitos/Guerrilla/MenuGuerrilla.unity
     guid: cddc424bc5b04d3429988df5cc8a5374
+  - enabled: 1
+    path: Assets/Scenes/Hitos/MenuInicio.unity
+    guid: 19691b6882607664b88f250e8e4a8c4c
   - enabled: 1
     path: Assets/Scenes/Hitos/Guerrilla/Guerrilla.unity
     guid: 27831782036bc034a84c4b371ec93a9d
@@ -26,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hitos/Guerrilla/MenuGanarG.unity
     guid: 9d2811155f9fe65439bb81d46415c423
+  - enabled: 1
+    path: Assets/Scenes/Hitos/Creditos.unity
+    guid: 917833c83cb991146ba547124ef04452
   m_configObjects: {}
