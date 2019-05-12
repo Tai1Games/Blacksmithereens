@@ -176,7 +176,7 @@ public class ArenaManager : MonoBehaviour
             SpawnArena(arena, i + 1);
             empiezaRonda = false;   
         }
-        else GameManager.instance.CargaEscena("MenuGanarG");
+        else GameManager.instance.CargaEscena("MenuGanar");
     }
 
 
