@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(this.gameObject);
 
@@ -119,4 +119,5 @@ public class GameManager : MonoBehaviour {
 
         }
     }
+
 }
