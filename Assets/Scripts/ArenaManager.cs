@@ -168,6 +168,9 @@ public class ArenaManager : MonoBehaviour
         if (i + 1 < arena.Length)
         {
             contador++; //Incrementa el indicador de ronda actual
+            uim.ActualizaTextoRonda(contador);
+            if (contador == 5)
+                LevelManager.instance.ActivaGrada();
             ReproduceMusica();
             yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
             SpawnArena(arena, i + 1);
@@ -190,11 +193,11 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     public void ReproduceMusica()
     {
-        if (contador >= 1 && contador < 2)
+        if (contador >= 1 && contador < 5)
             LevelManager.instance.Reproducir(1);
-        else if (contador >= 2 && contador < 3)
+        else if (contador >= 5 && contador < 8)
             LevelManager.instance.Reproducir(2);
-        else if (contador >= 3)
+        else if (contador >= 9)
             LevelManager.instance.Reproducir(3);
     }
 }

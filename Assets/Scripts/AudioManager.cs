@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour {
                     if (musica1.isPlaying)
                         musica1.Stop();
                     if (!musica2.isPlaying)
-                        musica2.PlayDelayed(2f);
+                        musica2.PlayDelayed(3.5f);
                 }
                 break;
             case 3:

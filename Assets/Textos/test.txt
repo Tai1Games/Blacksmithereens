@@ -1,6 +1,6 @@
 1
 Veo que al final has acabado en la arena por mi culpa...
-Lo siento, pero no podre hacer nada por ti hasta que hayas derrotado a todos los enemigos que el torneo tiene preparados... Pero confio en que podras escapar. Entonces, te explicare todo con mas calma, ¿vale? Ten mucho cuidado.
+Lo siento, pero no podre hacer nada por ti hasta que hayas derrotado a todos los enemigos que el torneo tiene preparados... Pero confio en que podras escapar. Entonces, te explicare todo con mas calma, vale? Ten mucho cuidado.
 Espero que algun dia puedas perdonarme.
 
 -AM
@@ -21,22 +21,24 @@ Ya ha pasado lo peor... Ahora solo tienes que derrotar a tu ultimo oponente y el
 
 4
 FeLICIdaDeS! AunquE AHora Que lO pIenSo... para Que QuierES EsE TROfeO? si nunca hiCiste caso a mIs AdverTencIAs, al mEnos Ahora dejamE disfrutAr de la VictoriA...
-No te preocupes, moriras en una buena batalla de verdad. Preparate para conocer lo que es el dolor.
+No te preocupes, moriras en una buena batalla de verdad. 
+Preparate para conocer lo que es el dolor.
 Di adios!
 
 -AM
 4
 
 5
-Nunca mas tendre que matar a nadie mas en esta arena si me hago con todo ese oro. Podre acabar con este sistema. SOLO TU ERES MI PEQUEÑO PRECIO A PAGAR POR ELLO.
-APARTA DE MI CAMINO.
+Nunca mas tendre que matar a nadie mas en esta arena si me hago con todo ese oro. Podre acabar con este sistema. 
+SOLO TU ERES MI PRECIO A PAGAR POR ELLO.
+APARTA DE MI CAMINO. SOLO ESTAS AQUI PARA SUFRIR. Y VAYA QUE SI LO VAS A HACER.
 
 -AM
 5
 
 6
 Deberias dejar de confiar en esos materiales tan malos que usas... Ah, es verdad, no eres NADIE sin ellos.
-A ver qué te parece esto.
+A ver que te parece esto.
 
 -AM
 6
@@ -46,23 +48,22 @@ Mi energia no es ilimitada, aunque tengo suerte de que tu vida tampoco lo sea. D
 Y tranquilo, usare tu premio para una buena causa. Igual que te he usado a ti todo este tiempo.
 
 -AM
-8
+7
 
-9
+8
 No... no puede ser... he de seguir... instanciando enemigos...
 
 -public GameObject(AM)
+8
+
+9
+Has roto el sistema de una manera... de la que jamas pense que podria romperse...
+Como lo has hecho? No suponia que-
+-AM
 9
 
 10
-Has roto el sistema de una manera... de la que jamas pense que podria romperse...
-Como lo has hecho? No suponia que...
-
--AM
-10
-
-11
-Ahi esta tu premio. Tu derecho a salir de aqui. De volver al menu principal. De volver a batirte contra mi si quieres. Merecio la pena? Puedes salir de aqui, pero tus propios miedos ya estan dentro de tu cabeza...
-(El modo endless tambien es bastante chulo. Corre a probarlo)
+Ahi esta tu premio. Tu derecho a salir de aqui. De volver al menu principal. De volver a batirte contra mi si quieres. Merecio la pena? Puedes salir de aqui, pero tus propios miedos ya estan dentro de tu cabeza.
+(Te recomiendo el modo endless. Corre a probarlo)
 Gracias por jugar a Blown To Blacksmithereens!
-11
+10

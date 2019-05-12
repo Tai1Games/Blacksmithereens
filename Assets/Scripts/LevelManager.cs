@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance = null;
     public GameObject jugador;
+    public GameObject grada;
     public UIManager uiManager;
     public AudioManager audioManager;
     public ArenaManager arenaManager;
@@ -132,5 +133,13 @@ public class LevelManager : MonoBehaviour {
     public void Reproducir()
     {
         arenaManager.ReproduceMusica();
+    }
+
+    /// <summary>
+    /// Hace que aparezca el público de la grada.
+    /// </summary>
+    public void ActivaGrada()
+    {
+        grada.SetActive(true);
     }
 }
