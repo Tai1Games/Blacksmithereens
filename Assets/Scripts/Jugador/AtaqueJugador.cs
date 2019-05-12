@@ -22,17 +22,21 @@ public class AtaqueJugador : MonoBehaviour
     MartilloAtaque scriptMartilloAtaque;
     EspadaAtaque scriptEspadaAtaque;
     TomahawkAtaque scriptTomahawkAtaque;
+    private Vector3[] initPos;
     
 
     void Start()
     {
+        initPos = new Vector3[4];
         scriptMartilloAtaque = gameObject.GetComponentInChildren<MartilloAtaque>();
         scriptLanzaAtaque = gameObject.GetComponentInChildren<LanzaAtaque>();
         scriptEspadaAtaque = gameObject.GetComponentInChildren<EspadaAtaque>();
         scriptTomahawkAtaque = gameObject.GetComponentInChildren<TomahawkAtaque>();
 
+        initPos[0] = arrayArmas[0].transform.localPosition;
         for (int k = 1; k < arrayArmas.Length; k++)
         {
+            initPos[k] = arrayArmas[k].transform.localPosition;
             arrayArmas[k].SetActive(false);
         }
     }
@@ -59,7 +63,6 @@ public class AtaqueJugador : MonoBehaviour
                 default:
                     Debug.Log("ningun arma seleccionada");
                     break;
-
             }
         }
         else if (Input.GetMouseButtonDown(1))
@@ -89,6 +92,7 @@ public class AtaqueJugador : MonoBehaviour
     /// <param name="arma">Nombre del arma al que se quiere cambiar</param>
     public void CambioArma(Armas arma)
     {
+        arrayArmas[(int)armaActual].transform.localPosition = (initPos[(int)armaActual]);
         arrayArmas[(int)armaActual].SetActive(false);
         armaActual = arma;
         arrayArmas[(int)armaActual].SetActive(true);
