@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(this.gameObject);
 
@@ -51,12 +51,15 @@ public class GameManager : MonoBehaviour {
                 vidaJ.CheatsVida(true);
                 ataquejugador.SubirDaño(true);
                 matJ.ActivaCheats(true);
+                LevelManager.instance.Reproducir(4);
             }
             else  //los desactiva
             {
                 vidaJ.CheatsVida(false);
                 ataquejugador.SubirDaño(false);
                 matJ.ActivaCheats(false);
+                LevelManager.instance.Reproducir(5);
+                LevelManager.instance.Reproducir();
             }
 
             
@@ -116,4 +119,5 @@ public class GameManager : MonoBehaviour {
 
         }
     }
+
 }

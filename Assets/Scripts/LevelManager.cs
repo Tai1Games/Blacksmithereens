@@ -10,7 +10,9 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance = null;
     public GameObject jugador;
+    public GameObject grada;
     public UIManager uiManager;
+    public AudioManager audioManager;
     public ArenaManager arenaManager;
     public ArenaManagerEndless arenaManagerEndless;
     public bool endless;
@@ -27,7 +29,6 @@ public class LevelManager : MonoBehaviour {
         else Destroy(this.gameObject);
     }
     void Start () {
-		
 	}
 	
 	void Update ()
@@ -106,7 +107,7 @@ public class LevelManager : MonoBehaviour {
 
     public void VuelveaMenu()
     {
-        SceneManager.LoadScene("MenuGuerrilla");
+        SceneManager.LoadScene("MenuInicio");
     }
 
     /// <summary>
@@ -116,5 +117,29 @@ public class LevelManager : MonoBehaviour {
     public void mostrarTextoFinRonda(int id)
     {
         uiManager.muestraTextoFinalRonda(id);
+    }
+
+    /// <summary>
+    /// Le indica a AudioManager que reproduzca la pista seleccionada
+    /// </summary>
+    public void Reproducir(int pista)
+    {
+        audioManager.ReproduceMusica(pista);
+    }
+
+    /// <summary>
+    /// Revierte la música a la que corresponde dependiendo de la ronda actual
+    /// </summary>
+    public void Reproducir()
+    {
+        arenaManager.ReproduceMusica();
+    }
+
+    /// <summary>
+    /// Hace que aparezca el público de la grada.
+    /// </summary>
+    public void ActivaGrada()
+    {
+        grada.SetActive(true);
     }
 }
