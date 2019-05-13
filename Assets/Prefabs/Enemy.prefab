@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numGolpes: 3
-  cantMat: 40
+  cantMat: 65
 --- !u!212 &212367425690344686
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -145,6 +145,15 @@ public class TutorialManager : MonoBehaviour {
             case 13: //12
                 if (Input.GetMouseButtonDown(0))
                 {
+                    instrucciones[paso].SetActive(true);
+                    instrucciones[paso - 1].SetActive(false);
+                    miniMapa.SetActive(true);
+                    paso++;
+                }
+                break;
+            case 14: //13
+                if (Input.GetMouseButtonDown(0))
+                {
                     instrucciones[paso-1].SetActive(false);                
                     menuFinTutorial.SetActive(true);
                     Time.timeScale = 0;  //desactiva el juego
