@@ -10,10 +10,10 @@ public class TutorialManager : MonoBehaviour {
     public Text textoAnuncioRonda, materiales, ronda;
     public GameObject[] instrucciones;
     public GameObject enemigo, menuFinTutorial;
-    public GameObject charger, ladron, thickboi, lancero, leon;
+    public GameObject charger, ladron, lancero;
 
 
-    private GameObject en, leo, cha, thic,lad, lan;
+    private GameObject en, lan, cha,lad;
     private int paso = 0; //indica por que paso del turorial va el jugador
 
 	// Use this for initialization
@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour {
 
         switch (paso)
         {
-            case 0: //movimiento
+            case 0: //1
                 instrucciones[paso].SetActive(true);
                 if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
                 {
@@ -42,7 +42,7 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
 
-            case 1: //vida
+            case 1: //2
                 instrucciones[paso].SetActive(true);
                 vida.enabled = true;
                 vidaConstainer.enabled = true;
@@ -53,7 +53,7 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
 
-            case 2: //rondas y materiales
+            case 2: //3
                 instrucciones[paso].SetActive(true);
                 materiales.enabled = true;
                 ronda.enabled = true;
@@ -64,7 +64,7 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
 
-            case 3: //martillo
+            case 3: //4
                 instrucciones[paso].SetActive(true);
 
                 en = Instantiate(enemigo);
@@ -73,7 +73,9 @@ public class TutorialManager : MonoBehaviour {
                 paso++;
                 break;
 
-            case 5: //abrir menu de crafteo
+            //no hay 4 por que queda en funcion del enemigo, cuando ha soltado los materiales llama al método MaterialesRecolectados
+
+            case 5: //4.5
                 instrucciones[paso].SetActive(true);
                 if (Input.GetKeyDown("space"))
                 {
@@ -83,12 +85,12 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
 
-            case 6: //craftear lanza
+            case 6: //5
                 instrucciones[paso].SetActive(true);
                 durabilidadArmas.SetActive(true);
                 break;
 
-            case 7: //durabilidad
+            case 7: //6
                 instrucciones[paso].SetActive(true);
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -97,7 +99,7 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
 
-            case 8: //ataque
+            case 8: //7
                 instrucciones[paso].SetActive(true);
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -105,7 +107,7 @@ public class TutorialManager : MonoBehaviour {
                     paso++;
                 }
                 break;
-            case 9: //tutorial terminado    
+            case 9: //8
                 if (en == null)
                 {
                     instrucciones[paso].SetActive(true);
@@ -113,47 +115,38 @@ public class TutorialManager : MonoBehaviour {
                     paso++;
                 }              
                 break;
-            case 10:
+            case 10: //9
                 if(cha == null)
                 {
-                    instrucciones[paso].SetActive(true);
+                    instrucciones[paso-1].SetActive(false);
                     lad = Instantiate(ladron);
-                    instrucciones[paso].SetActive(false);
+                    instrucciones[paso].SetActive(true);
                     paso++;
                 }
                 break;
-            case 11:
+            case 11: //10
                 if (lad == null)
                 {
-                    instrucciones[paso].SetActive(true);
-                    thic = Instantiate(thickboi);
-                    instrucciones[paso].SetActive(false);
-                    paso++;
-                }
-                break;
-            case 12:
-                if (thic == null)
-                {
-                    instrucciones[paso].SetActive(true);
+                    instrucciones[paso-1].SetActive(false);
                     lan = Instantiate(lancero);
-                    instrucciones[paso].SetActive(false);
+                    instrucciones[paso].SetActive(true);
                     paso++;
                 }
                 break;
-            case 13:
+            case 12: //11
                 if (lan == null)
                 {
                     instrucciones[paso].SetActive(true);
-                    leo = Instantiate(leon);
-                    instrucciones[paso].SetActive(false);
+                    instrucciones[paso-1].SetActive(false);
+                    miniMapa.SetActive(true);
                     paso++;
                 }
                 break;
-            case 14:
-                if (leo == null)
+            case 13: //12
+                if (Input.GetMouseButtonDown(0))
                 {
+                    instrucciones[paso-1].SetActive(false);                
                     menuFinTutorial.SetActive(true);
-                    instrucciones[paso].SetActive(false);
                     Time.timeScale = 0;  //desactiva el juego
                     GameManager.instance.CambiarPausa(true);
                 }
@@ -162,7 +155,9 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 
-
+    /// <summary>
+    /// Ya se han recolecctado todos los materiales y hay que pasar de paso
+    /// </summary>
     public void MaterialesRecolectados()
     {
         instrucciones[paso-1].SetActive(false);
@@ -172,9 +167,12 @@ public class TutorialManager : MonoBehaviour {
     }
 
 
-    public void SiguientePaso()
+    /// <summary>
+    /// Cuento es llamado pasa de paso
+    /// </summary>
+    public void SiguientePaso()  //esta separado para que solo pueda ser llamada una vez llegada la instruccion de craftear armas
     {
-        if (paso < instrucciones.Length && paso == 6)
+        if (paso < instrucciones.Length && paso == 6) 
         {
             instrucciones[paso].SetActive(false);
             paso++;

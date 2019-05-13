@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1d35c87a34ce941a7ca955dc0fc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matDropeados: 20
+  matDropeados: 40
 --- !u!114 &114157730835127960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numGolpes: 3
-  cantMat: 25
+  cantMat: 40
 --- !u!212 &212367425690344686
 SpriteRenderer:
   m_ObjectHideFlags: 1
