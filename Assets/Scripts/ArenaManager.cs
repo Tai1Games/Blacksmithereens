@@ -16,8 +16,8 @@ public class ArenaManager : MonoBehaviour
 
     UIManager uim;
     int contador = 1;
-
     [System.Serializable]
+
     struct Spawn //Instancia de enemigo
     {
         public Transform puerta; //punto donde aparece el enemigo
@@ -36,6 +36,7 @@ public class ArenaManager : MonoBehaviour
         [SerializeField]
         public Oleada[] ronda;
         public float tiempoFin; //tiempo objetivo con el que pasarse una ronda
+        public int idNota; //Nota que será mostrada al final de la ronda
     }
     [SerializeField]
     Ronda[] arena; //Array de rondas por arena
@@ -51,7 +52,8 @@ public class ArenaManager : MonoBehaviour
     {
         uim = interfaz.GetComponent<UIManager>();
         SpawnArena(arena, 0);
-        uim.ActualizaTextoRonda(1); 
+        uim.ActualizaTextoRonda(1);
+        ReproduceMusica();
     }
 
     void Update()
@@ -146,7 +148,8 @@ public class ArenaManager : MonoBehaviour
         //Si no se comprueba, es que ha acabado la ronda
         else
         {
-            centroArena.SetActive(true);
+            centroArena.SetActive(true);  //Activa el centro de la arena para pasar de ronda.
+            centroArena.GetComponent<CentroArena>().asignarIDTexto(arena[contador-1].idNota); //Asigna al centro de la arena el ID de la ronda para mostrar el texto.
             reloj.Stop(); //para el reloj cuando se termina la ronda
             tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds; //toma los segundos y milisegundos y los guarda
             tiempo /= 1000;
@@ -161,20 +164,23 @@ public class ArenaManager : MonoBehaviour
     /// Si no existe, vuelve al menú
     /// </summary>
     IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
-    {
+    {       
+        //Empieza la siguiente ronda
+        yield return new WaitUntil(() => finRonda);
         //Al tocar el centro el jugador se sana
         LevelManager.instance.Jugador().GetComponent<VidaJugador>().SumaVida(1000);
-        //Empieza la siguiente ronda
-        yield return new WaitUntil(() => finRonda);       
         if (i + 1 < arena.Length)
         {
             contador++; //Incrementa el indicador de ronda actual
-            uim.ActualizaTextoRonda(contador); //Llama al método de UIManager que actualiza los textos de ronda
+            uim.ActualizaTextoRonda(contador);
+            if (contador == 5)
+                LevelManager.instance.ActivaGrada();
+            ReproduceMusica();
             yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
             SpawnArena(arena, i + 1);
-            empiezaRonda = false;
+            empiezaRonda = false;   
         }
-        else GameManager.instance.CargaEscena("MenuGanarG");
+        else GameManager.instance.CargaEscena("MenuGanar");
     }
 
 
@@ -184,5 +190,18 @@ public class ArenaManager : MonoBehaviour
     public void EmpiezaRonda()
     {
         empiezaRonda = true;
+    }
+
+    /// <summary>
+    /// Le envía una orden de reproducir música al LevelManager dependiendo de la ronda en la que se encuentra el jugador.
+    /// </summary>
+    public void ReproduceMusica()
+    {
+        if (contador >= 1 && contador < 5)
+            LevelManager.instance.Reproducir(1);
+        else if (contador >= 5 && contador < 8)
+            LevelManager.instance.Reproducir(2);
+        else if (contador >= 9)
+            LevelManager.instance.Reproducir(3);
     }
 }

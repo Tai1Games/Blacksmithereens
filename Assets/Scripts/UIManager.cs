@@ -11,21 +11,25 @@ public class UIManager : MonoBehaviour {
     public Text textoRondaEsquina;
     public Text textoRondaAnuncio;
     public Text cuentaAtras;
-    public float tiempoCuentaAtras;
     public ArenaManager arenaManager;
+    public ArenaManagerEndless arenaManagerEndless;
+    public float tiempoCuentaAtras;    
 	public Text textoMateriales;
+    public TextoFinalDeRonda textoFinalRonda;
 
 	CambiaSprite cambiaSprite;
 	Animator rondaEsquina;
     Animator rondaAnuncio;
 
     float barraMaxTamano;
+    bool endless;
 
     void Awake () {
         cuentaAtras.enabled = false;
         barraMaxTamano = barraVida.rectTransform.rect.width;
         rondaEsquina = textoRondaEsquina.GetComponent<Animator>();
         rondaAnuncio = textoRondaAnuncio.GetComponent<Animator>();
+        endless = LevelManager.instance.endless;
     }
     // Use this for initialization
     void Start () {
@@ -105,8 +109,8 @@ public class UIManager : MonoBehaviour {
     private IEnumerator CuentaAtras()
     {
         //hay q actualizar cartel y empezar ronda
-
-        arenaManager.TocarCentro();  //termina la ronda actual
+        if (endless) arenaManagerEndless.TocarCentro();
+        else arenaManager.TocarCentro();  //termina la ronda actual
         AnuncioRonda();
         cuentaAtras.enabled = true;
         cuentaAtras.text = "3";
@@ -118,7 +122,8 @@ public class UIManager : MonoBehaviour {
         cuentaAtras.text = "GO!";
         yield return new WaitForSeconds(tiempoCuentaAtras);
         cuentaAtras.enabled = false;
-        arenaManager.EmpiezaRonda();  //empieza la proxima linea
+        if (endless) arenaManagerEndless.EmpiezaRonda();
+        else arenaManager.EmpiezaRonda();  //empieza la proxima linea
 
     }
     
@@ -135,4 +140,13 @@ public class UIManager : MonoBehaviour {
 	{
 		cambiaSprite.CambiaSpriteUI(arma);
 	}
+
+    /// <summary>
+    /// Le dice al objeto que controla la nota que la muestre.
+    /// </summary>
+    /// <param name="id"> ID que identifica el fragmento de texto correspondiente. </param>
+    public void muestraTextoFinalRonda(int id)
+    {
+        textoFinalRonda.devuelveFragmento(id);
+    }
 }

@@ -10,8 +10,12 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance = null;
     public GameObject jugador;
+    public GameObject grada;
     public UIManager uiManager;
+    public AudioManager audioManager;
     public ArenaManager arenaManager;
+    public ArenaManagerEndless arenaManagerEndless;
+    public bool endless;
 
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
@@ -25,7 +29,6 @@ public class LevelManager : MonoBehaviour {
         else Destroy(this.gameObject);
     }
     void Start () {
-		
 	}
 	
 	void Update ()
@@ -46,7 +49,8 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void EnemigoMuerto()
     {
-        arenaManager.EnemigoMuerto();
+        if (endless) arenaManagerEndless.EnemigoMuerto();
+        else arenaManager.EnemigoMuerto();
     }
 
     /// <summary>
@@ -103,6 +107,39 @@ public class LevelManager : MonoBehaviour {
 
     public void VuelveaMenu()
     {
-        SceneManager.LoadScene("MenuGuerrilla");
+        SceneManager.LoadScene("MenuInicio");
+    }
+
+    /// <summary>
+    /// Le dice al UI manager que muestre la nota al final de la ronda
+    /// </summary>
+    /// <param name="id"> ID que identifica el fragmento de texto. </param>
+    public void mostrarTextoFinRonda(int id)
+    {
+        uiManager.muestraTextoFinalRonda(id);
+    }
+
+    /// <summary>
+    /// Le indica a AudioManager que reproduzca la pista seleccionada
+    /// </summary>
+    public void Reproducir(int pista)
+    {
+        audioManager.ReproduceMusica(pista);
+    }
+
+    /// <summary>
+    /// Revierte la música a la que corresponde dependiendo de la ronda actual
+    /// </summary>
+    public void Reproducir()
+    {
+        arenaManager.ReproduceMusica();
+    }
+
+    /// <summary>
+    /// Hace que aparezca el público de la grada.
+    /// </summary>
+    public void ActivaGrada()
+    {
+        grada.SetActive(true);
     }
 }
