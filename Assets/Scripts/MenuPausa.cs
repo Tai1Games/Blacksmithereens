@@ -20,7 +20,6 @@ public class MenuPausa : MonoBehaviour {
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            juegoPausado = !juegoPausado;  //invierte la variable juegoPausado
 
             if (juegoPausado)Continuar();            
             else
@@ -29,6 +28,7 @@ public class MenuPausa : MonoBehaviour {
                 Time.timeScale = 0;  //desactiva el juego
                 GameManager.instance.CambiarPausa(true);
             }
+            juegoPausado = !juegoPausado;  //invierte la variable juegoPausado
         }
 	}
 
