@@ -163,6 +163,15 @@ public class TutorialManager : MonoBehaviour {
         }
 	}
 
+    /// <summary>
+    /// Desactiva la pausa al volver al menu
+    /// </summary>
+    public void DesactivarPausa()
+    {
+        Time.timeScale = 1;  //desactiva el juego
+        GameManager.instance.CambiarPausa(false);
+    }
+
 
     /// <summary>
     /// Ya se han recolecctado todos los materiales y hay que pasar de paso
