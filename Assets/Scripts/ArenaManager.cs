@@ -100,11 +100,15 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnArena(Ronda[] arena, int i)
     {
-        reloj.Start(); //Empieza el reloj cuando empieza la ronda
-        tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia        
-        finRonda = false;
-        SpawnRonda(arena[i].ronda, 0);
-        StartCoroutine(FinRonda(arena[i].ronda, arena, i));
+        if(arena.Length > 0)
+        {
+            reloj.Start(); //Empieza el reloj cuando empieza la ronda
+            tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia        
+            finRonda = false;
+            SpawnRonda(arena[i].ronda, 0);
+            StartCoroutine(FinRonda(arena[i].ronda, arena, i));
+        }
+
     }
 
     void FormulaMateriales(float tiempo, Oleada[] ronda)

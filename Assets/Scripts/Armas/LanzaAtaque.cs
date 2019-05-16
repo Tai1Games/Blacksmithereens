@@ -83,7 +83,6 @@ public class LanzaAtaque : MonoBehaviour
     /// <param name="cantidad">Puntos de durabilidad a ser descontados</param>
      public void RestaDurLanza(int cantidad) {
         durActualLanza -= cantidad;
-        print("Durabilidad Lanza: " + durActualLanza);
         if (durActualLanza <= 0)
         {
             scriptarmas.CambioArma(Armas.Martillo);
