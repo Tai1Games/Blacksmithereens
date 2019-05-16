@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 /// Componente que se ocupa de organizar el código y las llamadas entre componentes
 /// Todos los scripts tienen acceso a él
 /// </summary>
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public static GameManager instance = null;
     public GameObject GOjugador;
@@ -41,11 +42,13 @@ public class GameManager : MonoBehaviour {
             matJ = GOjugador.GetComponent<Materiales>();
         }
     }
-    void Start () {
-		
-	}
-	   
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
         if (Input.GetKeyDown("p"))
         {
             cheats = !cheats;  //cambia el estado de los cheats 
@@ -65,9 +68,9 @@ public class GameManager : MonoBehaviour {
                 LevelManager.instance.Reproducir();
             }
 
-            
+
         }
-	}
+    }
 
     /// <summary>
     /// Este método cambia la escena actual a aquella especificada en el string escena.

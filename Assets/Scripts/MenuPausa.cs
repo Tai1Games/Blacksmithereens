@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuPausa : MonoBehaviour {
+public class MenuPausa : MonoBehaviour
+{
 
 
     public GameObject menuPausa;
@@ -10,18 +11,20 @@ public class MenuPausa : MonoBehaviour {
     public GameObject controles;
 
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
-            if (juegoPausado)Continuar();            
+            if (juegoPausado) Continuar();
             else
             {
                 menuPausa.SetActive(true);  //muestra el menu
@@ -30,7 +33,7 @@ public class MenuPausa : MonoBehaviour {
             }
             juegoPausado = !juegoPausado;  //invierte la variable juegoPausado
         }
-	}
+    }
 
     /// <summary>
     /// Continua el juego

@@ -6,7 +6,8 @@ using UnityEngine;
  *Este script se encarga de manejar la vida del jugador, dejando aumentarla o disminuirla. 
  */
 
-public class VidaJugador : MonoBehaviour {
+public class VidaJugador : MonoBehaviour
+{
 
     public int vidaMax = 100;
     public float tiempoInvulnerabilidad;
@@ -17,27 +18,29 @@ public class VidaJugador : MonoBehaviour {
     float t;
     Animator animador;
 
-	private void Awake()
-	{
-		vidaActual = vidaMax;
-	}
+    private void Awake()
+    {
+        vidaActual = vidaMax;
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         animador = GetComponent<Animator>();
         vidaAux = vidaMax;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (invulnerable)
             t += Time.deltaTime; //Si invulnerabilidad es true, se suma tiempo al contador
-        if(t>=tiempoInvulnerabilidad) //Al acabar el tiempo, se desactiva la invulnerabilidad y se resetea el contador
+        if (t >= tiempoInvulnerabilidad) //Al acabar el tiempo, se desactiva la invulnerabilidad y se resetea el contador
         {
             invulnerable = false;
             t = 0;
         }
-	}
+    }
 
     /// <summary>
     /// Resta la cantidad de vida especificada al jugador
@@ -55,8 +58,8 @@ public class VidaJugador : MonoBehaviour {
             else
                 StartCoroutine(Invulnerabilidad()); //Se comienza la corrutina de invulnerabilidad
             LevelManager.instance.ActualizaVida(vidaActual, vidaMax);
-            
-        }    
+
+        }
     }
 
     /// <summary>
@@ -65,9 +68,9 @@ public class VidaJugador : MonoBehaviour {
     /// <param name="cantidad">Cantidad de vida a añadir</param>
     public void SumaVida(int cantidad)
     {
-        
+
         vidaActual = vidaActual + cantidad;
-        if(vidaActual > vidaMax)
+        if (vidaActual > vidaMax)
         {
             vidaActual = vidaMax;
         }
@@ -80,7 +83,7 @@ public class VidaJugador : MonoBehaviour {
     private IEnumerator Invulnerabilidad()
     {
         invulnerable = true;
-        for(int i=0; i<(int)tiempoInvulnerabilidad; i++)
+        for (int i = 0; i < (int)tiempoInvulnerabilidad; i++)
         {
             animador.Play("Invulnerabilidad", -1, 0);
             yield return new WaitForSeconds(1);
@@ -92,7 +95,7 @@ public class VidaJugador : MonoBehaviour {
     /// </summary>
     public void CheatsVida(bool estado)
     {
-        if(estado) vidaActual = vidaMax = 10000;
+        if (estado) vidaActual = vidaMax = 10000;
         else vidaActual = vidaMax = vidaAux;
     }
 }

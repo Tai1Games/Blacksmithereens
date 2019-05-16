@@ -41,7 +41,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField]
     Ronda[] arena; //Array de rondas por arena
 
-    private bool empiezaRonda=false;
+    private bool empiezaRonda = false;
     private int eneMuertos = 0; //número de enemigos muertos en cierta oleada
     private float tiempo = 0; //tiempo que el jugador tarda en pasarse una ronda
     private float tiempoFin = 0; //variable auxiliar para Ronda.tiempoFin
@@ -90,7 +90,7 @@ public class ArenaManager : MonoBehaviour
     /// Spawnea la oleada que le indica el parametro "i"
     /// </summary>
     void SpawnRonda(Oleada[] ronda, int i)
-    {    
+    {
         SpawnOleada(ronda[i].oleada, 0);
         StartCoroutine(FinOleada(ronda[i].oleada, ronda, i));
     }
@@ -100,7 +100,7 @@ public class ArenaManager : MonoBehaviour
     /// </summary>
     void SpawnArena(Ronda[] arena, int i)
     {
-        if(arena.Length > 0)
+        if (arena.Length > 0)
         {
             reloj.Start(); //Empieza el reloj cuando empieza la ronda
             tiempoFin = arena[i].tiempoFin; //paso de variable auxiliar por temas de eficiencia        
@@ -149,7 +149,7 @@ public class ArenaManager : MonoBehaviour
         else
         {
             centroArena.SetActive(true);  //Activa el centro de la arena para pasar de ronda.
-            centroArena.GetComponent<CentroArena>().asignarIDTexto(arena[contador-1].idNota); //Asigna al centro de la arena el ID de la ronda para mostrar el texto.
+            centroArena.GetComponent<CentroArena>().asignarIDTexto(arena[contador - 1].idNota); //Asigna al centro de la arena el ID de la ronda para mostrar el texto.
             reloj.Stop(); //para el reloj cuando se termina la ronda
             tiempo = 1000 * reloj.Elapsed.Seconds + reloj.Elapsed.Milliseconds; //toma los segundos y milisegundos y los guarda
             tiempo /= 1000;
@@ -164,7 +164,7 @@ public class ArenaManager : MonoBehaviour
     /// Si no existe, vuelve al menú
     /// </summary>
     IEnumerator FinRonda(Oleada[] ronda, Ronda[] arena, int i)
-    {       
+    {
         //Empieza la siguiente ronda
         yield return new WaitUntil(() => finRonda);
         //Al tocar el centro el jugador se sana
@@ -178,7 +178,7 @@ public class ArenaManager : MonoBehaviour
             ReproduceMusica();
             yield return new WaitUntil(() => empiezaRonda);  //hasta que no termina la cuenta atrás no empieza la proxima ronda
             SpawnArena(arena, i + 1);
-            empiezaRonda = false;   
+            empiezaRonda = false;
         }
         else GameManager.instance.CargaEscena("MenuGanar");
     }

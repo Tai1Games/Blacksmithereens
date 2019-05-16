@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlJugador : MonoBehaviour {
+public class ControlJugador : MonoBehaviour
+{
 
     public float velocidad; //Velocidad del jugador
     private Rigidbody2D rb; //Componente Rigidbody2D
@@ -12,32 +13,34 @@ public class ControlJugador : MonoBehaviour {
     private float angle; //angulo del jugador 
     private Animator animacion;
 
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         //LevelManager.instance.AsignarJugador(this.gameObject); //Da una referencia al LevelManager
         animacion = GetComponent<Animator>();
-	}
+    }
 
     private void Update()
     {
-        
-            movimiento = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
 
-            if (movimiento != Vector2.zero) animacion.SetTrigger("Movimineto");
-            else animacion.SetTrigger("Quieto");
+        movimiento = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
+
+        if (movimiento != Vector2.zero) animacion.SetTrigger("Movimineto");
+        else animacion.SetTrigger("Quieto");
 
 
-            mouse_position = Input.mousePosition; //obtiene posicion del raton
-            screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
-            offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
-            angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
-            angle -= 90;
-            transform.rotation = Quaternion.Euler(0, 0, angle); //cambia la rotación del jugador
-        
+        mouse_position = Input.mousePosition; //obtiene posicion del raton
+        screenPoint = Camera.main.WorldToScreenPoint(transform.position); //saca la posicion del jugador en relacion al tamaño de la pantalla de juego
+        offset = new Vector2(mouse_position.x - screenPoint.x, mouse_position.y - screenPoint.y); //diferencia de posicion entre raton y jugador
+        angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg; //angulo a traves de la tangente y lo pasa a grados
+        angle -= 90;
+        transform.rotation = Quaternion.Euler(0, 0, angle); //cambia la rotación del jugador
+
 
     }
 
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         rb.velocity = Vector2.ClampMagnitude(movimiento, velocidad); //La velocidad del personaje se limita para que no sea mayor al tener dos ejes activos
-	}
+    }
 }
