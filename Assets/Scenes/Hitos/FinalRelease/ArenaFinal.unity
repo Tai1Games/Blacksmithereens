@@ -497,7 +497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &33569895
 Transform:
   m_ObjectHideFlags: 0
@@ -1146,6 +1146,7 @@ MonoBehaviour:
   musica2: {fileID: 1673360540}
   musica3: {fileID: 1731526305}
   musicaCheats: {fileID: 466058167}
+  musicaEndless: {fileID: 0}
 --- !u!4 &39484210
 Transform:
   m_ObjectHideFlags: 0

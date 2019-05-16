@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour {
             case 1:
                 if (musicaCheats != null && !musicaCheats.isPlaying)
                 {
-                    if (musica1 != null && musica1.isPlaying)
+                    if (musica1 != null && !musica1.isPlaying)
                         musica1.Play();
                 }
                 break;
