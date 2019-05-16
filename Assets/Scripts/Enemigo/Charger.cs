@@ -13,7 +13,8 @@ public class Charger : MonoBehaviour {
     public float TiempoDescanso;
     public float velocidad;
     public float fuerzaKnockbackLanza;
-
+    public Sprite chargerRojo;
+    
     private Rigidbody2D rb;
     private Vector2 movimiento;
     private GameObject jugador;
@@ -22,10 +23,12 @@ public class Charger : MonoBehaviour {
     private bool moverse = true;
     private bool moveratras = false;
     private bool knockback = false;
+    private Sprite chargerAzul;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
+        chargerAzul = this.GetComponent<SpriteRenderer>().sprite;
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         InvokeRepeating("ComienzaCarga", 0, TiempoRepeticion);
     }
@@ -80,12 +83,12 @@ public class Charger : MonoBehaviour {
         velocidad /= 2; //Se reduce la velocidad para prepararse antes de la carga
         yield return new WaitForSeconds(TiempoPreparacion); //Se espera durante un tiempo de preparación elegido desde el editor
         moverse = false; //Se cancela el movimiento mediante rb.velocity para añadir una fuerza de carga
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = chargerRojo;
         yield return new WaitForSeconds(0.5f);
         rb.AddForce(movimiento * fuerza); //Se añade la fuerza de carga
         yield return new WaitForSeconds(TiempoDescanso); //Se espera durante un tiempo de descanso
         velocidad *= 2; //La velocidad vuelve a a normalidad
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = chargerAzul;
         moveratras = true; //El enemigo comienza a alejarse del jugador, tras lo cual comenzará el proceso de carga de nuevo
     }
 
