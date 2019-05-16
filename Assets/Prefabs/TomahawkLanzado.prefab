@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 95905029571714450}
   - component: {fileID: 114134252641858118}
   - component: {fileID: 82063406340013130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TomahawkLanzado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
