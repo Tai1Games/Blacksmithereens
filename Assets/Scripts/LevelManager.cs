@@ -127,7 +127,13 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void Reproducir()
     {
-        if (audioManager) arenaManager.ReproduceMusica();
+        if(audioManager!=null)
+        {
+        if (endless == false)
+            arenaManager.ReproduceMusica();
+        else
+            audioManager.ReproduceMusica(6);
+        }
     }
 
     /// <summary>
@@ -135,6 +141,7 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void ActivaGrada()
     {
-        grada.SetActive(true);
+        if(grada!=null)
+            grada.SetActive(true);
     }
 }

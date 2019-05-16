@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour {
     public AudioSource musica2;
     public AudioSource musica3;
     public AudioSource musicaCheats;
+    public AudioSource musicaEndless;
 
 	void Start () {
 		
@@ -25,23 +26,23 @@ public class AudioManager : MonoBehaviour {
         switch (pista)
         {
             case 1:
-                if (!musicaCheats.isPlaying)
+                if (musicaCheats != null && !musicaCheats.isPlaying)
                 {
-                    if (!musica1.isPlaying)
+                    if (musica1 != null && musica1.isPlaying)
                         musica1.Play();
                 }
                 break;
             case 2:
-                if (!musicaCheats.isPlaying)
+                if (musicaCheats != null && !musicaCheats.isPlaying)
                 {
-                    if (musica1.isPlaying)
+                    if (musica1 != null && musica1.isPlaying)
                         musica1.Stop();
                     if (!musica2.isPlaying)
                         musica2.PlayDelayed(3.5f);
                 }
                 break;
             case 3:
-                if (!musicaCheats.isPlaying)
+                if (musicaCheats != null && !musicaCheats.isPlaying)
                 {
                     if (musica2.isPlaying)
                         musica2.Stop();
@@ -50,17 +51,24 @@ public class AudioManager : MonoBehaviour {
                 }
                 break;
             case 4:
-                if(musica1.isPlaying)
+                if (musica1 != null && musica1.isPlaying)
                     musica1.Stop();
-                else if(musica2.isPlaying)
+                else if (musica2 != null && musica2.isPlaying)
                     musica2.Stop();
-                else if(musica3.isPlaying)
+                else if (musica3 != null && musica3.isPlaying)
                     musica3.Stop();
-                if (!musicaCheats.isPlaying)
+                else if (musicaEndless != null && musicaEndless.isPlaying)
+                    musicaEndless.Stop();
+                if (musicaCheats != null && !musicaCheats.isPlaying)
                     musicaCheats.Play();
                 break;
             case 5: //Único caso que puede parar la música de cheats (para que no cambie al pasar de ronda)
-                musicaCheats.Stop();
+                if(musicaCheats!=null && musicaCheats.isPlaying)
+                    musicaCheats.Stop();
+                break;
+            case 6:
+                if (musicaEndless != null && !musicaEndless.isPlaying)
+                    musicaEndless.Play();
                 break;
         }
     }
