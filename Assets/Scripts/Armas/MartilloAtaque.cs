@@ -5,15 +5,11 @@ using UnityEngine;
 public class MartilloAtaque : MonoBehaviour
 {
     Animator animacion;  //Para acceder a la animación del martillo.
-    private Sprite spriteStill;
-    private SpriteRenderer spriteContr;
 
     // Use this for initialization
     void Start()
     {
         animacion = GetComponent<Animator>();
-        spriteStill = GetComponent<SpriteRenderer>().sprite;
-        spriteContr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
