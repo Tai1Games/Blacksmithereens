@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114352228543452826}
   - component: {fileID: 82190633825918114}
   - component: {fileID: 95034977092323648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LanzaLanzada
   m_TagString: Lanza
   m_Icon: {fileID: 0}

@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 95841519771865572}
   - component: {fileID: 114741982006284312}
   - component: {fileID: 82807562449328196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EspadaLanzada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
