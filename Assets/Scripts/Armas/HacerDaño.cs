@@ -3,29 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HacerDaño : MonoBehaviour {
-    
-    private GameObject jugador;
+
     public int daño;
+
+    private int dañoAux;
+    private Collider2D[] enemigosDañados;
+    private int pos=0;
+    private bool dañado;
 
 	// Use this for initialization
 	void Start () {
-
+        enemigosDañados = new Collider2D[0];
+        dañoAux = daño;
     }
 
     // Update is called once per frame
     void Update () {
 		
 	}
-
+    
 
     private void OnTriggerEnter2D(Collider2D col)
-    {
+    {        
         VidaEnemigo vida;
         vida = col.GetComponent<VidaEnemigo>();   //coge referencia al objeto colisionado
-
-        if (vida != null)
+       
+        
+        if(vida != null)
         {
-            vida.RestaVida(daño);
+            dañado = false;
+            int i = 0;
+            while ( i < enemigosDañados.Length && !dañado)  //busca en el array de enemigos a ver si ese enemigo ya esta registrado o no
+            {
+                if (enemigosDañados[i] == col) dañado = true;
+                i++;
+            }
+
+            if (!dañado)
+            {
+                vida.RestaVida(daño);
+                System.Array.Resize(ref enemigosDañados, pos + 1);  //añade una posicion al array
+                enemigosDañados[pos] = col;
+                pos++;
+            }
         }
+
+
+    }
+
+
+    /// <summary>
+    /// Añade 10000 de daño a cada arma
+    /// </summary>
+    public void CheatsArmas(bool estado)
+    {
+        if (estado) daño = 10000;
+        else daño = dañoAux;
+    }
+
+    /// <summary>
+    /// Una vez se ha terminado la animacion llama a este metodo que resetea los parametros para el proximo ataque
+    /// </summary>
+    public void AtaqueTerminado()
+    {
+        enemigosDañados = new Collider2D[0];
+        pos = 0;
     }
 }

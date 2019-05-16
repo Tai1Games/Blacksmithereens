@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114157730835127960}
   - component: {fileID: 114243489817323068}
   - component: {fileID: 114141205201110598}
+  - component: {fileID: 114287700997137710}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1951185258050360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.2827759, y: 3.9582214, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,7 +83,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.07, y: 1.52}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.07, y: 1.52}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1d35c87a34ce941a7ca955dc0fc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matDropeados: 0
+  matDropeados: 40
 --- !u!114 &114157730835127960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98617c9bd714d84a9b79b20564bf1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 5
+  velocidad: 0
 --- !u!114 &114243489817323068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,7 +126,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8950a06446ea745966ea1d68d2389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaEnemigo: 0
+  vidaEnemigo: 50
+--- !u!114 &114287700997137710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1951185258050360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d5eae42c4039a40ae5ae7d86568196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numGolpes: 3
+  cantMat: 65
 --- !u!212 &212367425690344686
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -161,12 +175,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5929195b406a10344a0f3d436690cdd0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff4648e1fce571848b6f505f554ea56e, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.07, y: 1.52}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

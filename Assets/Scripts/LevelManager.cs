@@ -10,10 +10,13 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance = null;
     public GameObject jugador;
+    public GameObject grada;
     public UIManager uiManager;
+    public AudioManager audioManager;
     public ArenaManager arenaManager;
+    public ArenaManagerEndless arenaManagerEndless;
+    public bool endless;
 
-    private MovimientoCamara camara;
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
     /// </summary>
@@ -26,22 +29,11 @@ public class LevelManager : MonoBehaviour {
         else Destroy(this.gameObject);
     }
     void Start () {
-		
 	}
 	
 	void Update ()
     {
 	}
-    /// <summary>
-    /// Activa el método "asignarseguimiento" de la cámara, permitiendo que la misma fije a un objetivo distinto más una distancia de separación.
-    /// </summary>
-    /// <param name="objeto"></param>
-    public void AsignarSeguimiento(Transform objeto, Vector3 distancia)
-    {
-        //Buscamos la cámara y su componente.
-        camara = GameObject.Find("Main Camera").GetComponent<MovimientoCamara>();
-        camara.AsignarSeguimiento(objeto, distancia);
-    }
 
     /// <summary>
     /// Suma materiales al jugador
@@ -57,7 +49,8 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void EnemigoMuerto()
     {
-        arenaManager.EnemigoMuerto();
+        if (endless) arenaManagerEndless.EnemigoMuerto();
+        else arenaManager.EnemigoMuerto();
     }
 
     /// <summary>
@@ -89,18 +82,67 @@ public class LevelManager : MonoBehaviour {
         uiManager.ActualizaMateriales(materiales, materialesMax);
     }
 
+	/// <summary>
+	/// Cambia la ui para reflejar la durabilidad del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		uiManager.ActualizaDurabilidad(max, actual);
+	}
+
+	public void CambiaSpriteUI(Armas arma)
+	{
+		uiManager.CambiaSprite(arma);
+	}
+
     /// <summary>
     /// Dice al UIManager que muestre los nuevos materiales obtenidos
     /// </summary>
     /// <param name="mat"></param> Materiales a mostrar en pantalla
     /// <param name="pos"></param> Posición a la que se quieren enseñar
-    public void MuestraPopUpMat(string mat, Vector2 pos)
+    public void MuestraPopUpMat(string mat, Vector2 pos, Color color, Vector3 escala)
     {
-        uiManager.CreaPopUpMateriales(mat, pos);
+        uiManager.CreaPopUpMateriales(mat, pos, color, escala);
     }
 
-    public void VuelveaMenu()
+    /// <summary>
+    /// Le dice al UI manager que muestre la nota al final de la ronda
+    /// </summary>
+    /// <param name="id"> ID que identifica el fragmento de texto. </param>
+    public void mostrarTextoFinRonda(int id)
     {
-        SceneManager.LoadScene("Menu 1");
+        uiManager.muestraTextoFinalRonda(id);
+    }
+
+    /// <summary>
+    /// Le indica a AudioManager que reproduzca la pista seleccionada
+    /// </summary>
+    public void Reproducir(int pista)
+    {
+        if(audioManager!=null)
+            audioManager.ReproduceMusica(pista);
+    }
+
+    /// <summary>
+    /// Revierte la música a la que corresponde dependiendo de la ronda actual
+    /// </summary>
+    public void Reproducir()
+    {
+        if(audioManager!=null)
+        {
+        if (endless == false)
+            arenaManager.ReproduceMusica();
+        else
+            audioManager.ReproduceMusica(6);
+        }
+    }
+
+    /// <summary>
+    /// Hace que aparezca el público de la grada.
+    /// </summary>
+    public void ActivaGrada()
+    {
+        if(grada!=null)
+            grada.SetActive(true);
     }
 }
