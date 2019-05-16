@@ -127,7 +127,7 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void Reproducir()
     {
-        arenaManager.ReproduceMusica();
+        if (audioManager) arenaManager.ReproduceMusica();
     }
 
     /// <summary>
