@@ -56,7 +56,7 @@ public class LanzaAtaque : MonoBehaviour
     {
         if ((transformLanza.localPosition.y > -0.8) && animador.GetCurrentAnimatorStateInfo(0).IsName("LanzaNormal"))      //Posicion relativa al jugador, para evitar ataques dobles
         {            
-            Lanzada = (GameObject)Instantiate(Lanza, transform); //crea la lanza que va a ser lanzada
+            Lanzada = Instantiate(Lanza, transform); //crea la lanza que va a ser lanzada
             Lanzada.GetComponent<SpriteRenderer>().sortingOrder = 1; //cambia la sortingLayer
             Lanzada.transform.parent = null;  //elimina el padre de la lanzaLanzada para evitar que rote con el jugador
 
