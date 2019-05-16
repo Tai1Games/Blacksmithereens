@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class TextoFinalDeRonda : MonoBehaviour {
 
-    private string path = "Assets/Textos/test.txt"; //Localización del archivo texto
-    private StreamReader lectura;
+
     private Text texto;
     Animator animacion;
     private UIManager ui; //Referencia al UI Manager
@@ -62,27 +61,48 @@ public class TextoFinalDeRonda : MonoBehaviour {
         animacion = GetComponent<Animator>(); //controlador de animaciones de la nota.
         texto = this.gameObject.GetComponentInChildren<Image>().GetComponentInChildren<Text>(); //Texto que queremos modificar
         this.gameObject.SetActive(true); //Activa el gameobject (si no lo usamos permanecerá desactivado)
-        lectura = new StreamReader(path); //Lector de texto
 
         animacion.SetTrigger("Aparecer"); //Activa la animación para que aparezca en pantalla el texto.
         LevelManager.instance.jugador.GetComponent<AtaqueJugador>().enabled = false; //Desactiva el ataque del jugador para que al hacer click para descartar la nota no haga un ataque
-        string lineaLeida = "", fragmento = "";
 
-        while (lineaLeida != id.ToString() && !lectura.EndOfStream) //Lee hasta que encuentra el ID
-        {
-            lineaLeida = lectura.ReadLine();
-        }
+        texto.text = guardadoTexto(id); //Cambia el texto
+    }
 
-        if (lineaLeida == id.ToString()) //Si lo encuentra, guarda todo el fragmento (saltos de línea incluidos) en el string fragmento
+    private string guardadoTexto (int i)
+    {
+        switch (i)
         {
-            lineaLeida = "";
-            while ((lineaLeida = lectura.ReadLine()) != id.ToString() && !lectura.EndOfStream) //Lee hasta que encuentra el ID
-            {
-                fragmento += "\n" + lineaLeida;
-            }
+            case 1:
+                return ("Veo que al final has acabado en la arena por mi culpa...\nLo siento, pero no podre hacer nada por ti hasta que hayas derrotado a todos los enemigos que el torneo tiene preparados...Pero confio en que podras escapar.Entonces, te explicare todo con mas calma, vale? Ten mucho cuidado.\nEspero que algun dia puedas perdonarme.\n-AM");
+                
+            case 2:
+                return ("Lo estas haciendo muy bien!\nSegun mi informacion, esta sera la ultima ronda que tendras que sobrevivir para acabar con esto.Y despues, destruiremos este injusto torneo para siempre.Aguanta!\n\n- AM");
+
+            case 3:
+                return ("Ya ha pasado lo peor... Ahora solo tienes que derrotar a tu ultimo oponente y el trofeo sera tuyo... El trofeo sera NUESTRO\n\n- AM");
+
+            case 4:
+                return ("Pensandolo mejor, por que conformarme con que el trofeo sea nuestro? Es decir, nadie se daria cuenta si de repente liberara a todas las bestias que quedan aqui dentro, no?\nGracias por la ayuda, pero no puedo dejarte marchar. Bienvenido a la autentica batalla!\n\n-AM");
+
+            case 5:
+                return ("Nunca mas tendre que matar a nadie mas en esta arena si me hago con todo ese oro. Podre acabar con este sistema corrupto. \nSOLO TU ERES MI PRECIO A PAGAR POR ELLO.\nAPARTA DE MI CAMINO. SOLO ESTAS AQUI PARA SUFRIR.Y VAYA QUE SI LO VAS A HACER.\n\n-AM");
+
+            case 6:
+                return ("Deberias dejar de confiar en esos materiales tan malos que usas... Aunque no eres NADIE sin ellos.\nA ver como sobrevives ahora.\n\n- AM");
+
+            case 7:
+                return ("Hoy no tenia ganas de utilizar toda mi energia, pero en vista de que mis anteriores ataques no te afectaron...\nNo me dejas otra opcion mas que tomar medidas drasticas.\n\n-AM");
+
+            case 8:
+                return ("No... no puede ser... he de seguir... instanciando enemigos...\n\n-public GameObject(AM)");
+
+            case 9:
+                return ("Has roto el sistema de una manera... de la que jamas pense que podria romperse...\nComo lo has hecho? No suponia que -\n\n-AM");
+
+            case 10:
+                return ("Ahi esta tu premio. Tu derecho a salir de aqui. De volver al menu principal. De volver a batirte contra mi si quieres. Merecio la pena? Puedes salir de aqui, pero tus propios miedos ya estan dentro de tu cabeza.\n(Te recomiendo el modo endless.Corre a probarlo)\nGracias por jugar a Blown To Blacksmithereens!");
+            default: return "";
         }
-        texto.text = fragmento; //Cambia el texto
-        lectura.Close(); //Cierra la lectura.
     }
 
 }
