@@ -4,8 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
-public class TextoFinalDeRonda : MonoBehaviour
-{
+public class TextoFinalDeRonda : MonoBehaviour {
 
     private string path = "Assets/Textos/test.txt"; //Localización del archivo texto
     private StreamReader lectura;
@@ -15,16 +14,14 @@ public class TextoFinalDeRonda : MonoBehaviour
     AtaqueJugador ataque; //Referencia al script ataque Jugador
 
     // Use this for initialization
-    void Start()
-    {
-
+    void Start () {
+        
     }
+	    
+	// Update is called once per frame
+	void Update () {
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+	}
 
     /// <summary>
     /// Se usa para pausar el juego para dejar que el jugador lea el texto de la nota. Se activa al final de la animación Aparecer de la nota.

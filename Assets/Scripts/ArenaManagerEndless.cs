@@ -51,7 +51,6 @@ public class ArenaManagerEndless : MonoBehaviour
         SpawnRonda(r.ronda, 0);
         StartCoroutine(FinRonda(r));
         uim.ActualizaTextoRonda(1);
-        LevelManager.instance.Reproducir(6);
     }
 
     void Update()

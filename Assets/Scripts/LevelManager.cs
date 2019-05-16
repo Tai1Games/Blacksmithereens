@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Controla las referencias pero no perdura entre escenas
 /// </summary>
-public class LevelManager : MonoBehaviour
-{
+public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance = null;
     public GameObject jugador;
@@ -29,13 +28,12 @@ public class LevelManager : MonoBehaviour
         }
         else Destroy(this.gameObject);
     }
-    void Start()
+    void Start () {
+	}
+	
+	void Update ()
     {
-    }
-
-    void Update()
-    {
-    }
+	}
 
     /// <summary>
     /// Suma materiales al jugador
@@ -84,18 +82,18 @@ public class LevelManager : MonoBehaviour
         uiManager.ActualizaMateriales(materiales, materialesMax);
     }
 
-    /// <summary>
-    /// Cambia la ui para reflejar la durabilidad del arma
-    /// </summary>
-    public void ActualizaDurabilidad(int max, int actual)
-    {
-        uiManager.ActualizaDurabilidad(max, actual);
-    }
+	/// <summary>
+	/// Cambia la ui para reflejar la durabilidad del arma
+	/// </summary>
+	public void ActualizaDurabilidad(int max, int actual)
+	{
+		uiManager.ActualizaDurabilidad(max, actual);
+	}
 
-    public void CambiaSpriteUI(Armas arma)
-    {
-        uiManager.CambiaSprite(arma);
-    }
+	public void CambiaSpriteUI(Armas arma)
+	{
+		uiManager.CambiaSprite(arma);
+	}
 
     /// <summary>
     /// Dice al UIManager que muestre los nuevos materiales obtenidos
@@ -121,7 +119,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void Reproducir(int pista)
     {
-        if (audioManager) audioManager.ReproduceMusica(pista);
+        if(audioManager)audioManager.ReproduceMusica(pista);
     }
 
     /// <summary>
@@ -129,10 +127,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void Reproducir()
     {
-        if (endless == false)
-            arenaManager.ReproduceMusica();
-        else
-            audioManager.ReproduceMusica(6);
+        arenaManager.ReproduceMusica();
     }
 
     /// <summary>
@@ -140,7 +135,6 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void ActivaGrada()
     {
-        if (endless == false)
-            grada.SetActive(true);
+        grada.SetActive(true);
     }
 }
