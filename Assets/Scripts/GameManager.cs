@@ -33,10 +33,13 @@ public class GameManager : MonoBehaviour {
         }
         else Destroy(this.gameObject);
 
-        ataquejugador = GOjugador.GetComponent<AtaqueJugador>();
-        jugador = GOjugador.GetComponent<ControlJugador>();
-        vidaJ = GOjugador.GetComponent<VidaJugador>();
-        matJ = GOjugador.GetComponent<Materiales>();
+        if (GOjugador)
+        {
+            ataquejugador = GOjugador.GetComponent<AtaqueJugador>();
+            jugador = GOjugador.GetComponent<ControlJugador>();
+            vidaJ = GOjugador.GetComponent<VidaJugador>();
+            matJ = GOjugador.GetComponent<Materiales>();
+        }
     }
     void Start () {
 		
@@ -75,13 +78,6 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(escena);
     }
 
-    /// <summary>
-    /// Este método se encarga de cargar la escena de final de partida
-    /// </summary>
-    public void GameOver()
-    {
-        CargaEscena("GameOverMenu");
-    }
 
     /// <summary>
     /// Sale del juego.

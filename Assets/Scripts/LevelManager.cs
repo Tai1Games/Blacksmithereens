@@ -105,11 +105,6 @@ public class LevelManager : MonoBehaviour {
         uiManager.CreaPopUpMateriales(mat, pos, color, escala);
     }
 
-    public void VuelveaMenu()
-    {
-        SceneManager.LoadScene("MenuInicio");
-    }
-
     /// <summary>
     /// Le dice al UI manager que muestre la nota al final de la ronda
     /// </summary>

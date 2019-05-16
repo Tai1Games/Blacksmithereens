@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hitos/FinalRelease/GameOverMenu.unity
     guid: 04ee52ce5ea57e543880d9745a0ea091
+  - enabled: 1
+    path: Assets/Scenes/Hitos/FinalRelease/Tutorial.unity
+    guid: 74069a3269bddd6428a62c32f6625234
   m_configObjects: {}

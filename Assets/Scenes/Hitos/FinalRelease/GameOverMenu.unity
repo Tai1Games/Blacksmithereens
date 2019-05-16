@@ -191,8 +191,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 106070615}
-        m_MethodName: CambiaEscena
+      - m_Target: {fileID: 978989957}
+        m_MethodName: CargaEscena
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

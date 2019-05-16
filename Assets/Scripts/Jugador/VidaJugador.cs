@@ -50,7 +50,7 @@ public class VidaJugador : MonoBehaviour {
             vidaActual = vidaActual - cantidad;
             if (vidaActual <= 0)
             {
-                GameManager.instance.GameOver();
+                GameManager.instance.CargaEscena("GameOverMenu");
             }
             else
                 StartCoroutine(Invulnerabilidad()); //Se comienza la corrutina de invulnerabilidad
