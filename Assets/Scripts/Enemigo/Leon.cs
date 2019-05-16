@@ -13,6 +13,7 @@ public class Leon : MonoBehaviour {
     public float tiempoTerminarSalto;
     public float fuerzaKnockbackLanza;
 
+    bool colliding = false;
     float t;
     bool knockback = false;
     bool saltando = false;
@@ -29,12 +30,12 @@ public class Leon : MonoBehaviour {
         rb = this.GetComponent<Rigidbody2D>();
         animador = this.GetComponent<Animator>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
-        ComienzaSalto(); //Comienza con el bucle del salto del león
+        StartCoroutine("FirstJump");
     }
 	
 	void Update ()
     {
-        if (saltando == false)
+        if (!saltando && !colliding)
         {
             //diferencia de posicion entre el jugador y el enemigo
             diferencia = new Vector2(jugador.transform.position.x - transform.position.x, jugador.transform.position.y - transform.position.y);
@@ -112,6 +113,16 @@ public class Leon : MonoBehaviour {
         if (collision.tag == "Lanza" && collision.tag != "Jugador")StartCoroutine(Knockback());  //empieza el knockback
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == jugador) colliding = true; 
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject == jugador) StartCoroutine("NotColliding");
+    }
+
     /// <summary>
     /// Controla todo el proceso del knockback
     /// </summary>
@@ -126,5 +137,17 @@ public class Leon : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         rb.velocity = Vector2.zero;
         knockback = false; //activa el movimineto normal
+    }
+
+    private IEnumerator FirstJump()
+    {
+        yield return new WaitForSeconds(2);
+        ComienzaSalto(); //Comienza con el bucle del salto del león
+    }
+
+    private IEnumerator NotColliding()
+    {
+        yield return new WaitForSeconds(0.5f);
+        colliding = false; //Comienza con el bucle del salto del león
     }
 }

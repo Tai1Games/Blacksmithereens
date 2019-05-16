@@ -127,10 +127,13 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void Reproducir()
     {
+        if(audioManager!=null)
+        {
         if (endless == false)
             arenaManager.ReproduceMusica();
         else
             audioManager.ReproduceMusica(6);
+        }
     }
 
     /// <summary>
