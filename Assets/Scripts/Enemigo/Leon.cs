@@ -29,7 +29,7 @@ public class Leon : MonoBehaviour {
         rb = this.GetComponent<Rigidbody2D>();
         animador = this.GetComponent<Animator>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
-        StartCoroutine("FirstJump"); //Comienza con el bucle del salto del león
+        ComienzaSalto(); //Comienza con el bucle del salto del león
     }
 	
 	void Update ()
@@ -50,7 +50,7 @@ public class Leon : MonoBehaviour {
             if (saltando)
             {
                 t += Time.fixedDeltaTime; //El contador de tiempo se va incrementando
-                rb.velocity = Vector2.ClampMagnitude(movimiento, velocidad);
+                rb.velocity = Vector2.ClampMagnitude(movimiento * velocidad, velocidad);
 
                 if (t >= tiempoSalto)
                     StartCoroutine(TerminaSalto(0)); //Terminamos el salto sin esperar
@@ -67,11 +67,11 @@ public class Leon : MonoBehaviour {
     /// <param name="tiempo"></param>
     /// <returns></returns>
     private IEnumerator TerminaSalto(float tiempo)
-    {       
-        yield return new WaitForSeconds(tiempo);
+    {
         saltando = false;
         t = 0; //Se reinicia el tiempo
         rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(tiempo);
         Physics2D.IgnoreLayerCollision(9, 8, false); //Las colisiones entre el león y el jugador/enemigos vuelven a funcionar
         Physics2D.IgnoreLayerCollision(9, 10, false);
     }
@@ -94,7 +94,7 @@ public class Leon : MonoBehaviour {
         {
             //Se moverá hacia el jugador
             posicionJugador = jugador.transform.position;
-            movimiento = new Vector2(posicionJugador.x - rb.position.x, posicionJugador.y - rb.position.y);//.normalized; 
+            movimiento = new Vector2(posicionJugador.x - rb.position.x, posicionJugador.y - rb.position.y).normalized; 
             Physics2D.IgnoreLayerCollision(9, 8, true); //Mientras salta, no colisiona con el jugador...
             Physics2D.IgnoreLayerCollision(9, 10, true); //... ni con otros enemigos
             saltando = true; //Indica a fixedUpdate que comience el movimiento
@@ -126,11 +126,5 @@ public class Leon : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         rb.velocity = Vector2.zero;
         knockback = false; //activa el movimineto normal
-    }
-
-    private IEnumerator FirstJump()
-    {
-        yield return new WaitForSeconds(2);
-        ComienzaSalto();
     }
 }
