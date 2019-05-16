@@ -1146,6 +1146,7 @@ MonoBehaviour:
   musica2: {fileID: 1673360540}
   musica3: {fileID: 1731526305}
   musicaCheats: {fileID: 466058167}
+  musicaEndless: {fileID: 0}
 --- !u!4 &39484210
 Transform:
   m_ObjectHideFlags: 0
@@ -41043,8 +41044,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1422, y: -0.000015259}
-  m_SizeDelta: {x: 598, y: 216.7}
+  m_AnchoredPosition: {x: 1552.1, y: -3.4}
+  m_SizeDelta: {x: 858.2, y: 223.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &729145686
 Animator:
