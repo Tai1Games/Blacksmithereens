@@ -124,7 +124,7 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void Reproducir(int pista)
     {
-        audioManager.ReproduceMusica(pista);
+        if(audioManager)audioManager.ReproduceMusica(pista);
     }
 
     /// <summary>
