@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WeaponSoundEffects : MonoBehaviour {
 
-    public AudioClip soundEffect;
-
     public AudioSource soundSource;
 
 	void Start () {
