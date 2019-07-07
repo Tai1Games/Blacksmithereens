@@ -10,6 +10,7 @@ public class Lancero : MonoBehaviour {
     public float velocidad;
     public float offsetAtaque;
     public float tiempoEspera;
+    public Sprite lanTinky;
 
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -23,6 +24,11 @@ public class Lancero : MonoBehaviour {
 
     void Start ()
     {
+        if (GameManager.tinkyMode)
+        {
+            GetComponent<SpriteRenderer>().sprite = lanTinky;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         anim = GetComponentInChildren<Animator>();

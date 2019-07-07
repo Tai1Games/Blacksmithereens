@@ -10,6 +10,7 @@ public class Ziccboi : MonoBehaviour {
     public float velocidad;
     public float offsetAtaque;
     public float tiempoEspera;
+    public Sprite ziccTinky;
 
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -20,9 +21,16 @@ public class Ziccboi : MonoBehaviour {
     bool atacando = false;
     bool moviendo = true;
     bool knockback = false;
+    SpriteRenderer spRenderer;
 
     void Start ()
     {
+        spRenderer = GetComponent<SpriteRenderer>();
+        if (GameManager.tinkyMode)
+        {
+            spRenderer.sprite = ziccTinky;
+            spRenderer.color = new Color(1, 0, 1);
+        }
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         anim = GetComponentInChildren<Animator>();

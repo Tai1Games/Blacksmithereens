@@ -14,6 +14,7 @@ public class Charger : MonoBehaviour {
     public float velocidad;
     public float fuerzaKnockbackLanza;
     public Sprite chargerRojo;
+    public Sprite tinky;
     
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -24,16 +25,30 @@ public class Charger : MonoBehaviour {
     private bool moveratras = false;
     private bool knockback = false;
     private Sprite chargerAzul;
+    private SpriteRenderer spRenderer;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-        chargerAzul = this.GetComponent<SpriteRenderer>().sprite;
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         InvokeRepeating("ComienzaCarga", 0, TiempoRepeticion);
     }
-	
-	void Update ()
+
+    private void Awake()
+    {
+        print("Charger: " + GameManager.tinkyMode);
+        spRenderer = GetComponent<SpriteRenderer>();
+        if (GameManager.tinkyMode)
+        {
+            chargerAzul = tinky;
+            spRenderer.sprite = chargerAzul;
+            spRenderer.color = Color.blue;
+        }
+        else
+            chargerAzul = spRenderer.sprite;
+    }
+
+    void Update ()
     {
         if (moverse || moveratras)
         {
@@ -83,12 +98,18 @@ public class Charger : MonoBehaviour {
         velocidad /= 2; //Se reduce la velocidad para prepararse antes de la carga
         yield return new WaitForSeconds(TiempoPreparacion); //Se espera durante un tiempo de preparación elegido desde el editor
         moverse = false; //Se cancela el movimiento mediante rb.velocity para añadir una fuerza de carga
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = chargerRojo;
+        if (GameManager.tinkyMode == false)
+            spRenderer.sprite = chargerRojo;
+        else
+            spRenderer.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         rb.AddForce(movimiento * fuerza); //Se añade la fuerza de carga
         yield return new WaitForSeconds(TiempoDescanso); //Se espera durante un tiempo de descanso
         velocidad *= 2; //La velocidad vuelve a a normalidad
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = chargerAzul;
+        if (GameManager.tinkyMode == false)
+            spRenderer.sprite = chargerAzul;
+        else
+            spRenderer.color = Color.blue;
         moveratras = true; //El enemigo comienza a alejarse del jugador, tras lo cual comenzará el proceso de carga de nuevo
     }
 

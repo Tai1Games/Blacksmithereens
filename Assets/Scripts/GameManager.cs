@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     public GameObject GOjugador;
     public CrafteoArmas menuArmas;
+    public static bool tinkyMode;
 
     private ControlJugador jugador;
     private AtaqueJugador ataquejugador;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
     private VidaJugador vidaJ;
     private Materiales matJ;
     private bool cheats = false; //si es true los cheats están activos
+    
 
     /// <summary>
     /// Método que se asegura de que solo haya un GameManager al mismo tiempo
@@ -116,4 +118,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void TinkyModeSwitch()
+    {
+        tinkyMode = !tinkyMode;
+        print(tinkyMode);
+    }
 }
