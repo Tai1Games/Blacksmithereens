@@ -12,6 +12,7 @@ public class Ladron : MonoBehaviour
     public int daño;
     public int matRobados;
     public float fuerzaKnockbackLanza;
+    public Sprite tinky;
 
     bool volver = false;
     bool robado = false;
@@ -28,6 +29,11 @@ public class Ladron : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.tinkyMode)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = tinky;
+            this.GetComponent<SpriteRenderer>().color = Color.green;
+        }
         rb = GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         try

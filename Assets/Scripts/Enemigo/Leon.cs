@@ -12,6 +12,8 @@ public class Leon : MonoBehaviour {
     public float velocidad;
     public float tiempoTerminarSalto;
     public float fuerzaKnockbackLanza;
+    public Sprite leoTinky;
+    public RuntimeAnimatorController tinkySalto;
 
     bool colliding = false;
     float t;
@@ -27,14 +29,21 @@ public class Leon : MonoBehaviour {
 
     void Start ()
     {
-        rb = this.GetComponent<Rigidbody2D>();
         animador = this.GetComponent<Animator>();
+        if (GameManager.tinkyMode)
+        {
+            GetComponent<SpriteRenderer>().sprite = leoTinky;
+            GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.2f, 0);
+            animador.runtimeAnimatorController = tinkySalto;
+        }
+        rb = this.GetComponent<Rigidbody2D>();
         jugador = LevelManager.instance.Jugador(); //recibe una referencia del jugador
         StartCoroutine("FirstJump");
     }
 	
 	void Update ()
     {
+        GetComponent<SpriteRenderer>().sprite = leoTinky;
         if (!saltando && !colliding)
         {
             //diferencia de posicion entre el jugador y el enemigo
